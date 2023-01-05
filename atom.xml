@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小萝卜 Blog</title>
+  
+  <subtitle>jiayi</subtitle>
+  <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://jiayi-1994.github.io/"/>
+  <updated>2023-01-05T13:50:57.937Z</updated>
+  <id>https://jiayi-1994.github.io/</id>
+  
+  <author>
+    <name>XieJiayi</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://jiayi-1994.github.io/hello-world.html"/>
+    <id>https://jiayi-1994.github.io/hello-world.html</id>
+    <published>2023-01-05T13:50:57.937Z</published>
+    <updated>2023-01-05T13:50:57.937Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://jiayi-1994.github.io/article-title.html"/>
+    <id>https://jiayi-1994.github.io/article-title.html</id>
+    <published>2023-01-05T09:46:55.000Z</published>
+    <updated>2023-01-05T14:31:38.926Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+</feed>
