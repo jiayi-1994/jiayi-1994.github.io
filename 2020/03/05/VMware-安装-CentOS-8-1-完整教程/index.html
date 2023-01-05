@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>VMware 安装 CentOS 8.1 完整教程  | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="我使用的VMware版本：VMware 15 Pro 镜像：CentOS 8.1 电脑配置需求：  2 GB 及以上的RAM（官方推荐至少4G） 2 GHz 或以上的 CPU 64 位 x86 架构 20 GB 及以上硬盘空间  关于CentOS 8.1  基于Linux 4.18 提供 PHP 7.2、Python 3.6、Ansible 2.8、VIM 8.0 和 Squid 4 使用网络管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VMware 安装 CentOS 8.1 完整教程 ">
+<meta property="og:url" content="http://example.com/2020/03/05/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我使用的VMware版本：VMware 15 Pro 镜像：CentOS 8.1 电脑配置需求：  2 GB 及以上的RAM（官方推荐至少4G） 2 GHz 或以上的 CPU 64 位 x86 架构 20 GB 及以上硬盘空间  关于CentOS 8.1  基于Linux 4.18 提供 PHP 7.2、Python 3.6、Ansible 2.8、VIM 8.0 和 Squid 4 使用网络管理">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/01.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/02.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/03.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/04.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/05.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/06.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/07.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/08.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/09.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/10.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/11.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/12.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/13.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/14.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/15.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/16.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/17.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/18.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/19.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/20.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/21.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/22.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/23.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/24.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/25.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/26.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/27.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/28.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/29.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/30.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/31.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/32.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/33.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/34.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/35.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/36.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/37.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/38.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/39.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/40.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/41.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/42.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/43.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/44.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/45.png">
+<meta property="og:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/46.png">
+<meta property="article:published_time" content="2020-03-05T10:29:16.000Z">
+<meta property="article:modified_time" content="2022-05-14T15:01:54.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="VMware">
+<meta property="article:tag" content="CentOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-VMware-安装-CentOS-8-1-完整教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/05/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2020-03-05T10:29:16.000Z" itemprop="datePublished">2020-03-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      VMware 安装 CentOS 8.1 完整教程 
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>我使用的<font color=red size=3>VMware</font>版本：<font color=red size=3>VMware 15 Pro</font></p>
+<p>镜像：<font color=red size=3>CentOS 8.1</font></p>
+<p><strong>电脑配置需求：</strong></p>
+<ul>
+<li><font color=red size=3>2 GB</font> 及以上的<font color=red size=3>RAM</font>（官方推荐至少<font color=red size=3>4G</font>）</li>
+<li><font color=red size=3>2 GHz </font>或以上的 <font color=red size=3>CPU</font></li>
+<li><font color=red size=3>64 </font>位 <font color=red size=3>x86</font> 架构</li>
+<li><font color=red size=3>20 GB </font>及以上硬盘空间</li>
+</ul>
+<p><strong>关于CentOS 8.1</strong></p>
+<ul>
+<li>基于Linux 4.18</li>
+<li>提供 PHP 7.2、Python 3.6、Ansible 2.8、VIM 8.0 和 Squid 4</li>
+<li>使用网络管理器（nmcli 和 nmtui）进行网络配置，移除了网络脚本<br>通过 BaseOS 和应用流(AppStream)仓库发布.</li>
+<li>AppStream 是对传统rpm格式的全新扩展，为一个组件同时提供多个主要版本</li>
+<li>YUM 包管理器基于 DNF 技术，提供模块化内容支持，增强了性能，并且提供了设计良好的API用于与其他工具集成</li>
+<li>RHEL 8提供了版本控制工具: Git 2.18, Mercurial 4.8,和 Subversion 1.10.</li>
+</ul>
+<blockquote>
+<p>内核实时修补；称为 FRR 的新路由协议堆栈（支持多种 IPv4 和 IPv6 路由协议）；伯克利数据包筛选器（eBPF）的扩展版本，可帮助系统管理员解决复杂的网络问题；支持在使用设备时对 LUKS2 中的块设备进行重新加密；此外，还提供了一种用于为容器生成 SELinux 策略的新工具 udica.</p>
+</blockquote>
+<p><font color=red size=3>CentOS 8</font>系列增加了许多新特性，<font color=red size=3>CentOS 8.1</font>相当于它的第二个发行版本，我这里就不列出了，具体可以看官方文档：</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.centos.org/zh/Manuals/ReleaseNotes/CentOS8.1905#A.2BbpBO43gB-">CentOS 官网文档手册</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/RXDXB/p/11660287.html">Centos8与Centos7区别参照redhat）</a></p>
+<h1 id="一、准备过程"><a href="#一、准备过程" class="headerlink" title="一、准备过程"></a>一、准备过程</h1><p>目前比较流行的两款虚拟机软件 <font color=red size=3>VMware</font> 、<font color=red size=3>VirtualBox</font>，<font color=red size=3>VirtualBox</font>安装<font color=red size=3>CentOS 8</font>系列目前还有很多<font color=red size=3>Bug</font>，推荐使用<font color=red size=3>VMware</font>。</p>
+<p>1.安装<font color=red size=3>VMware</font></p>
+<p>如果你还没有安装虚拟机，进入<a target="_blank" rel="noopener" href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html" title="VMware">VMware官网</a>下载相应版本安装即可：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/01.png"></p>
+<p>官网下载过程可能有点慢，这里安装过程我就不赘述了。</p>
+<p>2.下载<font color=red size=3>CentOS 8.1</font>镜像资源</p>
+<p>进入<a target="_blank" rel="noopener" href="http://mirrors.huaweicloud.com/centos/8.1.1911/isos/x86_64/CentOS-8.1.1911-x86_64-dvd1.iso" title="CentOS">CentOS官网</a>下载<font color=red size=3>CentOS 8.1</font>镜像，我这里给的是在华为云的，下载速度还是可以。</p>
+<h1 id="二、创建虚拟机"><a href="#二、创建虚拟机" class="headerlink" title="二、创建虚拟机"></a>二、创建虚拟机</h1><p>1.打开<font color=red size=3>VMware</font>，点击创建新的虚拟机：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/02.png"></p>
+<p>2.点击自定义（高级）：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/03.png"></p>
+<p>3.这一步直接默认就可以：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/04.png"></p>
+<p>4.选择稍后安装操作系统：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/05.png"></p>
+<p>5.选择<font color=red size=3>Linux</font>，版本选择<font color=red size=3>Linux 4 ×64位</font>，因为<font color=red size=3>CentOS 8</font>系列基于<font color=red size=3> Linux</font> 内核<font color=red size=3> 4.18</font>：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/06.png"></p>
+<p>6.虚拟机名称随便，安装位置看自己电脑配置吧，建议安装在<font color=red size=3>D</font>盘：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/07.png"></p>
+<p>7.处理器数量根据自己电脑来配置，反正不够后面可以更改，要安装图形界面的话可以填大一点，新手就这个配置也可以了：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/08.png"></p>
+<p>8.内存大小根据自己电脑适当配置，我的电脑内存<font color=red size=3>16G</font>，所以我给它分配<font color=red size=3>4G</font>，要安装图形界面的话可以填大一点：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/09.png"></p>
+<p>9.设置虚拟机网络连接模式（<font color=red size=3>NAT</font>）：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/10.png"></p>
+<p><strong>关于网络连接模式说明：</strong></p>
+<ul>
+<li><p>桥接：选择桥接模式的话虚拟机和宿主机在网络上就是平级的关系，相当于连接在同一交换机上。</p>
+</li>
+<li><p>NAT：NAT模式就是虚拟机要联网得先通过宿主机才能和外面进行通信。</p>
+</li>
+<li><p>仅主机：虚拟机与宿主机直接连起来</p>
+</li>
+</ul>
+<p>10.选择<font color=red size=3>I&#x2F;O</font>控制器类型，然后下一步：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/11.png"></p>
+<p>11.选择磁盘类型：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/12.png"></p>
+<p>12.选择创建新虚拟磁盘，然后下一步：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/13.png"></p>
+<p>13.根据自己的需要分配磁盘容量，勾选将虚拟磁盘拆分成多个文件（方便以后将虚拟机拷贝到设备），然后下一步：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/14.png"></p>
+<p>14.根据自己需要指定磁盘文件存储位置，我放在D盘：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/15.png"></p>
+<p>15.到这里虚拟机就创建完成了，可以点击自定义硬件更改配置，点击完成创建成功：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/16.png"></p>
+<h1 id="三、安装CentOS-8-1"><a href="#三、安装CentOS-8-1" class="headerlink" title="三、安装CentOS 8.1"></a>三、安装CentOS 8.1</h1><p>1.点击编辑虚拟机设置：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/17.png"></p>
+<p>2.选择<font color=red size=3>CD&#x2F;DVD</font>，勾选启动时连接，再选择使用ISO映像文件，找到下载好的系统镜像文件添加进去，最后确定：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/18.png"></p>
+<p>3.开启此虚拟机：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/19.png"></p>
+<p>4.开启虚拟机后会出现以下界面，鼠标点进黑窗口，使用键盘方向键选择第一项，安装<font color=red size=3>CentOS 8</font>，回车，系统开始自动安装</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/20.png"></p>
+<p>5.安装完成后选择语言，根据自己情况选择，然后点击继续：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/21.png"></p>
+<p>6.首先打开网络和主机名，给虚拟机连上网络：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/22.png"></p>
+<p><strong>如果网络连接不上，多半是<font color=red size=3>DHCP</font>问题，解决办法：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/suoyudong/article/details/83037670">解决安装centos 过程中以太网连接不上网络，不能自动分配ip的问题</a> (By 索渝东)</p>
+<p>7.点击时间和日期，设置系统时间并更改时区(打开网络时间)：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/23.png"></p>
+<p>8.选择安装目的地：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/24.png"></p>
+<p>9.选择自定义配置，点击完成：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/25.png"></p>
+<p>10.添加磁盘分区</p>
+<p><font color=red size=3>Linux</font>的分区，并不像<font color=red size=3>Windows</font>一样，分成<font color=red size=3>C、D、E</font>等盘，介绍几个重要的分区：</p>
+<ul>
+<li>交换分区（swap）：交换分区和Windows的虚拟内存很像。现在内存也便宜，物理服务器的配置也高，以前的说法是一般为物理内存的2倍，现在一般情况下划分为4~8GB备用即可。我们虚拟机的内存是4GB，我们就划8GB吧。</li>
+<li>启动分区（boot）：200MB足够了。</li>
+<li>根分区（&#x2F;）：剩余空间都给根分区吧。当然我们也可以单独划出&#x2F;data分区，专门用来存储存数据，不过这里我们先不这样做，直接全部都给根分区。</li>
+</ul>
+<p>按照下图顺序依次进行设置：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/26.png"></p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/27.png"></p>
+<p>11.点击完成后会弹出更改摘要页面，点击接受更改：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/28.png"></p>
+<p>12.点击开始安装：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/29.png"></p>
+<p>13.设置<font color=red size=3>ROOT</font>密码：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/30.png"></p>
+<p>14.点击创建用户，可以把用户设为管理员方便操作，如果密码简单就点击两次完成：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/31.png"></p>
+<p>15.安装完成后点击重启电脑：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/32.png"></p>
+<p>16.重启完成后点击<font color=red size=3>LICENS INFORMATION</font>,勾选同意许可，然后点击完成：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/33.png"></p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/34.png"></p>
+<p>17.点击结束配置：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/35.png"></p>
+<p>18.来到登录界面，点击未列出，以<font color=red size=3>root</font>登录，方便后面配置操作：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/36.png"></p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/37.png"></p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/38.png"></p>
+<p>19.选择语言：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/39.png"></p>
+<p>选择键盘布局：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/40.png"></p>
+<p>是否打开位置服务：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/41.png"></p>
+<p>然后按照需要添加账号，然后就可以进入啦：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/42.png"></p>
+<p>20.关闭系统使用帮助后，来到我们的<font color=red size=3>centos8.1</font>桌面，点击活动可以看到系统软件，第一个是内置浏览器，点击最下面可以看到系统所有软件：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/43.png"></p>
+<p>21.点击右上角折叠按钮可以连接网络，打开浏览器就可以访问啦，如果不能联网，在上面已经给出解决办法：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/44.png"></p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/45.png"></p>
+<p>22.右上角有关机按钮，点击就可以关机：</p>
+<p><img src="https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/46.png"></p>
+<p>到这里，我们的<font color=red size=3>CentOS 8 Linux</font> 就算安装完成了，其他<font color=red size=3>CentOS 8 </font>系列发行版本安装过程类似，可作参考。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/05/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/" data-id="clcj4jd3j0003ccv1b04v25o1" data-title="VMware 安装 CentOS 8.1 完整教程 " class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/" rel="tag">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/01/05/article-title/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          article title
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/18/1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Github + Hexo 搭建个人博客超详细教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/" rel="tag">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="tag">博客搭建</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 10px;">博客搭建</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/01/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/05/article-title/">article title</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/VMware-%E5%AE%89%E8%A3%85-CentOS-8-1-%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/">VMware 安装 CentOS 8.1 完整教程 </a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/18/1/">Github + Hexo 搭建个人博客超详细教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
