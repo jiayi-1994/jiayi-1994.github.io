@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 学习">
+    <meta name="keywords" content="容器组pod 使用, 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="description" content="资源限制
+spec.containers[].resources.limits.cpu ： CPU 上限， 可以短暂超过， 容器也不会被停止
+spec.containers[].resources.limits.memory ： 内存上限，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | 小萝卜 Blog</title>
+    <title>容器组pod 使用 | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -344,13 +346,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hello World
+                        容器组pod 使用
                     </div>
                 </div>
             </div>
@@ -461,8 +463,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/hexo/" target="_blank">
-                            <span class="chip bg-color">hexo</span>
+                        <a href="/tags/Kubernetes/" target="_blank">
+                            <span class="chip bg-color">Kubernetes</span>
                         </a>
                         
                     </div>
@@ -470,13 +472,22 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/k8s/" class="post-category" target="_blank">
+                            k8s
+                        </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-05
+                    2023-01-06
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -490,14 +501,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
                 
@@ -508,19 +519,167 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h2 id="资源限制"><a href="#资源限制" class="headerlink" title="资源限制"></a>资源限制</h2><ul>
+<li>spec.containers[].resources.limits.cpu ： CPU 上限， 可以短暂超过， 容器也不会被停止</li>
+<li>spec.containers[].resources.limits.memory ： 内存上限， 不可以超过； 如果超过， 容器可能会被终止或调度到其他资源充足的机器上</li>
+<li>spec.containers[].resources.limits.ephemeral-storage ： 临时存储（ 容器可写层、 日志以及 EmptyDir 等） 的上限， 超过后 Pod 会被驱逐</li>
+<li>spec.containers[].resources.requests.cpu ： CPU 请求， 也是调度 CPU 资源的依据， 可以超过</li>
+<li>spec.containers[].resources.requests.memory ： 内存请求， 也是调度内存资源的依据， 可以超过； 但如果超过， 容器可能会在 Node 内存不足时清理</li>
+<li>spec.containers[].resources.requests.ephemeral-storage ： 临时存储（ 容器可写层、 日志以及 EmptyDir 等） 的请求， 调度容器存储的依据<br> <img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1636974596726-86910ac8-901e-4317-9a6c-10394dc50d7e.png#clientId=u80a186dc-b152-4&amp;from=paste&amp;height=474&amp;id=ubaad357f&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=474&amp;originWidth=599&amp;originalType=binary&amp;ratio=1&amp;size=43934&amp;status=done&amp;style=none&amp;taskId=u33db6349-9f44-430e-8fee-1989062e80f&amp;width=599" alt="image.png"></li>
+</ul>
+<h2 id="健康检查"><a href="#健康检查" class="headerlink" title="健康检查"></a>健康检查</h2><p><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1636974655639-8db59863-d002-4628-9c2d-307467f0f0a2.png#clientId=u80a186dc-b152-4&amp;from=paste&amp;height=361&amp;id=ua88cd119&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=361&amp;originWidth=609&amp;originalType=binary&amp;ratio=1&amp;size=97898&amp;status=done&amp;style=none&amp;taskId=u2fafd748-462a-4288-ac87-4c914bd3211&amp;width=609" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1636974843048-079474b5-02f3-4e6d-9bb4-9b20b076ef3a.png#clientId=u80a186dc-b152-4&amp;from=paste&amp;height=801&amp;id=u2cebb90b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=801&amp;originWidth=548&amp;originalType=binary&amp;ratio=1&amp;size=84261&amp;status=done&amp;style=none&amp;taskId=uc4738430-3b7b-4688-a825-3f2931ec093&amp;width=548" alt="image.png"><br><strong>liveness probe（存活探针）</strong>：来确定何时重启容器。例如，当应用程序处于运行状态但无法做进一步操作，liveness 探针将捕获到 deadlock，重启处于该状态下的容器，使应用程序在存在 bug 的情况下依然能够继续运行下去。<br><strong>readiness probe（就绪探针）</strong>：来确定容器是否已经就绪可以接受流量。只有当 Pod 中的容器都处于就绪状态时 kubelet 才会认定该 Pod处于就绪状态。该信号的作用是控制哪些 Pod应该作为service的后端。如果 Pod 处于非就绪状态，那么它们将会被从 service 的load balancer（负载均衡）中移除。<br><strong>startupProbe(启动探测)</strong> : 指示容器中的应用是否已经启动。如果提供了启动探测(startup probe)，则禁用所有其他探测，直到它成功为止。如果启动探测失败，kubelet 将杀死容器，容器服从其重启策略进行重启。如果容器没有提供启动探测，则默认状态为成功Success。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637116192608-84a50bf2-591a-4a7a-abaf-46f37b8a3e58.png#clientId=u6ee81a2e-2a02-4&amp;from=paste&amp;id=u20daf2f6&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=602&amp;originWidth=1200&amp;originalType=url&amp;ratio=1&amp;size=364071&amp;status=done&amp;style=none&amp;taskId=ubc93a6df-6831-43b4-a921-76bcef77344" alt="image.png"></p>
+<h2 id="存活探针"><a href="#存活探针" class="headerlink" title="存活探针"></a>存活探针</h2><h4 id="1-定义-liveness-exec请求"><a href="#1-定义-liveness-exec请求" class="headerlink" title="1.定义 liveness exec请求"></a>1.定义 liveness exec请求</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">test</span><span class="token punctuation">:</span> liveness
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> liveness<span class="token punctuation">-</span>exec
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> liveness
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">args</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> /bin/sh
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span>c
+    <span class="token punctuation">-</span> touch /tmp/healthy; sleep 30; rm <span class="token punctuation">-</span>rf /tmp/healthy; sleep 600
+    <span class="token key atrule">livenessProbe</span><span class="token punctuation">:</span>
+      <span class="token key atrule">exec</span><span class="token punctuation">:</span>
+        <span class="token key atrule">command</span><span class="token punctuation">:</span>  <span class="token comment"># kubelet 在容器内执行命令 cat /tmp/healthy 来进行探测。 如果命令执行成功并且返回值为 0，kubelet 就会认为这个容器是健康存活的</span>
+        <span class="token punctuation">-</span> cat
+        <span class="token punctuation">-</span> /tmp/healthy
+      <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">5</span>
+      <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">5</span>
+~                                                                                                                                                                                        <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>调度失败后会进行容器重启</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># kubectl describe pod liveness-exec</span>
+Events:
+  Type     Reason     Age                 From               Message
+  ----     ------     ----                ----               -------
+  Normal   Scheduled  2m2s                default-scheduler  Successfully assigned default/liveness-exec to k8s-node1
+  Normal   Pulled     104s                kubelet            Successfully pulled image <span class="token string">"busybox"</span> <span class="token keyword">in</span> <span class="token number">15</span>.638033484s
+  Warning  Unhealthy  62s <span class="token punctuation">(</span>x3 over 72s<span class="token punctuation">)</span>   kubelet            Liveness probe failed: cat: can<span class="token string">'t open '</span>/tmp/healthy': No such <span class="token function">file</span> or directory
+  Normal   Killing    62s                 kubelet            Container liveness failed liveness probe, will be restarted
+  Normal   Pulling    32s <span class="token punctuation">(</span>x2 over 119s<span class="token punctuation">)</span>  kubelet            Pulling image <span class="token string">"busybox"</span>
+  Normal   Created    29s <span class="token punctuation">(</span>x2 over 104s<span class="token punctuation">)</span>  kubelet            Created container liveness
+  Normal   Started    29s <span class="token punctuation">(</span>x2 over 103s<span class="token punctuation">)</span>  kubelet            Started container liveness
+  Normal   Pulled     29s                 kubelet            Successfully pulled image <span class="token string">"busybox"</span> <span class="token keyword">in</span> <span class="token number">2</span>.736225925s
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-定义-liveness-HTTP请求"><a href="#2-定义-liveness-HTTP请求" class="headerlink" title="2.定义 liveness HTTP请求"></a>2.定义 liveness HTTP请求</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">test</span><span class="token punctuation">:</span> liveness
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> liveness<span class="token punctuation">-</span>http
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> liveness
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> fkconsultin/liveness<span class="token punctuation">-</span>testing
+    <span class="token key atrule">args</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> /server
+    <span class="token key atrule">livenessProbe</span><span class="token punctuation">:</span>
+      <span class="token key atrule">httpGet</span><span class="token punctuation">:</span>
+        <span class="token key atrule">path</span><span class="token punctuation">:</span> /healthz
+        <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+        <span class="token key atrule">httpHeaders</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> X<span class="token punctuation">-</span>Custom<span class="token punctuation">-</span>Header
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> Awesome
+      <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">3</span>
+      <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>HTTP liveness探测失败，进行容器重启</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">Events</span><span class="token punctuation">:</span>
+  Type     Reason     Age                  From               Message
+  <span class="token punctuation">---</span><span class="token punctuation">-</span>     <span class="token punctuation">---</span><span class="token punctuation">---</span>     <span class="token punctuation">---</span><span class="token punctuation">-</span>                 <span class="token punctuation">---</span><span class="token punctuation">-</span>               <span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span>
+  Normal   Scheduled  2m47s                default<span class="token punctuation">-</span>scheduler  Successfully assigned default/liveness<span class="token punctuation">-</span>http to k8s<span class="token punctuation">-</span>node1
+  Normal   Pulled     117s                 kubelet            Successfully pulled image "fkconsultin/liveness<span class="token punctuation">-</span>testing" in 48.941841972s
+  Normal   Pulled     61s                  kubelet            Successfully pulled image "fkconsultin/liveness<span class="token punctuation">-</span>testing" in 40.836616911s
+  Normal   Created    36s (x3 over 117s)   kubelet            Created container liveness
+  Normal   Started    36s (x3 over 117s)   kubelet            Started container liveness
+  Normal   Pulled     36s                  kubelet            Successfully pulled image "fkconsultin/liveness<span class="token punctuation">-</span>testing" in 8.912067487s
+  <span class="token key atrule">Warning  Unhealthy  26s (x9 over 113s)   kubelet            Liveness probe failed</span><span class="token punctuation">:</span> <span class="token key atrule">HTTP probe failed with statuscode</span><span class="token punctuation">:</span> <span class="token number">404</span>
+  Normal   Killing    26s (x3 over 107s)   kubelet            Container liveness failed liveness probe<span class="token punctuation">,</span> will be restarted
+  Normal   Pulling    21s (x4 over 2m46s)  kubelet            Pulling image "fkconsultin/liveness<span class="token punctuation">-</span>testing"
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-定义-liveness-TCP请求"><a href="#3-定义-liveness-TCP请求" class="headerlink" title="3.定义 liveness TCP请求"></a>3.定义 liveness TCP请求</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>1.14<span class="token punctuation">-</span>alpine
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+    <span class="token key atrule">readinessProbe</span><span class="token punctuation">:</span>
+      <span class="token key atrule">tcpSocket</span><span class="token punctuation">:</span>
+        <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+      <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">5</span>
+      <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">10</span>
+    <span class="token key atrule">livenessProbe</span><span class="token punctuation">:</span>
+      <span class="token key atrule">tcpSocket</span><span class="token punctuation">:</span>   <span class="token comment"># 指定tcp端口是否通</span>
+        <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+      <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">15</span>
+      <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">20</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>15 秒之后，通过看 Pod 事件来检测存活探测器：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">Events</span><span class="token punctuation">:</span>
+  Type     Reason     Age                From               Message
+  <span class="token punctuation">---</span><span class="token punctuation">-</span>     <span class="token punctuation">---</span><span class="token punctuation">---</span>     <span class="token punctuation">---</span><span class="token punctuation">-</span>               <span class="token punctuation">---</span><span class="token punctuation">-</span>               <span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span>
+  Normal   Scheduled  87s                default<span class="token punctuation">-</span>scheduler  Successfully assigned default/nginx to k8s<span class="token punctuation">-</span>node1
+  Normal   Killing    28s                kubelet            Container nginx failed liveness probe<span class="token punctuation">,</span> will be restarted
+  Normal   Pulled     27s (x2 over 86s)  kubelet            Container image "nginx<span class="token punctuation">:</span>1.14<span class="token punctuation">-</span>alpine" already present on machine
+  Normal   Created    27s (x2 over 86s)  kubelet            Created container nginx
+  Normal   Started    27s (x2 over 86s)  kubelet            Started container nginx
+  <span class="token key atrule">Warning  Unhealthy  8s (x9 over 78s)   kubelet            Readiness probe failed</span><span class="token punctuation">:</span> <span class="token key atrule">dial tcp 10.244.36.89:8080</span><span class="token punctuation">:</span> <span class="token key atrule">connect</span><span class="token punctuation">:</span> connection refused
+  <span class="token key atrule">Warning  Unhealthy  8s (x4 over 68s)   kubelet            Liveness probe failed</span><span class="token punctuation">:</span> <span class="token key atrule">dial tcp 10.244.36.89:8080</span><span class="token punctuation">:</span> <span class="token key atrule">connect</span><span class="token punctuation">:</span> connection refused
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="就绪探针"><a href="#就绪探针" class="headerlink" title="就绪探针"></a>就绪探针</h2><p><strong>Readiness probe</strong>的配置跟<strong>liveness probe</strong>很像。唯一的不同是使用 <strong>readinessProbe</strong>而不是<strong>livenessProbe</strong>。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">readinessProbe</span><span class="token punctuation">:</span>
+  <span class="token key atrule">exec</span><span class="token punctuation">:</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> cat
+    <span class="token punctuation">-</span> /tmp/healthy
+  <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">5</span>
+  <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Configure-Probes"><a href="#Configure-Probes" class="headerlink" title="Configure Probes"></a>Configure Probes</h2><p>Probe 中有很多精确和详细的配置，通过它们您能准确的控制 liveness 和 readiness 检查</p>
+<ul>
+<li><strong>initialDelaySeconds</strong>：容器启动后第一次执行探测是需要等待多少秒。</li>
+<li><strong>periodSeconds</strong>：执行探测的频率。默认是10秒，最小1秒。</li>
+<li><strong>timeoutSeconds</strong>：探测超时时间。默认1秒，最小1秒。</li>
+<li><strong>successThreshold</strong>：探测失败后，最少连续探测成功多少次才被认定为成功。默认是 1。对于 liveness 必须是 1。最小值是 1。</li>
+<li><strong>failureThreshold</strong>：探测成功后，最少连续探测失败多少次才被认定为失败。默认是 3。最小值是 1。</li>
+</ul>
+<p>HTTP probe 中可以给 httpGet设置其他配置项：</p>
+<ul>
+<li><strong>host</strong>：连接的主机名，默认连接到 pod 的 IP。您可能想在 http header 中设置 “Host” 而不是使用 IP。</li>
+<li><strong>scheme</strong>：连接使用的 schema，默认HTTP。</li>
+<li><strong>path</strong>: 访问的HTTP server 的 path。</li>
+<li><strong>httpHeaders</strong>：自定义请求的 header。HTTP运行重复的 header。</li>
+<li><strong>port</strong>：访问的容器的端口名字或者端口号。端口号必须介于 1 和 65525 之间。</li>
+</ul>
+<h2 id="启动退出动作"><a href="#启动退出动作" class="headerlink" title="启动退出动作"></a>启动退出动作</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> lifecycle<span class="token punctuation">-</span>demo
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> lifecycle<span class="token punctuation">-</span>demo<span class="token punctuation">-</span>container
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+      <span class="token key atrule">lifecycle</span><span class="token punctuation">:</span>
+        <span class="token key atrule">postStart</span><span class="token punctuation">:</span>
+          <span class="token key atrule">exec</span><span class="token punctuation">:</span>
+            <span class="token key atrule">command</span><span class="token punctuation">:</span>
+              <span class="token punctuation">-</span> <span class="token string">"/bin/sh"</span>
+              <span class="token punctuation">-</span> <span class="token string">"-c"</span>
+              <span class="token punctuation">-</span> <span class="token string">"echo Hello from the postStart handler &gt; /usr/share/message"</span>
+        <span class="token key atrule">preStop</span><span class="token punctuation">:</span>
+          <span class="token key atrule">exec</span><span class="token punctuation">:</span>
+            <span class="token key atrule">command</span><span class="token punctuation">:</span>
+              <span class="token punctuation">-</span> <span class="token string">"/bin/sh"</span>
+              <span class="token punctuation">-</span> <span class="token string">"-c"</span>
+              <span class="token punctuation">-</span> <span class="token string">"echo Hello from the poststop handler &gt; /usr/share/message"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -555,9 +714,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Hello World》
+                    《容器组pod 使用》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/hello-world.html" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/pod.html" property="cc:attributionName"
                rel="cc:attributionURL">
                 XieJiayi
             </a> is licensed under a
@@ -598,7 +757,7 @@
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'hello-world.html',
+        id: 'kubernetes/pod.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -886,26 +1045,35 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/article-title.html">
+                <a href="/kubernetes/harbor-an-zhuang.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="article title">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="harbor 使用">
                         
-                        <span class="card-title">article title</span>
+                        <span class="card-title">harbor 使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            测试
+                            Download harbor helm charthelm repo add harbor https://helm.goharbor.io
+helm fetch harbor/harbor --untar
+kubectl create 
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-05
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
                         </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -913,8 +1081,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/" target="_blank">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
                     </a>
                     
                 </div>
@@ -925,39 +1093,46 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/hello-world.html">
+                <a href="/kubernetes/qi-ta-cha-jian.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="其他插件 使用">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">其他插件 使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            一、Grafana + Prometheus +node-exporter
+注意事项1.参考地址：https://www.jianshu.com/p/80de3bb0ec182.需要修改镜像prometheus、Grafana版本3.调整n
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-05
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
                             </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/" target="_blank">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
                     </a>
                     
                 </div>

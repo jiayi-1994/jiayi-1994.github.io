@@ -4,11 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="留言板, 学习">
+    <meta name="keywords" content="学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="留言板 | 小萝卜 Blog">
+    <meta name="description" content="原理HPA在k8s中也由一个controller控制，controller会间隔循环HPA，检查每个HPA中监控的指标是否触发伸缩条件，默认的间隔时间为15s。一旦触发伸缩条件，controller会向k8s发送请求，修改伸缩对象（stat">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>留言板 | 小萝卜 Blog</title>
+    <title>小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -327,51 +327,289 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                <!-- 
-                    jiayi
-                 -->
-                
-                    留言板
-                
-            </div>
-
-             <div class="description center-align">
-                
-                    <!-- Go | java -->
-                    <span id="jinrishici-sentence">正在加载今日诗词...</span>
-                
-            </div>
-        </div>
-    </div>
-</div>
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
 </script>
-    </div>
-</div>
 
-<main class="content">
-    <div id="aboutme" class="container contact-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-content article-card-content">
-                    <div id="articleContent" data-aos="fade-up">
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
                         
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card">
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        <span class="chip bg-color">无标签</span>
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-01-06
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>文章作者:&nbsp;&nbsp;
+                    
+                    XieJiayi
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    426
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    2 分
+                </div>
+                
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>HPA在k8s中也由一个controller控制，controller会间隔循环HPA，检查每个HPA中监控的指标是否触发伸缩条件，默认的间隔时间为<strong>15s</strong>。一旦触发伸缩条件，controller会向k8s发送请求，修改伸缩对象<strong>（statefulSet、replicaController、replicaSet）</strong>子对象<strong>scale</strong>中控制<strong>pod</strong>数量的字段。<strong>k8s</strong>响应请求，修改<strong>scale</strong>结构体，然后会刷新一次伸缩对象的<strong>pod</strong>数量。伸缩对象被修改后，自然会通过<strong>list/watch</strong>机制<strong>增加或减少pod</strong>数量，达到动态伸缩的目的</p>
+<h3 id="预先安装metrics-server"><a href="#预先安装metrics-server" class="headerlink" title="预先安装metrics-server"></a>预先安装metrics-server</h3><blockquote>
+<p>查看hpa配置<br>2.kubect get hpa<br>查看node配置<br>kubectl top node</p>
+</blockquote>
+<h3 id="二、进行压力测试"><a href="#二、进行压力测试" class="headerlink" title="二、进行压力测试"></a>二、进行压力测试</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubectl run <span class="token parameter variable">-i</span> <span class="token parameter variable">--tty</span> load-generator <span class="token parameter variable">--image</span><span class="token operator">=</span>busybox /bin/sh
+
+<span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">wget</span> <span class="token parameter variable">-q</span> -O- http://10.105.5.65<span class="token punctuation">;</span> <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="三、自定义HPA"><a href="#三、自定义HPA" class="headerlink" title="三、自定义HPA"></a>三、自定义HPA</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> autoscaling/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> HorizontalPodAutoscaler
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+    <span class="token key atrule">autoscaling.alpha.kubernetes.io/conditions</span><span class="token punctuation">:</span> '<span class="token punctuation">[</span><span class="token punctuation">{</span>"type"<span class="token punctuation">:</span><span class="token string">"AbleToScale"</span><span class="token punctuation">,</span>"status"<span class="token punctuation">:</span><span class="token string">"True"</span><span class="token punctuation">,</span>"lastTransitionTime"<span class="token punctuation">:</span><span class="token string">"2021-11-12T10:24:12Z"</span><span class="token punctuation">,</span>"reason"<span class="token punctuation">:</span><span class="token string">"ReadyForNewScale"</span><span class="token punctuation">,</span>"message"<span class="token punctuation">:</span>"recommended
+      size matches current size"<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>"type"<span class="token punctuation">:</span><span class="token string">"ScalingActive"</span><span class="token punctuation">,</span>"status"<span class="token punctuation">:</span><span class="token string">"True"</span><span class="token punctuation">,</span>"lastTransitionTime"<span class="token punctuation">:</span><span class="token string">"2021-11-13T04:52:54Z"</span><span class="token punctuation">,</span>"reason"<span class="token punctuation">:</span><span class="token string">"ValidMetricFound"</span><span class="token punctuation">,</span>"message"<span class="token punctuation">:</span>"the
+      HPA was able to successfully calculate a replica count from cpu resource utilization
+      (percentage of request)"<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>"type"<span class="token punctuation">:</span><span class="token string">"ScalingLimited"</span><span class="token punctuation">,</span>"status"<span class="token punctuation">:</span><span class="token string">"True"</span><span class="token punctuation">,</span>"lastTransitionTime"<span class="token punctuation">:</span><span class="token string">"2021-11-13T05:52:31Z"</span><span class="token punctuation">,</span>"reason"<span class="token punctuation">:</span><span class="token string">"TooFewReplicas"</span><span class="token punctuation">,</span>"message"<span class="token punctuation">:</span>"the
+      desired replica count is less than the minimum replica count"<span class="token punctuation">}</span><span class="token punctuation">]</span>'
+    <span class="token key atrule">autoscaling.alpha.kubernetes.io/current-metrics</span><span class="token punctuation">:</span> <span class="token string">'[{"type":"Resource","resource":{"name":"cpu","currentAverageUtilization":0,"currentAverageValue":"1m"}}]'</span>
+  <span class="token key atrule">creationTimestamp</span><span class="token punctuation">:</span> <span class="token string">"2021-11-12T10:23:56Z"</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> php<span class="token punctuation">-</span>apache
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+  <span class="token key atrule">resourceVersion</span><span class="token punctuation">:</span> <span class="token string">"57579"</span>
+  <span class="token key atrule">uid</span><span class="token punctuation">:</span> 5bdf76cb<span class="token punctuation">-</span>fcfd<span class="token punctuation">-</span>4761<span class="token punctuation">-</span>91a4<span class="token punctuation">-</span>24e08cf88e23
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">maxReplicas</span><span class="token punctuation">:</span> <span class="token number">10</span>
+  <span class="token key atrule">minReplicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">scaleTargetRef</span><span class="token punctuation">:</span>
+    <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> php<span class="token punctuation">-</span>apache
+  <span class="token key atrule">targetCPUUtilizationPercentage</span><span class="token punctuation">:</span> <span class="token number">50</span>
+  <span class="token comment">## 增加其他配置限制</span>
+<span class="token key atrule">status</span><span class="token punctuation">:</span>
+  <span class="token key atrule">currentCPUUtilizationPercentage</span><span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token key atrule">currentReplicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">desiredReplicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">lastScaleTime</span><span class="token punctuation">:</span> <span class="token string">"2021-11-13T05:50:00Z"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="四HPA-最佳实践"><a href="#四HPA-最佳实践" class="headerlink" title="四HPA 最佳实践"></a>四HPA 最佳实践</h3><ul>
+<li>为容器配置 CPU Requests</li>
+<li>HPA 目标设置恰当，如设置 70% 给容器和应用预留 30% 的余量</li>
+<li>保持 Pods 和 Nodes 健康（避免 Pod 频繁重建）</li>
+<li>保证用户请求的负载均衡</li>
+<li>使用 kubectl top node 和 kubectl top pod 查看资源使用情况</li>
+</ul>
+
+            </div>
+            <hr />
 
             
-            <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《》
+                </span> by
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/k8s-hpa-dan-xing-shen-suo.html" property="cc:attributionName"
+               rel="cc:attributionURL">
+                XieJiayi
+            </a> is licensed under a
+            <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>许可协议。转载请注明来源
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
 <link rel="stylesheet" href="/css/my-gitalk.css">
 
 <div class="card gitalk-card" data-aos="fade-up">
@@ -386,22 +624,22 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'contact/index.html',
+        id: 'kubernetes/k8s-hpa-dan-xing-shen-suo.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
     gitalk.render('gitalk-container');
 </script>
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
-            <style>
+    
+    <style>
     .valine-card {
         margin: 1.5rem auto;
     }
@@ -663,11 +901,237 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     });
 </script>
 
-            
+    
 
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/kubernetes/k8s-hpa-dan-xing-shen-suo.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            原理HPA在k8s中也由一个controller控制，controller会间隔循环HPA，检查每个HPA中监控的指标是否触发伸缩条件，默认的间隔时间为15s。一旦触发伸缩条件，controller会向k8s发送请求，修改伸缩对象（stat
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                            </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/ya-ce/ya-ce-gong-ju-sysbench-stress-iperf-huo-iperf3.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="压测工具Sysbench、Stress、iperf或iperf3">
+                        
+                        <span class="card-title">压测工具Sysbench、Stress、iperf或iperf3</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+sysbench是一款开源的、模块化的、跨平台的多线程性能测试工具，可用于CPU、内存、磁盘I/O、线程、数据库的性能测试。sysbench目前支持的数据库压测有PG和MySQL。（若想学习数据库压测，可以私聊麦老师哟，MySQL和PG均
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/linux/" class="post-category" target="_blank">
+                                    linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8E%8B%E6%B5%8B/" target="_blank">
+                        <span class="chip bg-color">压测</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 小萝卜 Blog<br />'
+            + '文章作者: XieJiayi<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
 </main>
+
+
     <footer class="page-footer bg-color">
     <div class="container row center-align">
        <div class="Copy-right">

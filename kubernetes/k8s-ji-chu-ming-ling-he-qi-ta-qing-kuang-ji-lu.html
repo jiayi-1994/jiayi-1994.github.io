@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 学习">
+    <meta name="keywords" content="k8s相关基础命令 使用, 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="description" content="k8s一.环境搭建参考地址 ：https://www.cnblogs.com/tz90/p/15466646.html
+#最新、最全、最详细的 K8S 学习笔记总结（2021最新版）
+https://www.jianshu.com/p/2c">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | 小萝卜 Blog</title>
+    <title>k8s相关基础命令 使用 | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -344,13 +346,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hello World
+                        k8s相关基础命令 使用
                     </div>
                 </div>
             </div>
@@ -461,8 +463,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/hexo/" target="_blank">
-                            <span class="chip bg-color">hexo</span>
+                        <a href="/tags/Kubernetes/" target="_blank">
+                            <span class="chip bg-color">Kubernetes</span>
                         </a>
                         
                     </div>
@@ -470,13 +472,22 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/k8s/" class="post-category" target="_blank">
+                            k8s
+                        </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-05
+                    2023-01-06
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -490,14 +501,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
                 
@@ -508,19 +519,177 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h1 id="k8s"><a href="#k8s" class="headerlink" title="k8s"></a>k8s</h1><h2 id="一-环境搭建"><a href="#一-环境搭建" class="headerlink" title="一.环境搭建"></a>一.环境搭建</h2><h4 id="参考地址-："><a href="#参考地址-：" class="headerlink" title="参考地址 ："></a>参考地址 ：</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>cnblogs<span class="token punctuation">.</span>com<span class="token operator">/</span>tz90<span class="token operator">/</span>p<span class="token operator">/</span><span class="token number">15466646.</span>html
+#最新、最全、最详细的 <span class="token constant">K8S</span> 学习笔记总结（<span class="token number">2021</span>最新版）
+https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>jianshu<span class="token punctuation">.</span>com<span class="token operator">/</span>p<span class="token operator">/</span><span class="token number">2</span>cbdf5b65bb7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="二-命令"><a href="#二-命令" class="headerlink" title="二.命令"></a>二.命令</h2><h4 id="命令自动补全："><a href="#命令自动补全：" class="headerlink" title="命令自动补全："></a>命令自动补全：</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+<span class="token punctuation">[</span>root@k8s-master01 ~<span class="token punctuation">]</span><span class="token comment"># yum install -y bash-completion</span>
+<span class="token punctuation">[</span>root@k8s-master01 ~<span class="token punctuation">]</span><span class="token comment"># source /usr/share/bash-completion/bash_completion</span>
+<span class="token punctuation">[</span>root@k8s-master01 ~<span class="token punctuation">]</span><span class="token comment"># source &lt;(kubectl completion bash)</span>
+<span class="token punctuation">[</span>root@k8s-master01 ~<span class="token punctuation">]</span><span class="token comment"># echo "source &lt;(kubectl completion bash)" &gt;&gt; ~/.bashrc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="1-查看类常用命令"><a href="#1-查看类常用命令" class="headerlink" title="1.查看类常用命令"></a>1.查看类常用命令</h4><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment">#生成加入token</span>
+<span class="token key attr-name">kubeadm</span> <span class="token value attr-value">join 192.168.56.12:6443 --token qj0nng.wmfof5ego8i5bx5f --discovery-token-ca-cert-hash sha256:ed86c67741198cf7da9a8775db01672d00dfa6833d3e9059adb3ebdff09aebc8 </span>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token comment"># 查看node，pod，svc，cs，event，cm,sa ,deploy jobs ,ing ingresses</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">get pod </span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">get nod</span>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<span class="token comment">#查看命名空间</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">-n kube-system</span>
+
+<span class="token comment">#查看node、pod启动情况</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">describe pod nginx-6799fc88d8-lwqb7</span>
+
+<span class="token comment">#查看日志</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">logs --tail=300 -f nginx-6799fc88d8-lwqb7</span>
+
+<span class="token comment">#调试容器</span>
+
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">debug -n  zstack edge-vm-controller-6bbfc84f4f-hj66v   --image centos --target edge-vm-controller  -it</span>
+<span class="token comment">#创建一份副本进行测试</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">debug cdebug-64cd86798b-sjxrl -it --image=centos --share-processes --copy-to=cdebug-debug -- sh</span>
+<span class="token comment">#调试主机</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">debug node/10.69.202.146 -it --image=centos -- shchroot /host</span>
+
+
+<span class="token comment">#进入容器</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">exec nginx-6799fc88d8-lwqb7 -it -- /bin/sh</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">exec mypod -c ruby-container -it -- bash</span>
+<span class="token comment"># 切换命名空间</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">config set-context $(kubectl config current-context) --namespace=kube-ops</span>
+
+<span class="token comment"># 查看pod的详细信息，以yaml格式或json格式显示</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">get pods -o yaml</span>
+
+<span class="token comment"># 查看pod的标签信息</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">get pod -A --show-labels </span>
+
+<span class="token comment"># 根据Selector（label query）来查询pod</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">get pod -A --selector="k8s-app=kube-dns"</span>
+
+<span class="token comment">#查看运行pod的环境变量</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">exec podName env</span>
+<span class="token comment"># 查看系统资源利用率</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">exec nginx-app-4028413181-cnt1i ps aux</span>
+<span class="token comment">#权限判断</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">auth can-i create pods --all-namespaces</span>
+
+<span class="token comment">#查看job</span>
+<span class="token key attr-name">kubect</span> <span class="token value attr-value">get job  \ kubect get cronjob</span>
+
+<span class="token comment">#查看所有存储信息记录</span>
+<span class="token key attr-name">df</span> <span class="token value attr-value">-Th</span>
+
+<span class="token comment">#查看组件日志</span>
+<span class="token key attr-name">journalctl</span> <span class="token value attr-value">-l -u kube-apiserver</span>
+<span class="token key attr-name">journalctl</span> <span class="token value attr-value">-l -u kube-controller-manager</span>
+<span class="token key attr-name">journalctl</span> <span class="token value attr-value">-l -u kube-scheduler</span>
+<span class="token key attr-name">journalctl</span> <span class="token value attr-value">-l -u kubelet</span>
+<span class="token key attr-name">journalctl</span> <span class="token value attr-value">-l -u kube-proxy</span>
+
+<span class="token comment">#格式化输出</span>
+<span class="token key attr-name">-o</span><span class="token punctuation">=</span><span class="token value attr-value">custom-columns=&lt;spec&gt;   #使用逗号分隔的自定义列列表打印表格</span>
+<span class="token key attr-name">-o</span><span class="token punctuation">=</span><span class="token value attr-value">custom-columns-file=&lt;filename&gt; #使用文件中的自定义列模板打印表格</span>
+<span class="token key attr-name">-o</span><span class="token punctuation">=</span><span class="token value attr-value">json    #输出JSON 格式的API对象</span>
+<span class="token key attr-name">-o</span><span class="token punctuation">=</span><span class="token value attr-value">jsonpath=&lt; template&gt;       #打印jsonpath表达式中定义的字段</span>
+<span class="token key attr-name">-o</span><span class="token punctuation">=</span><span class="token value attr-value">jsonpath-file=&lt;filename&gt;   #打印由文件中的jsonpath表达式定义的字段</span>
+<span class="token key attr-name">-o</span><span class="token punctuation">=</span><span class="token value attr-value">name  #仅打印资源名称 </span>
+<span class="token key attr-name">-o</span><span class="token punctuation">=</span><span class="token value attr-value">wide  #以纯文本格式输出任何附加信息，对于Pod ，包含节点名称</span>
+<span class="token key attr-name">-o</span><span class="token punctuation">=</span><span class="token value attr-value">yaml  #输出 YAML 格式的 API 对象 </span>
+
+
+<span class="token comment">#查看卡住服务</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">api-resources --verbs=list --namespaced -o name   | xargs -n 1 kubectl get --show-kind --ignore-not-found -n kubesphere-logging-system</span>
+
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-操作类指令"><a href="#2-操作类指令" class="headerlink" title="2.操作类指令"></a>2.操作类指令</h4><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment">#创建资源</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">create -f xxx.yaml</span>
+<span class="token comment"># 应用资源</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">apply -f xxx.yaml</span>
+<span class="token comment"># 应用资源，该目录下的所有 .yaml, .yml, 或 .json 文件都会被使用</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">apply -f &lt;directory&gt;</span>
+<span class="token comment"># 创建test名称空间</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">create namespace test</span>
+<span class="token comment"># 编辑资源</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">edit pod podName</span>
+<span class="token comment"># 删除指定的pod</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">delete pod podName</span>
+<span class="token comment">#文件复制</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">cp /tmp/foo_dir &lt;some-pod&gt;:/tmp/bar_dir</span>
+
+<span class="token comment">#维护模式（标志node不可调度，但不影响现有pod）</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">cordon k8s-node1</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-高级指令"><a href="#3-高级指令" class="headerlink" title="3. 高级指令"></a>3. 高级指令</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#######################回滚操作#############</span>
+<span class="token comment"># 查询历史版本</span>
+$ kubectl rollout <span class="token function">history</span> daemonset <span class="token operator">&lt;</span>daemonset-name<span class="token operator">&gt;</span>
+kubectl rollout <span class="token function">history</span> deploy php-apache
+<span class="token comment"># 查询某个历史版本的详细信息</span>
+$ kubectl rollout <span class="token function">history</span> daemonset <span class="token operator">&lt;</span>daemonset-name<span class="token operator">&gt;</span> <span class="token parameter variable">--revision</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment"># 回滚</span>
+$ kubectl rollout undo daemonset <span class="token operator">&lt;</span>daemonset-name<span class="token operator">&gt;</span> --to-revision<span class="token operator">=</span><span class="token operator">&lt;</span>revi
+sion<span class="token operator">&gt;</span>
+<span class="token comment"># 查询回滚状态</span>
+$ kubectl rollout status  deploy <span class="token operator">&lt;</span>daemonset-name<span class="token operator">&gt;</span>
+
+<span class="token comment">#######################扩容操作#################</span>
+<span class="token comment">#手动扩容 </span>
+kubectl scale deployment php-apache <span class="token parameter variable">--replicas</span><span class="token operator">=</span><span class="token number">2</span>
+
+<span class="token comment">#自动扩容（需要配合HPA metric使用）</span>
+kubectl autoscale deployment php-apache --cpu-percent<span class="token operator">=</span><span class="token number">50</span> <span class="token parameter variable">--min</span><span class="token operator">=</span><span class="token number">1</span> <span class="token parameter variable">--max</span><span class="token operator">=</span><span class="token number">10</span>
+
+<span class="token comment">#镜像更新</span>
+kubectl <span class="token builtin class-name">set</span> image deployment/nginx-deployment my-nginx<span class="token operator">=</span>nginx:1.9.1
+
+<span class="token comment"># 添加标签</span>
+kubectl label pods my-pod new-label<span class="token operator">=</span>awesome
+
+<span class="token comment"># 添加注解</span>
+kubectl annotate pods my-pod icon-url<span class="token operator">=</span>http://goo.gl/XXBTWq
+
+<span class="token comment"># 部分更新节点</span>
+kubectl patch <span class="token function">node</span> k8s-node-1 <span class="token parameter variable">-p</span> <span class="token string">'{"spec":{"unschedulable":true}}'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="dashboard"><a href="#dashboard" class="headerlink" title="dashboard"></a>dashboard</h4><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment">## dashboard生成token</span>
+<span class="token comment"># 创建用户</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">create serviceaccount dashboard-admin -n kube-system</span>
+
+<span class="token comment"># 用户授权</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">create clusterrolebinding dashboard-admin --clusterrole=cluster-admin --serviceaccount=kube-system:dashboard-admin</span>
+
+<span class="token comment"># 获取用户Token</span>
+<span class="token key attr-name">kubectl</span> <span class="token value attr-value">describe secrets -n kube-system $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1 <span class="token comment"># 版本信息</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment <span class="token comment"># 资源类别</span>
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>  <span class="token comment"># 资源元数据</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>deployment <span class="token comment"># 元数据对应的名称</span>
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> <span class="token key atrule">app-test   namespace</span><span class="token punctuation">:</span> app<span class="token punctuation">-</span>test 
+  <span class="token key atrule">lables</span><span class="token punctuation">:</span> <span class="token comment"># 对资源打上便签供后续使用</span>
+    <span class="token key atrule">apps</span><span class="token punctuation">:</span> nginx
+   <span class="token key atrule">annotations</span><span class="token punctuation">:</span> <span class="token comment"># 主要目的是方便用户阅读查找</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span> <span class="token comment"># 定义期望状态</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+          <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>1.14.2
+          <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -555,9 +724,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Hello World》
+                    《k8s相关基础命令 使用》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/hello-world.html" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/k8s-ji-chu-ming-ling-he-qi-ta-qing-kuang-ji-lu.html" property="cc:attributionName"
                rel="cc:attributionURL">
                 XieJiayi
             </a> is licensed under a
@@ -598,7 +767,7 @@
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'hello-world.html',
+        id: 'kubernetes/k8s-ji-chu-ming-ling-he-qi-ta-qing-kuang-ji-lu.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -886,26 +1055,34 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/article-title.html">
+                <a href="/kubernetes/qi-ta-cha-jian.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="article title">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="其他插件 使用">
                         
-                        <span class="card-title">article title</span>
+                        <span class="card-title">其他插件 使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            测试
+                            一、Grafana + Prometheus +node-exporter
+注意事项1.参考地址：https://www.jianshu.com/p/80de3bb0ec182.需要修改镜像prometheus、Grafana版本3.调整n
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-05
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
                         </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -913,8 +1090,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/" target="_blank">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
                     </a>
                     
                 </div>
@@ -925,39 +1102,45 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/hello-world.html">
+                <a href="/kubernetes/ji-qun-diao-du.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="集群调度 使用">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">集群调度 使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            调度过程调度分为几个部分：首先是过滤掉不满足条件的节点，这个过程称为 predicate；然后对通过的节点按照优先级排序，这个是 priority；最后从中选择优先级最高的节点。如果中间任何一步骤有错误，就直接返回错误。Predicate 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-05
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
                             </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/" target="_blank">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
                     </a>
                     
                 </div>

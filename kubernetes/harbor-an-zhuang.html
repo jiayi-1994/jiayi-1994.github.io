@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="留言板, 学习">
+    <meta name="keywords" content="harbor 使用, 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="留言板 | 小萝卜 Blog">
+    <meta name="description" content="Download harbor helm charthelm repo add harbor https://helm.goharbor.io
+helm fetch harbor/harbor --untar
+kubectl create ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>留言板 | 小萝卜 Blog</title>
+    <title>harbor 使用 | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -327,51 +329,298 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                <!-- 
-                    jiayi
-                 -->
-                
-                    留言板
-                
-            </div>
-
-             <div class="description center-align">
-                
-                    <!-- Go | java -->
-                    <span id="jinrishici-sentence">正在加载今日诗词...</span>
-                
-            </div>
-        </div>
-    </div>
-</div>
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
 </script>
-    </div>
-</div>
 
-<main class="content">
-    <div id="aboutme" class="container contact-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-content article-card-content">
-                    <div id="articleContent" data-aos="fade-up">
-                        
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        harbor 使用
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card">
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/Kubernetes/" target="_blank">
+                            <span class="chip bg-color">Kubernetes</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/k8s/" class="post-category" target="_blank">
+                            k8s
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-01-06
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>文章作者:&nbsp;&nbsp;
+                    
+                    XieJiayi
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    214
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    1 分
+                </div>
+                
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="Download-harbor-helm-chart"><a href="#Download-harbor-helm-chart" class="headerlink" title="Download harbor helm chart"></a>Download harbor helm chart</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">helm repo <span class="token function">add</span> harbor https://helm.goharbor.io
+helm fetch harbor/harbor <span class="token parameter variable">--untar</span>
+kubectl create ns harbor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Update-values-yaml"><a href="#Update-values-yaml" class="headerlink" title="Update values.yaml"></a>Update values.yaml</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vi</span> .harbor/values.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>And change:</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">expose</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> nodePort
+<span class="token key atrule">tls</span><span class="token punctuation">:</span>
+  <span class="token key atrule">commonName</span><span class="token punctuation">:</span> <span class="token string">'core.harbor.domain'</span>
+
+<span class="token key atrule">persistence</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Install-helm-chart"><a href="#Install-helm-chart" class="headerlink" title="Install helm chart"></a>Install helm chart</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">helm <span class="token function">install</span> harbor ./harbor <span class="token parameter variable">-n</span> harbor<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="Wait-for-all-pod-being-ready-and-access-harbor-portal"><a href="#Wait-for-all-pod-being-ready-and-access-harbor-portal" class="headerlink" title="Wait for all pod being ready and access harbor portal"></a>Wait for all pod being ready and access harbor portal</h3><p><a target="_blank" rel="noopener" href="http://192.168.34.2:30002/">http://192.168.34.2:30002</a></p>
+<pre class="line-numbers language-none"><code class="language-none">admin/Harbor12345<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="Download-repository-certs-from"><a href="#Download-repository-certs-from" class="headerlink" title="Download repository certs from"></a>Download repository certs from</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">https://192.168.34.2:30003/harbor/projects/1/repositories<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="Copy-the-downloaded-ca-crt-to-vm-docker-certs-configuration-folder"><a href="#Copy-the-downloaded-ca-crt-to-vm-docker-certs-configuration-folder" class="headerlink" title="Copy the downloaded ca.crt to vm docker certs configuration folder"></a>Copy the downloaded ca.crt to vm docker certs configuration folder</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /etc/docker/certs.d/core.harbor.domain
+copy the ca.crt to this folder
+systemctl restart <span class="token function">docker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Edit-x2F-etc-x2F-hosts-to-map-core-harbor-domain-to-harbor-svc-clusterip"><a href="#Edit-x2F-etc-x2F-hosts-to-map-core-harbor-domain-to-harbor-svc-clusterip" class="headerlink" title="Edit /etc/hosts to map core.harbor.domain to harbor svc clusterip"></a>Edit /etc/hosts to map core.harbor.domain to harbor svc clusterip</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># host 配置harbor svc的集群ip</span>
+<span class="token number">10.104</span>.231.99 core.harbor.domain<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="Docker-login"><a href="#Docker-login" class="headerlink" title="Docker login"></a>Docker login</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> login <span class="token parameter variable">-u</span> admin <span class="token parameter variable">-p</span> Harbor12345 core.harbor.domain<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="Docker-tag-a-image-to-core-harbor-domain-and-push-it-and-you-will-see-it-in-harbor-portal"><a href="#Docker-tag-a-image-to-core-harbor-domain-and-push-it-and-you-will-see-it-in-harbor-portal" class="headerlink" title="Docker tag a image to core.harbor.domain and push it and you will see it in harbor portal"></a>Docker tag a image to core.harbor.domain and push it and you will see it in harbor portal</h3><h3 id="Check-repositories-and-blobs"><a href="#Check-repositories-and-blobs" class="headerlink" title="Check repositories and blobs"></a>Check repositories and blobs</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubectl <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> harbor-registry-7d686859d7-xs5nv <span class="token parameter variable">-n</span> harbor <span class="token function">bash</span>
+<span class="token function">ls</span> <span class="token parameter variable">-la</span> /storage/docker/registry/v2/repositories/
+<span class="token function">ls</span> <span class="token parameter variable">-la</span> /storage/docker/registry/v2/blobs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Database-operator"><a href="#Database-operator" class="headerlink" title="Database operator"></a>Database operator</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubectl <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> harbor-database-0 <span class="token parameter variable">-n</span> harbor -- <span class="token function">bash</span>
+psql <span class="token parameter variable">-U</span> postgres <span class="token parameter variable">-d</span> postgres <span class="token parameter variable">-h</span> <span class="token number">127.0</span>.0.1 <span class="token parameter variable">-p</span> <span class="token number">5432</span>
+<span class="token punctuation">\</span>c registry
+<span class="token keyword">select</span> * from harbor_user<span class="token punctuation">;</span>
+<span class="token punctuation">\</span>dt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+            </div>
+            <hr />
 
             
-            <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《harbor 使用》
+                </span> by
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/harbor-an-zhuang.html" property="cc:attributionName"
+               rel="cc:attributionURL">
+                XieJiayi
+            </a> is licensed under a
+            <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>许可协议。转载请注明来源
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
 <link rel="stylesheet" href="/css/my-gitalk.css">
 
 <div class="card gitalk-card" data-aos="fade-up">
@@ -386,22 +635,22 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'contact/index.html',
+        id: 'kubernetes/harbor-an-zhuang.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
     gitalk.render('gitalk-container');
 </script>
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
-            <style>
+    
+    <style>
     .valine-card {
         margin: 1.5rem auto;
     }
@@ -663,11 +912,255 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     });
 </script>
 
-            
+    
 
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/kubernetes/cronjob.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="cronjob 使用">
+                        
+                        <span class="card-title">cronjob 使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+.spec.schedule 指定任务运行周期，格式同 Cron
+.spec.jobTemplate 指定需要运行的任务，格式同 Job
+.spec.startingDeadlineSeconds 指定任务开始的截止期限
+.spec.co
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/kubernetes/pod.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="容器组pod 使用">
+                        
+                        <span class="card-title">容器组pod 使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            资源限制
+spec.containers[].resources.limits.cpu ： CPU 上限， 可以短暂超过， 容器也不会被停止
+spec.containers[].resources.limits.memory ： 内存上限，
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 小萝卜 Blog<br />'
+            + '文章作者: XieJiayi<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
 </main>
+
+
     <footer class="page-footer bg-color">
     <div class="container row center-align">
        <div class="Copy-right">
