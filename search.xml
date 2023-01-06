@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>article title</title>
+      <link href="/article-title.html"/>
+      <url>/article-title.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/hello-world.html"/>
       <url>/hello-world.html</url>
@@ -12,18 +31,11 @@
       
       
       
-    </entry>
-    
-    
-    
-    <entry>
-      <title>article title</title>
-      <link href="/article-title.html"/>
-      <url>/article-title.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
       
     </entry>
     
