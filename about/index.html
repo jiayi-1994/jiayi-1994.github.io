@@ -17,7 +17,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>关于 | 小萝卜 Blog</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -27,7 +27,12 @@
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
     <style type="text/css">
-        
+        code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre !important;
+            }
+
+            
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
@@ -44,26 +49,6 @@
    </script>
 
 
-    <script>(function (i, s, o, g, r, a, m) {
-        i['DaoVoiceObject'] = r;
-        i[r] = i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          };
-        i[r].l = 1 * new Date();
-        a = s.createElement(o);
-        m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        a.charset = 'utf-8';
-        m.parentNode.insertBefore(a, m);
-      })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/xxx.js", 'daovoice');
-      daovoice('init', {
-        app_id: "xxx",
-      });
-      daovoice('update');
-    </script>
-  
   
 
 
@@ -109,7 +94,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="/medias/touxiang.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">小萝卜 Blog</span>
                 </a>
@@ -122,12 +107,16 @@
     <li class="hide-on-med-and-down">
         <a href="/" class="waves-effect waves-light">
             
+            <i class="fa fas fa-home"></i>
+            
             <span>首页</span>
         </a>
     </li>
     
     <li class="hide-on-med-and-down">
         <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fas fa-tags"></i>
             
             <span>标签</span>
         </a>
@@ -136,12 +125,16 @@
     <li class="hide-on-med-and-down">
         <a href="/categories" class="waves-effect waves-light">
             
+            <i class="fa fas fa-bookmark"></i>
+            
             <span>分类</span>
         </a>
     </li>
     
     <li class="hide-on-med-and-down">
         <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fas fa-archive"></i>
             
             <span>归档</span>
         </a>
@@ -150,7 +143,18 @@
     <li class="hide-on-med-and-down">
         <a href="/about" class="waves-effect waves-light">
             
+            <i class="fa fas fa-user-circle"></i>
+            
             <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fas fa-comments"></i>
+            
+            <span>留言板</span>
         </a>
     </li>
     
@@ -158,13 +162,6 @@
         <a href="/friends" class="waves-effect waves-light">
             
             <span>友情链接</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/contact" class="waves-effect waves-light">
-            
-            <span>留言板</span>
         </a>
     </li>
     
@@ -179,7 +176,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        <img src="/medias/touxiang.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">小萝卜 Blog</div>
         <div class="logo-desc">
@@ -196,7 +193,7 @@
         <li>
             <a href="/" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-link"></i>
+                <i class="fa fa-fw fas fa-home"></i>
                 
                 首页
             </a>
@@ -205,7 +202,7 @@
         <li>
             <a href="/tags" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-link"></i>
+                <i class="fa fa-fw fas fa-tags"></i>
                 
                 标签
             </a>
@@ -214,7 +211,7 @@
         <li>
             <a href="/categories" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-link"></i>
+                <i class="fa fa-fw fas fa-bookmark"></i>
                 
                 分类
             </a>
@@ -223,7 +220,7 @@
         <li>
             <a href="/archives" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-link"></i>
+                <i class="fa fa-fw fas fa-archive"></i>
                 
                 归档
             </a>
@@ -232,9 +229,18 @@
         <li>
             <a href="/about" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-link"></i>
+                <i class="fa fa-fw fas fa-user-circle"></i>
                 
                 关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fas fa-comments"></i>
+                
+                留言板
             </a>
         </li>
         
@@ -244,15 +250,6 @@
                 <i class="fa fa-fw fa-link"></i>
                 
                 友情链接
-            </a>
-        </li>
-        
-        <li>
-            <a href="/contact" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-link"></i>
-                
-                留言板
             </a>
         </li>
         
@@ -376,16 +373,21 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">2</a></span>
+    <span class="count"><a href="/" target="_blank">4</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
+<div class="statis">
+    <span class="count"><a href="/categories" target="_blank">2</a></span>
+    <span class="name">分类</span>
+</div>
+
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">1</a></span>
+    <span class="count"><a href="/tags" target="_blank">3</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -393,23 +395,28 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="col s12 m12 l4">
                         <div class="profile center-align">
                             <div class="avatar">
-                                <img src="https://github.com/jiayi-1994/blog-matery/blob/master/source/touxiang.png" alt="XieJiayi"
+                                <img src="https://raw.githubusercontent.com/jiayi-1994/blog-matery/master/source/touxiang.png?token=GHSAT0AAAAAAB4F2GILOHVI57KOSWQ7DRDGY5XUKLQ" alt="XieJiayi"
                                     class="circle responsive-img avatar-img">
                             </div>
                             <div class="author">
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">2</a></span>
+    <span class="count"><a href="/" target="_blank">4</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
+<div class="statis">
+    <span class="count"><a href="/categories" target="_blank">2</a></span>
+    <span class="name">分类</span>
+</div>
+
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">1</a></span>
+    <span class="count"><a href="/tags" target="_blank">3</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -558,7 +565,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,2],
+                data: [0,0,0,0,0,0,0,0,0,0,0,0,4],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -600,7 +607,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [],
+                data: [{"name":"Go","value":1},{"name":"linux","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -624,7 +631,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         xAxis: [
             {
                 type: 'category',
-                data: ["hexo"]
+                data: ["hexo","grpc","压测"]
             }
         ],
         yAxis: [
@@ -637,7 +644,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [2],
+                data: [2,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -682,7 +689,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             <div class="skillbar">
                 <div class="skillbar-title"
                      style="background: linear-gradient(to right, #9900FF 0%, #CC66FF 100%); width: 80%">
-                    <span>C++</span>
+                    <span>go</span>
                 </div>
                 <div class="skill-bar-percent">80%</div>
             </div>
@@ -692,10 +699,10 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         <div class="col s12 m6 l6" data-aos="fade-up">
             <div class="skillbar">
                 <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #2196F3 0%, #42A5F5 100%); width: 50%">
-                    <span>Python</span>
+                     style="background: linear-gradient(to right, #2196F3 0%, #42A5F5 100%); width: 75%">
+                    <span>k8s</span>
                 </div>
-                <div class="skill-bar-percent">50%</div>
+                <div class="skill-bar-percent">75%</div>
             </div>
         </div>
         
@@ -703,10 +710,10 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         <div class="col s12 m6 l6" data-aos="fade-up">
             <div class="skillbar">
                 <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #00BCD4 0%, #80DEEA 100%); width: 40%">
+                     style="background: linear-gradient(to right, #00BCD4 0%, #80DEEA 100%); width: 60%">
                     <span>Java</span>
                 </div>
-                <div class="skill-bar-percent">40%</div>
+                <div class="skill-bar-percent">60%</div>
             </div>
         </div>
         
@@ -714,10 +721,10 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         <div class="col s12 m6 l6" data-aos="fade-up">
             <div class="skillbar">
                 <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #4CAF50 0%, #81C784 100%); width: 30%">
+                     style="background: linear-gradient(to right, #4CAF50 0%, #81C784 100%); width: 55%">
                     <span>SQL</span>
                 </div>
-                <div class="skill-bar-percent">30%</div>
+                <div class="skill-bar-percent">55%</div>
             </div>
         </div>
         
@@ -734,6 +741,18 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/tags/hexo/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">hexo</span>
+            </a>
+            
+            
+            
+            <a href="/tags/grpc/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">grpc</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E5%8E%8B%E6%B5%8B/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">压测</span>
             </a>
             
             
@@ -811,7 +830,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">73
+            <span class="white-color">3.1k
              丨            
           
 
@@ -892,7 +911,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">73</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">3.1k</span>
     </div>
 </footer>
 

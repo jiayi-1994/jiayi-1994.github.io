@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-01-06T02:14:01.814Z</updated>
+  <updated>2023-01-06T03:52:48.562Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>压测工具Sysbench、Stress、iperf或iperf3</title>
+    <link href="https://jiayi-1994.github.io/ya-ce/ya-ce-gong-ju-sysbench-stress-iperf-huo-iperf3.html"/>
+    <id>https://jiayi-1994.github.io/ya-ce/ya-ce-gong-ju-sysbench-stress-iperf-huo-iperf3.html</id>
+    <published>2023-01-06T03:52:15.000Z</published>
+    <updated>2023-01-06T03:52:48.562Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;sysbench是一款开源的、模块化的、跨平台的多线程性能测试工具，可用于CPU、内存、磁盘I/O、线程、数据库的性能测试。sysbench目前支持的数据库压测有PG和MySQL。（若想学习数据库压测，可以私聊麦老师哟，MySQL和PG均有相关课程</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jiayi-1994.github.io/categories/linux/"/>
+    
+    
+    <category term="压测" scheme="https://jiayi-1994.github.io/tags/%E5%8E%8B%E6%B5%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【gRPC SSL】自签CA、服务端和客户端双向认证</title>
+    <link href="https://jiayi-1994.github.io/grpc/grpc-ssl-zi-qian-ca-fu-wu-duan-he-ke-hu-duan-shuang-xiang-ren-zheng.html"/>
+    <id>https://jiayi-1994.github.io/grpc/grpc-ssl-zi-qian-ca-fu-wu-duan-he-ke-hu-duan-shuang-xiang-ren-zheng.html</id>
+    <published>2023-01-06T03:29:15.000Z</published>
+    <updated>2023-01-06T03:52:48.575Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文主要介绍了自签CA、服务端和客户端双向认证,主要包括自签CA、GolangGrpc服务端和客户端双向认证的相关内容,需要的朋友可以参考下&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/categories/Go/"/>
+    
+    
+    <category term="grpc" scheme="https://jiayi-1994.github.io/tags/grpc/"/>
+    
+  </entry>
   
   <entry>
     <title>article title</title>
