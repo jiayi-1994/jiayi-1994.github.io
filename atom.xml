@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-01-06T07:14:52.152Z</updated>
+  <updated>2023-01-06T16:09:35.494Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,142 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>1. Go &amp; grpc的使用</title>
+    <link href="https://jiayi-1994.github.io/grpc/1.gogrpc.html"/>
+    <id>https://jiayi-1994.github.io/grpc/1.gogrpc.html</id>
+    <published>2023-01-07T12:08:15.000Z</published>
+    <updated>2023-01-06T16:09:35.494Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;欢迎进入 gRPC 的开发文档，gRPC 一开始由 google 开发，是一款语言中立、平台中立、开源的远程过程调用(RPC)系统。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;gRPC-是什么？&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/categories/Go/"/>
+    
+    
+    <category term="grpc" scheme="https://jiayi-1994.github.io/tags/grpc/"/>
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 Gomock 进行单元测试</title>
+    <link href="https://jiayi-1994.github.io/go/shi-yong-gomock-jin-xing-dan-yuan-ce-shi.html"/>
+    <id>https://jiayi-1994.github.io/go/shi-yong-gomock-jin-xing-dan-yuan-ce-shi.html</id>
+    <published>2023-01-06T12:29:16.000Z</published>
+    <updated>2023-01-06T08:24:30.800Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在实际项目中，需要进行单元测试的时候。却往往发现有一大堆依赖项。这时候就是 &lt;a href=&quot;https://github.com/golang/mock&quot;&gt;Gomock&lt;/a&gt; 大显身手的时候了&lt;br&gt;Gomock 是 Go 语言的一个 mock 框架，官方的那种</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/categories/Go/"/>
+    
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pipeline流水线构建</title>
+    <link href="https://jiayi-1994.github.io/devops/pipeline-liu-shui-xian-gou-jian.html"/>
+    <id>https://jiayi-1994.github.io/devops/pipeline-liu-shui-xian-gou-jian.html</id>
+    <published>2023-01-06T12:29:15.000Z</published>
+    <updated>2023-01-06T07:33:10.918Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-流水线创建&quot;&gt;&lt;a href=&quot;#1-流水线创建&quot; class=&quot;headerlink&quot; title=&quot;1.流水线创建&quot;&gt;&lt;/a&gt;1.流水线创建&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="devops" scheme="https://jiayi-1994.github.io/categories/devops/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+    <category term="devops" scheme="https://jiayi-1994.github.io/tags/devops/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建harbor私有镜像仓库</title>
+    <link href="https://jiayi-1994.github.io/devops/da-jian-harbor-si-you-jing-xiang-cang-ku.html"/>
+    <id>https://jiayi-1994.github.io/devops/da-jian-harbor-si-you-jing-xiang-cang-ku.html</id>
+    <published>2023-01-06T12:29:15.000Z</published>
+    <updated>2023-01-06T07:34:02.078Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;通过docker-compost来构建&quot;&gt;&lt;a href=&quot;#通过docker-compost来构建&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="devops" scheme="https://jiayi-1994.github.io/categories/devops/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+    <category term="devops" scheme="https://jiayi-1994.github.io/tags/devops/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建k8s的jenkins集群</title>
+    <link href="https://jiayi-1994.github.io/devops/da-jian-k8s-de-jenkins-ji-qun.html"/>
+    <id>https://jiayi-1994.github.io/devops/da-jian-k8s-de-jenkins-ji-qun.html</id>
+    <published>2023-01-06T12:29:15.000Z</published>
+    <updated>2023-01-07T12:58:20.754Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-机器参考&quot;&gt;&lt;a href=&quot;#1-机器参考&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="devops" scheme="https://jiayi-1994.github.io/categories/devops/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+    <category term="devops" scheme="https://jiayi-1994.github.io/tags/devops/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -68,7 +204,7 @@
     <link href="https://jiayi-1994.github.io/grpc/grpc-ssl-zi-qian-ca-fu-wu-duan-he-ke-hu-duan-shuang-xiang-ren-zheng.html"/>
     <id>https://jiayi-1994.github.io/grpc/grpc-ssl-zi-qian-ca-fu-wu-duan-he-ke-hu-duan-shuang-xiang-ren-zheng.html</id>
     <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T03:52:48.575Z</updated>
+    <updated>2023-01-06T08:21:35.597Z</updated>
     
     
       
@@ -88,6 +224,8 @@
     
     
     <category term="grpc" scheme="https://jiayi-1994.github.io/tags/grpc/"/>
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/tags/Go/"/>
     
   </entry>
   
@@ -392,52 +530,6 @@
     
     
     <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://jiayi-1994.github.io/article-title.html"/>
-    <id>https://jiayi-1994.github.io/article-title.html</id>
-    <published>2023-01-05T09:46:55.000Z</published>
-    <updated>2023-01-06T06:27:43.592Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;测试&quot;&gt;&lt;a href=&quot;#测试&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="hexo" scheme="https://jiayi-1994.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://jiayi-1994.github.io/hello-world.html"/>
-    <id>https://jiayi-1994.github.io/hello-world.html</id>
-    <published>2023-01-05T09:46:55.000Z</published>
-    <updated>2023-01-06T02:14:01.804Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="hexo" scheme="https://jiayi-1994.github.io/tags/hexo/"/>
     
   </entry>
   

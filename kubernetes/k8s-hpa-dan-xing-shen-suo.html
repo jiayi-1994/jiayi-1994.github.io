@@ -344,7 +344,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -908,36 +908,73 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/kubernetes/k8s-hpa-dan-xing-shen-suo.html">
+                <a href="/devops/da-jian-k8s-de-jenkins-ji-qun.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="搭建k8s的jenkins集群">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">搭建k8s的jenkins集群</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            原理HPA在k8s中也由一个controller控制，controller会间隔循环HPA，检查每个HPA中监控的指标是否触发伸缩条件，默认的间隔时间为15s。一旦触发伸缩条件，controller会向k8s发送请求，修改伸缩对象（stat
+                            1.机器参考
+
+
+ip
+角色
+
+
+
+192.168.56.12
+k8s-master
+
+
+192.168.56.11
+k8s-node1,harbor,nfs
+
+
+192.168.56.10
+k8s-node2
+
+
+2.配置pvc#需要提前
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                        </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/devops/" class="post-category" target="_blank">
+                                    devops
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
+                    </a>
+                    
+                    <a href="/tags/devops/" target="_blank">
+                        <span class="chip bg-color">devops</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -952,7 +989,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="压测工具Sysbench、Stress、iperf或iperf3">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="压测工具Sysbench、Stress、iperf或iperf3">
                         
                         <span class="card-title">压测工具Sysbench、Stress、iperf或iperf3</span>
                     </div>
@@ -1141,7 +1178,7 @@ sysbench是一款开源的、模块化的、跨平台的多线程性能测试工
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">17.6k
+            <span class="white-color">23.1k
              丨            
           
 
@@ -1222,7 +1259,7 @@ sysbench是一款开源的、模块化的、跨平台的多线程性能测试工
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">17.6k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">23.1k</span>
     </div>
 </footer>
 
