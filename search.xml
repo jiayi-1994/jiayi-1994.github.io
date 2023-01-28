@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>vlan、子网掩码、MAC地址、网关、DNS、三层交换机</title>
+      <link href="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html"/>
+      <url>/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="01-什么是VLAN"><a href="#01-什么是VLAN" class="headerlink" title="01 什么是VLAN"></a>01 什么是VLAN</h2><blockquote><p>VLAN中文是“虚拟局域网”。LAN可以是由少数几台家用计算机构成的网络，也可以是数以百计的计算机构成的企业网络。VLAN所指的LAN特指使用路由器分割的网络——也就是广播域。</p><p>听上面的概念，肯定有不少朋友是一头雾水的，什么是虚拟局域网？好好的，为什么要划分vlan？</p></blockquote><p><strong>这里举个例：通俗的了解</strong></p><blockquote><p>一所高中，新学期高一招了800个学生，这800个学生，如果放在一个班里，那肯定是管理不过来，面对800个人，老师看了也头疼，这边在授课，那边完全听不到，老师布置什么任务，也会有一些传达不到，老师要是想找某个学生的信息，要从800份信息中去找，极其麻烦，浪费时间；</p><p>而实际中，也是一样，电脑A要想要与电脑B通信，于是电脑A就需要发送arp请求，而网络中电脑众多，最终ARP请求会被转发到同一网络中的所有电脑，才能找到电脑B，如此一来，为了找到电脑B，消耗了网络整体的带宽，收到广播信息的计算机还要消耗一部分CPU时间来对它进行处理。造成了网络带宽和CPU运算能力的大量无谓消耗</p></blockquote><p><strong>那么怎么办呢？</strong></p><blockquote><p>学校就针对这800个学生，分成了10个班，每个班80人，分别命名为高一（1）班，高一（2）班、、、、高一（10）班，每个人都会获得一个班级编号。</p><p>1101表示一班01号学生。</p><p>1102表示一班02号学生。</p><p>1201表示2班01号学生。</p><p>同一个班的学生编号尾数不同，其它的都相同。</p><p>那么这样老师再管理起来就轻松多了，可以把一班这80人管理的妥妥的，隔壁2班与3班乱成一锅粥也不管一班的事，我就要这一班80人好好上课就行。</p><p>这就是vlan，每个班就相当于一个vlan，而每个班名称，就相当于vlan的名称，而每个学生的编号就是ip地址；同班同学（同一个vlan的ip），因为同一个教室，朝夕相处，且可以相互通信，不同班的同学，若不做其它工作，很难往来通信。</p><p>所以同一个vlan间，可以相互通信；不同vlan，若不做配置，不能相互通信。</p><p>那么不同vlan如何通通信呢？就需要单臂路由与三层交换机。</p></blockquote><h2 id="02-单臂路由与三层交换机"><a href="#02-单臂路由与三层交换机" class="headerlink" title="02 单臂路由与三层交换机"></a>02 单臂路由与三层交换机</h2><blockquote><p>我们知道要实现不同vlan间通信，就必须需要有路由功能，不同VLAN之间相互通信的两种方式（单臂路由、三层交换机）。</p></blockquote><p><strong>什么是单臂路由？</strong></p><p>单臂路由的实现方式，其实就是普通二层交换机加路由器，从而实现不同vlan间的可以互相通信。</p><img src="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji/640.jpeg" class="" title="图片"><p><strong>那什么是三层交换机呢？</strong></p><blockquote><p>对于小型的网络，单臂路由可以应付，但随着VLAN之间流量的不断增加，很可能导致路由器成为整个网络的瓶颈，出现掉包、或者通信堵塞。</p><p>为了解决上述问题，三层交换机应运而生。三层交换机，本质上就是“带有路由功能的（二层）交换机”。路由属于OSI参照模型中第三层网络层的功能，因此带有第三层路由功能的交换机才被称为“三层交换机”。</p><p>关于三层交换机的内部结构，可以参照下面的简图</p></blockquote><img src="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji/640-16748944419483.png" class="" title="图片"><blockquote><p>在一台本体内，分别设置了交换机模块和路由器模块；而内置的路由模块与交换模块相同，使用ASIC硬件处理路由。因此，与传统的路由器相比，可以实现高速路由。并且，路由与交换模块是汇聚链接的，由于是内部连接，可以确保相当大的带宽，所以对于正规的项目，需要使用三层交换机来实现网网络间的通信。</p></blockquote><h2 id="03-网关与默认网关"><a href="#03-网关与默认网关" class="headerlink" title="03 网关与默认网关"></a>03 网关与默认网关</h2><blockquote><p>在了解了vlan与三层交换机后，能不能通信，还需要看网关是否正确。</p></blockquote><h3 id="一、什么是网关"><a href="#一、什么是网关" class="headerlink" title="一、什么是网关"></a><strong>一、什么是网关</strong></h3><blockquote><p>网关(Gateway)又称网间连接器、协议转换器。网关在传输层上以实现网络互连，是最复杂的网络互连设备，仅用于两个高层协议不同的网络互连。</p></blockquote><h3 id="二、如何来理解网关"><a href="#二、如何来理解网关" class="headerlink" title="二、如何来理解网关"></a><strong>二、如何来理解网关</strong></h3><blockquote><p>大家都知道，从一个房间走到另一个房间，必然要经过<strong>一扇门</strong>。同样，从一个网络向另一个网络发送信息，也必须经过一道“关口”，这道关口就是网关。顾名思义，网关(Gateway)就是一个网络连接到另一个网络的“<strong>关口</strong>”。</p><p>按照不同的分类标准，网关也有很多种。TCP/IP协议里的网关是最常用的，在这里我们所讲的“网关”均指TCP/IP协议下的网关。</p></blockquote><h3 id="三、网关的ip地址"><a href="#三、网关的ip地址" class="headerlink" title="三、网关的ip地址"></a><strong>三、网关的ip地址</strong></h3><p><strong>那么网关到底是什么呢？</strong></p><p>网关实质上是一个网络通向其他网络的IP地址，网关在网段内的可用<strong>ip中选一个</strong>，不过，一般用的是<strong>第1个和最后一个</strong>。</p><blockquote><p><strong>例如</strong></p><p>比如有网络A和网络B，</p><p><strong>网络A：</strong>的IP地址范围为“192.168.1.1~192. 168.1.254”，子网掩255.255.255.0；</p><p>如果需要与其它网段通信，那么它的网关可以设置为192.168.1.1，当然也可以设置为<strong>网段内</strong>其它的一个ip地址。</p><p><strong>网络B：</strong>的IP地址范为“192.168.2.1~192.168.2.254”，子网掩码255.255.255.0。</p><p>如果需要与其它网段通信，那么它的网关可以设置为192.168.2.1，当然也可以设置为<strong>网段内</strong>其它的一个ip地址。</p></blockquote><img src="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji/640-16748945544036.jpeg" class="" title="图片"><h3 id="四、网关是如何实现通信？"><a href="#四、网关是如何实现通信？" class="headerlink" title="四、网关是如何实现通信？"></a><strong>四、网关是如何实现通信？</strong></h3><blockquote><p>在没有<strong>路由器</strong>的情况下，不同的两个网络之间是<strong>不能</strong>进行TCP/IP通信的，即使是两个网络连接在同一台交换机(或集线器)上，TCP/IP协议也会根据子网掩码(255.255.255.0)判定两个网络中的主机处在不同的网络里。而要实现这两个网络之间的通信，则<strong>必须通过网关</strong>。</p><p>如果<strong>网络A</strong>中的主机发现<strong>数据包</strong>的目的主机<strong>不在</strong>本地网络中，就把数据包转发给它<strong>自己的网关</strong>，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机(如附图所示)。网络B向网络A转发数据包的过程。</p><p>所以说，只有设置好网关的<strong>IP地址</strong>，TCP/IP协议才能实现不同网络之间的相互通信。</p></blockquote><h3 id="五、什么是默认网关？"><a href="#五、什么是默认网关？" class="headerlink" title="五、什么是默认网关？"></a><strong>五、什么是默认网关？</strong></h3><blockquote><p>如果搞清了什么是网关，默认网关也就好理解了。就好像一个房间可以有多扇门一样，一台主机可以有多个网关。<strong>默认网关</strong>的意思是一台主机如果找不到可用的网关，就把数据包发给默认<strong>指定的网关</strong>，由这个网关来处理数据包。现在<strong>主机</strong>使用的网关，一般指的是默认网关。</p></blockquote><h2 id="04-什么是DNS"><a href="#04-什么是DNS" class="headerlink" title="04 什么是DNS"></a>04 什么是DNS</h2><blockquote><p>DNS是域名解析服务器（Domain Name System），是把网址变成IP地址的服务器。</p><p>DNS说白了是把域名翻译成IP地址用的，这里面<strong>举个例子</strong>，大家就很容易清楚了。</p><p>例如我们在浏览器里面输入 <a href="http://www.baidu.com/">www.baidu.com</a> 的时候，机器要跟百度这个网站进行<strong>通信</strong>，机器要往外面<strong>发送</strong>数据包，数据包里面要写百度这台服务器的<strong>IP地址</strong>，我们不知道IP地址是多少，那么就需要主机<strong>问DNS服务器</strong>，DNS服务器就自动帮我们把 <a href="http://www.baidu.com/">www.baidu.com</a> 这个域名<strong>翻译成</strong>了IP地址61.135.169.105。然后写到了数据包的目的IP地址里面就可以进行通信。</p><p>就跟我们写信一样，你得写个收信人的<strong>地址</strong>邮局才能给你发送吧，你给国外写信，你写中文地址邮局不认识，需要这个一个人帮你翻译成英语。这就是DNS的作用，所以你的在本地连接里面写DNS才可以正常浏览网页，如果不设置DNS，是无法正常访问网页的。</p></blockquote><h2 id="05-MAC地址与IP"><a href="#05-MAC地址与IP" class="headerlink" title="05 MAC地址与IP"></a>05 MAC地址与IP</h2><blockquote><p>讲到MAC地址，就不得不提ip地址，这里顺便把ip地址也说下。</p><p><strong>IP与MAC</strong></p><p>虽然现在已经ipv6了，但我们基本用的大多数还是ipv4协议，所谓ip就是你电脑整个<strong>网络的编号</strong>。其他电脑想访问电脑就得需要这个编号。但是这个编号很多情况下是一直在<strong>变化</strong>的。唯一不变的是你的MAC地址：<strong>物理地址</strong>。</p><p>MAC是网络中用来标识网卡设备的唯一网络地址。由相关硬件制造商统一分配，每台电脑的MAC地址都是<strong>唯一</strong>的。</p><p>做个比喻，你经常搬家，你没搬一次家都有一个地址，XX小区XX单元XX号，这个就是IP。但是你的名字不变，这个就是MAC，不同的是我们的<strong>MAC不允许重名。</strong></p></blockquote><img src="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji/640-16748946212809.jpeg" class="" title="图片"><blockquote><p><strong>我们的IP分为两个部分：</strong>如上图分为<strong>网络部分</strong>和<strong>主机部分</strong>。网络部分好比就是你在XX省XX市XX镇，这个是国家固定下来了的。但是XX小区XX单元XX号是开发商自己定的。两个编号<strong>加起来</strong>就是你的ip了。不同的是在现实中两个编号的长度是固定的，在网络上A、B、C、D的ip地址却是变化的，这个在前天有详细讲到。</p></blockquote><h2 id="06-子网掩码"><a href="#06-子网掩码" class="headerlink" title="06 子网掩码"></a>06 子网掩码</h2><blockquote><p>子网掩码是为了区分网络位和主机位，上面我们说到过，一个ip地址是由<strong>网络部分</strong>和<strong>主机部分。</strong>正如一个人的名字由姓与名组成。</p><p>那么我们可以把IP地址比作一个人的名字，那么子网掩码就像是一份名单，可以快速的知道那些人同姓，那些人不同姓，把同姓的人分在一组，让他们之前可以互相交流。</p></blockquote><blockquote><p><strong>举个例子</strong></p><p><strong>有一个网段</strong>是192.168.1.0-192.1.254，这个网段就像一个村子一样，就称它为<strong>安防村</strong>，此这网段有个ip地址是192.168.1.1，我们就叫他安防一，另外一个人叫安防二，它的ip地址为192.168.1.2，我们一看他们，就知道他们是同村的。</p><p><strong>另外有一个网段，</strong>是192.168.0.0——192.168.255.254，我们叫它<strong>安村</strong>，村里有个同样有两个ip地址为92.168.1.1与192.168.1.2，也叫安防一，安防二，那么问题来了？这个时候，如何区分他们是属于那个村的？</p><p>这个时候就需要<strong>子网掩码</strong>了来判断他们是属于那个网段的，需要把安防一、安防二带到村里去认下，就知道他们是属于那个村了，<strong>安防村</strong>的网段是255.255.255.0，<strong>安村</strong>的网段是255.255.0.0。</p><p>网络中也会出现类似于“同名”“同姓”的ip地址，如何区分他们到底是属于那个网段，就需要依靠子网掩码了。</p></blockquote><ul><li>参考链接（<a href="javascript:void(0);">智能制造之家</a>）： <a href="https://mp.weixin.qq.com/s?__biz=MzIwMjMxODAzNA==&amp;mid=2247485460&amp;idx=1&amp;sn=03053f38fcf0ed609314f3674e8f069d&amp;chksm=96e1c1a9a19648bfbbec63293a5d965125bf54bfeb0dc9c215de0451138b7136edcc67e4e093&amp;scene=21#wechat_redirect">https://mp.weixin.qq.com/s?__biz=MzIwMjMxODAzNA==&amp;mid=2247485460&amp;idx=1&amp;sn=03053f38fcf0ed609314f3674e8f069d&amp;chksm=96e1c1a9a19648bfbbec63293a5d965125bf54bfeb0dc9c215de0451138b7136edcc67e4e093&amp;scene=21#wechat_redirect</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> network </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>go-zeor 框架的使用</title>
+      <link href="/go/go-zeor.html"/>
+      <url>/go/go-zeor.html</url>
+      
+        <content type="html"><![CDATA[<p>g</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1. Go &amp; grpc的使用</title>
       <link href="/grpc/1.gogrpc.html"/>
       <url>/grpc/1.gogrpc.html</url>

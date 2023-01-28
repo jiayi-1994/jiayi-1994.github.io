@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="集群调度 使用, 学习">
+    <meta name="keywords" content="go-zeor 框架的使用, 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="调度过程调度分为几个部分：首先是过滤掉不满足条件的节点，这个过程称为 predicate；然后对通过的节点按照优先级排序，这个是 priority；最后从中选择优先级最高的节点。如果中间任何一步骤有错误，就直接返回错误。Predicate ">
+    <meta name="description" content="g
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>集群调度 使用 | 小萝卜 Blog</title>
+    <title>go-zeor 框架的使用 | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -344,13 +345,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        集群调度 使用
+                        go-zeor 框架的使用
                     </div>
                 </div>
             </div>
@@ -461,8 +462,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Kubernetes/" target="_blank">
-                            <span class="chip bg-color">Kubernetes</span>
+                        <a href="/tags/Go/" target="_blank">
+                            <span class="chip bg-color">Go</span>
                         </a>
                         
                     </div>
@@ -473,8 +474,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/k8s/" class="post-category" target="_blank">
-                            k8s
+                        <a href="/categories/Go/" class="post-category" target="_blank">
+                            Go
                         </a>
                         
                     </div>
@@ -485,7 +486,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-06
+                    2023-01-09
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -499,14 +500,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    1 分
                 </div>
                 
                 
@@ -517,180 +518,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="调度过程"><a href="#调度过程" class="headerlink" title="调度过程"></a>调度过程</h2><p>调度分为几个部分：首先是<strong>过滤掉不满足条件</strong>的节点，这个过程称为 <strong>predicate</strong>；然后对通过的节点按照优先级排序，这个是 <strong>priority</strong>；最后从中选择<strong>优先级最高的节点</strong>。如果中间任何一步骤有错误，就直接返回错误。Predicate 有一系列的算法可以使用：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637141679431-1ca2587a-f7f0-48bd-96a2-60f968923735.png#clientId=u8142e09e-abda-4&amp;from=paste&amp;height=422&amp;id=u9944d429&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=422&amp;originWidth=893&amp;originalType=binary&amp;ratio=1&amp;size=199391&amp;status=done&amp;style=none&amp;taskId=u33d14cbf-ad58-44b4-a979-c42e5f88884&amp;width=893" alt="image.png"><br>如果在 <strong>predicate <strong>过程中没有合适的节点，</strong>pod 会一直在 pending 状态</strong>，不断重试调度，直到有节点满足条件。经过这个步骤，如果有多个节点满足条件，就继续 <strong>priorities <strong>过程：按照</strong>优先级大小对节点排序</strong>。优先级由一系列键值对组成，键是该优先级项的名称，值是它的权重（该项的重要性）。这些优先级选项包括：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637141723086-4ccda8d2-e19c-4b56-bcc8-16a560ce308a.png#clientId=u8142e09e-abda-4&amp;from=paste&amp;height=247&amp;id=u53e449b8&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=247&amp;originWidth=930&amp;originalType=binary&amp;ratio=1&amp;size=155294&amp;status=done&amp;style=none&amp;taskId=ue8e33cdb-6442-4b08-8f12-2bc539f8f5b&amp;width=930" alt="image.png"></p>
-<h2 id="亲和性"><a href="#亲和性" class="headerlink" title="亲和性"></a>亲和性</h2><h3 id="节点亲和性（pod-spec-nodeAffinity）"><a href="#节点亲和性（pod-spec-nodeAffinity）" class="headerlink" title="节点亲和性（pod.spec.nodeAffinity）"></a>节点亲和性（pod.spec.nodeAffinity）</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637141900615-158977f3-a3c6-4fa9-a7e0-9e95388277e4.png#clientId=u8142e09e-abda-4&amp;from=paste&amp;height=436&amp;id=u3b26b576&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=436&amp;originWidth=833&amp;originalType=binary&amp;ratio=1&amp;size=138128&amp;status=done&amp;style=none&amp;taskId=ue5808968-0aa2-4536-98d5-eea3595a62f&amp;width=833" alt="image.png"></p>
-<h4 id="硬策略-requiredDuringSchedulingIgnoredDuringExecution"><a href="#硬策略-requiredDuringSchedulingIgnoredDuringExecution" class="headerlink" title="硬策略 - requiredDuringSchedulingIgnoredDuringExecution"></a>硬策略 - requiredDuringSchedulingIgnoredDuringExecution</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> affinity
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> node<span class="token punctuation">-</span>affinity<span class="token punctuation">-</span>pod
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> with<span class="token punctuation">-</span>node<span class="token punctuation">-</span>affinity
-      <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-  <span class="token key atrule">affinity</span><span class="token punctuation">:</span>
-    <span class="token key atrule">nodeAffinity</span><span class="token punctuation">:</span>
-      <span class="token key atrule">requiredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span>
-        <span class="token key atrule">nodeSelectorTerms</span><span class="token punctuation">:</span>
-          <span class="token punctuation">-</span> <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
-              <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> kubernetes.io/hostname
-                <span class="token key atrule">operator</span><span class="token punctuation">:</span> NotIn
-                <span class="token key atrule">values</span><span class="token punctuation">:</span>
-                  <span class="token punctuation">-</span> k8s<span class="token punctuation">-</span>node<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="软策略-preferredDuringSchedulingIgnoredDuringExecution"><a href="#软策略-preferredDuringSchedulingIgnoredDuringExecution" class="headerlink" title="软策略 - preferredDuringSchedulingIgnoredDuringExecution"></a>软策略 - preferredDuringSchedulingIgnoredDuringExecution</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> affinity
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> node<span class="token punctuation">-</span>affinity<span class="token punctuation">-</span>pod
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> with<span class="token punctuation">-</span>node<span class="token punctuation">-</span>affinity
-      <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-  <span class="token key atrule">affinity</span><span class="token punctuation">:</span>
-    <span class="token key atrule">nodeAffinity</span><span class="token punctuation">:</span>
-      <span class="token key atrule">preferredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">1</span>
-          <span class="token key atrule">preference</span><span class="token punctuation">:</span>
-            <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
-              <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> source
-                <span class="token key atrule">operator</span><span class="token punctuation">:</span> In
-                <span class="token key atrule">values</span><span class="token punctuation">:</span>
-                  <span class="token punctuation">-</span> test<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Pod-亲和性-pod-spec-affinity-podAffinity-x2F-podAntiAffinity"><a href="#Pod-亲和性-pod-spec-affinity-podAffinity-x2F-podAntiAffinity" class="headerlink" title="Pod 亲和性(pod.spec.affinity.podAffinity/podAntiAffinity)"></a>Pod 亲和性(pod.spec.affinity.podAffinity/podAntiAffinity)</h3><ul>
-<li><strong>硬策略 - requiredDuringSchedulingIgnoredDuringExecution</strong></li>
-<li><strong>软策略 - preferredDuringSchedulingIgnoredDuringExecution</strong><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-      <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-      <span class="token key atrule">affinity</span><span class="token punctuation">:</span>
-        <span class="token key atrule">podAffinity</span><span class="token punctuation">:</span>
-          <span class="token key atrule">requiredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span> <span class="token comment">#硬策略</span>
-            <span class="token punctuation">-</span> <span class="token key atrule">labelSelector</span><span class="token punctuation">:</span>
-                <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
-                  <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> app
-                    <span class="token key atrule">operator</span><span class="token punctuation">:</span> In
-                    <span class="token key atrule">values</span><span class="token punctuation">:</span>
-                      <span class="token punctuation">-</span> pod<span class="token punctuation">-</span><span class="token number">1</span>
-              <span class="token key atrule">topologyKey</span><span class="token punctuation">:</span> kubernetes.io/hostname
-        <span class="token key atrule">podAntiAffinity</span><span class="token punctuation">:</span>
-          <span class="token key atrule">preferredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span> <span class="token comment">#软策略</span>
-            <span class="token punctuation">-</span> <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">1</span>
-              <span class="token key atrule">podAffinityTerm</span><span class="token punctuation">:</span>
-                <span class="token key atrule">labelSelector</span><span class="token punctuation">:</span>
-                  <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
-                    <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> app
-                      <span class="token key atrule">operator</span><span class="token punctuation">:</span> In
-                      <span class="token key atrule">values</span><span class="token punctuation">:</span>
-                        <span class="token punctuation">-</span> pod<span class="token punctuation">-</span><span class="token number">2</span>
-                <span class="token key atrule">topologyKey</span><span class="token punctuation">:</span> kubernetes.io/hostname<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637142207783-5bc4a765-8476-406b-a924-d2866abd6b32.png#clientId=u8142e09e-abda-4&amp;from=paste&amp;height=428&amp;id=uc3c7ca0c&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=428&amp;originWidth=932&amp;originalType=binary&amp;ratio=1&amp;size=93525&amp;status=done&amp;style=none&amp;taskId=u50685864-94ae-405b-a935-19016a0d1d2&amp;width=932" alt="image.png"></li>
-</ul>
-<h4 id="注：拓扑域"><a href="#注：拓扑域" class="headerlink" title="注：拓扑域"></a>注：拓扑域</h4><p>第一种，在使用云存储服务的时候，经常会遇到 <strong>region</strong>，也就是地区的概念，在 K8s 中常通过 label failure-domain.beta.kubernetes.io/region 来标识。这个是为了标识单个 K8s 集群管理的跨 region 的 nodes 到底属于哪个地区；<br>第二种，比较常用的是<strong>可用区</strong>，也就是** available zone**，在 K8s 中常通过 label failure-domain.beta.kubernetes.io/zone 来标识。这个是为了标识单个 K8s 集群管理的跨 zone 的 nodes 到底属于哪个可用区；<br>第三种，是 <strong>hostname</strong>，就是单机维度，是拓扑域为 **node **范围，在 K8s 中常通过 label kubernetes.io/hostname 来标识，<br>[</p>
-<p>](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30336949/article/details/112485203">https://blog.csdn.net/weixin_30336949/article/details/112485203</a>)</p>
-<h2 id="污点和容忍"><a href="#污点和容忍" class="headerlink" title="污点和容忍"></a>污点和容忍</h2><p>节点亲和性，是 pod 的一种属性（偏好或硬性要求），它使 pod 被吸引到一类特定的节点。Taint 则相反，它使节点能够<strong>排斥</strong>一类特定的 pod。</p>
-<p>**Taint **和 **toleration **相互配合，可以用来避免 <strong>pod 被分配到不合适的节点上</strong>。每个节点上都可以应用一个或多个 taint，这表示对于那些不能容忍这些 taint 的 pod，是不会被该节点接受的。如果将 toleration 应用于 pod 上，则表示这些 pod 可以（但不要求）被调度到具有匹配 taint 的节点上。</p>
-<h3 id="污点"><a href="#污点" class="headerlink" title="污点"></a>污点</h3><ul>
-<li><strong>NoSchedule</strong>：表示 k8s 将不会将 Pod 调度到具有该污点的 Node 上</li>
-<li><strong>PreferNoSchedule</strong>：表示 k8s 将尽量避免将 Pod 调度到具有该污点的 Node 上</li>
-<li><strong>NoExecute</strong>：将不会将 Pod 调度到具有该污点的 Node 上，同时会将 Node 上已经存在的 Pod 驱逐出去</li>
-</ul>
-<h4 id="1-查看污点"><a href="#1-查看污点" class="headerlink" title="1.查看污点"></a>1.查看污点</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubectl describe <span class="token function">node</span> k8s-master
-
-Taints:         node-role.kubernetes.io/master:NoSchedule
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="2-污点的设置、查看和去除"><a href="#2-污点的设置、查看和去除" class="headerlink" title="2.污点的设置、查看和去除"></a>2.污点的设置、查看和去除</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 设置污点</span>
-$ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1=value1<span class="token punctuation">:</span>NoSchedule
-$ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 type=master<span class="token punctuation">:</span>NoExecute
-
-<span class="token comment"># 节点说明中查找Taints字段</span>
-$ kubectl describe pod pod<span class="token punctuation">-</span>name
-
-<span class="token comment"># 去除污点</span>
-$ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1<span class="token punctuation">:</span>NoSchedule<span class="token punctuation">-</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="容忍"><a href="#容忍" class="headerlink" title="容忍"></a>容忍</h4><p>设置了污点的 Node 将根据 taint 的 effect：<strong>NoSchedule</strong>、<strong>PreferNoSchedule</strong>、<strong>NoExecute <strong>和 Pod 之间产生</strong>互斥</strong>的关系，Pod 将在一定程度上不会被调度到 Node 上。但我们可以在 Pod 上设置容忍，意思是设置了<strong>容忍的 Pod 将可以容忍污点的存在</strong>，可以被调度到存在污点的 Node 上。</p>
-<ul>
-<li>pod.spec.tolerations<ul>
-<li>其中 operator 的值为 Exists 将会忽略 value 值</li>
-<li>其中 key, value, effect 要与 Node 上设置的 taint 保持一致</li>
-<li>其中 tolerationSeconds 用于描述当 Pod 需要被驱逐时可以在 Pod 上继续保留运行的时间<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-      <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-  <span class="token key atrule">tolerations</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> <span class="token string">"type"</span>
-      <span class="token key atrule">operator</span><span class="token punctuation">:</span> "Equal" //操作符
-      <span class="token key atrule">value</span><span class="token punctuation">:</span> "master"  //key，value
-      <span class="token key atrule">effect</span><span class="token punctuation">:</span> "NoSchedule"   //污点策略
-      <span class="token key atrule">tolerationSeconds</span><span class="token punctuation">:</span> 3600 //保留运行时间秒
-    <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> <span class="token string">"type"</span>
-      <span class="token key atrule">operator</span><span class="token punctuation">:</span> <span class="token string">"Equal"</span>
-      <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">"master"</span>
-      <span class="token key atrule">effect</span><span class="token punctuation">:</span> <span class="token string">"NoExecute"</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> <span class="token string">"type"</span>
-      <span class="token key atrule">operator</span><span class="token punctuation">:</span> <span class="token string">"Exists"</span>
-      <span class="token key atrule">effect</span><span class="token punctuation">:</span> <span class="token string">"NoSchedule"</span>
-      
-<span class="token punctuation">---</span>
-<span class="token key atrule">tolerations</span><span class="token punctuation">:</span>  当不指定 key 值时，表示容忍所有的污点 key
-  <span class="token key atrule">operator</span><span class="token punctuation">:</span> <span class="token string">"Exists"</span>
-  
-<span class="token punctuation">---</span>
-<span class="token key atrule">tolerations</span><span class="token punctuation">:</span>  <span class="token comment">#当不指定 effect 值时，表示容忍所有的污点作用</span>
-
-  <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> <span class="token string">"key"</span>
-    <span class="token key atrule">operator</span><span class="token punctuation">:</span> <span class="token string">"Exists"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
-</li>
-</ul>
-<h2 id="指定调度节点"><a href="#指定调度节点" class="headerlink" title="指定调度节点"></a>指定调度节点</h2><p>将 Pod 直接调度到指定的 Node 节点上，会跳过 Scheduler 的调度策略，该匹配规则是<strong>强制匹配。</strong></p>
-<h4 id="1-通过nodeName"><a href="#1-通过nodeName" class="headerlink" title="1.通过nodeName"></a>1.通过nodeName</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> extensions/v1beta1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> myweb
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">7</span>
-  <span class="token key atrule">template</span><span class="token punctuation">:</span>
-    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-        <span class="token key atrule">app</span><span class="token punctuation">:</span> myweb
-    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-      <span class="token key atrule">nodeName</span><span class="token punctuation">:</span> k8s<span class="token punctuation">-</span>node1  <span class="token comment">## 通过nodename</span>
-      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> myweb
-          <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-          <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-            <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="2-通过标签"><a href="#2-通过标签" class="headerlink" title="2.通过标签"></a>2.通过标签</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> extensions/v1beta1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> myweb
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
-  <span class="token key atrule">template</span><span class="token punctuation">:</span>
-    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-        <span class="token key atrule">app</span><span class="token punctuation">:</span> myweb
-    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-    <span class="token key atrule">nodeSelector</span><span class="token punctuation">:</span>  <span class="token comment">#通过标签选择</span>
-      <span class="token key atrule">type</span><span class="token punctuation">:</span> BackendNode
-    <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> myweb
-        <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-        ports<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <p>g</p>
 
             </div>
             <hr />
@@ -725,9 +553,9 @@ $ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1<span
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《集群调度 使用》
+                    《go-zeor 框架的使用》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/ji-qun-diao-du.html" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/go/go-zeor.html" property="cc:attributionName"
                rel="cc:attributionURL">
                 XieJiayi
             </a> is licensed under a
@@ -768,7 +596,7 @@ $ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1<span
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'kubernetes/ji-qun-diao-du.html',
+        id: 'go/go-zeor.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1056,33 +884,33 @@ $ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1<span
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/kubernetes/k8s-ji-chu-ming-ling-he-qi-ta-qing-kuang-ji-lu.html">
+                <a href="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="k8s相关基础命令 使用">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="vlan、子网掩码、MAC地址、网关、DNS、三层交换机">
                         
-                        <span class="card-title">k8s相关基础命令 使用</span>
+                        <span class="card-title">vlan、子网掩码、MAC地址、网关、DNS、三层交换机</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            k8s一.环境搭建参考地址 ：https://www.cnblogs.com/tz90/p/15466646.html
-#最新、最全、最详细的 K8S 学习笔记总结（2021最新版）
-https://www.jianshu.com/p/2c
+                            01 什么是VLAN
+VLAN中文是“虚拟局域网”。LAN可以是由少数几台家用计算机构成的网络，也可以是数以百计的计算机构成的企业网络。VLAN所指的LAN特指使用路由器分割的网络——也就是广播域。
+听上面的概念，肯定有不少朋友是一头雾水的
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-28
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category" target="_blank">
-                                    k8s
+                            <a href="/categories/network/" class="post-category" target="_blank">
+                                    network
                                 </a>
                             
                             
@@ -1092,8 +920,8 @@ https://www.jianshu.com/p/2c
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Kubernetes/" target="_blank">
-                        <span class="chip bg-color">Kubernetes</span>
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" target="_blank">
+                        <span class="chip bg-color">网络</span>
                     </a>
                     
                 </div>
@@ -1107,32 +935,31 @@ https://www.jianshu.com/p/2c
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/kubernetes/cun-chu.html">
+                <a href="/grpc/1.gogrpc.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="存储 使用">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="1. Go & grpc的使用">
                         
-                        <span class="card-title">存储 使用</span>
+                        <span class="card-title">1. Go & grpc的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            参考地址：https://www.yuque.com/u12604243/mc2aau/qgh2pg#IHoc8ConfigMap创建Map#使用目录创建
-kubectl create configmap ganme-config --fr
+                            本章主要介绍了grpc在Go中的一些使用方法
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category" target="_blank">
-                                    k8s
+                            <a href="/categories/Go/" class="post-category" target="_blank">
+                                    Go
                                 </a>
                             
                             
@@ -1142,8 +969,12 @@ kubectl create configmap ganme-config --fr
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Kubernetes/" target="_blank">
-                        <span class="chip bg-color">Kubernetes</span>
+                    <a href="/tags/grpc/" target="_blank">
+                        <span class="chip bg-color">grpc</span>
+                    </a>
+                    
+                    <a href="/tags/Go/" target="_blank">
+                        <span class="chip bg-color">Go</span>
                     </a>
                     
                 </div>

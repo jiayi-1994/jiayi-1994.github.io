@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-01-06T16:09:35.494Z</updated>
+  <updated>2023-01-28T08:38:56.498Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vlan、子网掩码、MAC地址、网关、DNS、三层交换机</title>
+    <link href="https://jiayi-1994.github.io/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html"/>
+    <id>https://jiayi-1994.github.io/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html</id>
+    <published>2023-01-28T11:19:53.000Z</published>
+    <updated>2023-01-28T08:38:56.498Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;01-什么是VLAN&quot;&gt;&lt;a href=&quot;#01-什么是VLAN&quot; class=&quot;headerlink&quot; title=&quot;01 什么是VLAN&quot;&gt;&lt;/a&gt;01</summary>
+        
+      
+    
+    
+    
+    <category term="network" scheme="https://jiayi-1994.github.io/categories/network/"/>
+    
+    
+    <category term="网络" scheme="https://jiayi-1994.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>go-zeor 框架的使用</title>
+    <link href="https://jiayi-1994.github.io/go/go-zeor.html"/>
+    <id>https://jiayi-1994.github.io/go/go-zeor.html</id>
+    <published>2023-01-09T07:03:31.000Z</published>
+    <updated>2023-01-09T07:12:17.406Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;g&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/categories/Go/"/>
+    
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/tags/Go/"/>
+    
+  </entry>
   
   <entry>
     <title>1. Go &amp; grpc的使用</title>
@@ -471,56 +522,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;k8s&quot;&gt;&lt;a href=&quot;#k8s&quot; class=&quot;headerlink&quot; title=&quot;k8s&quot;&gt;&lt;/a&gt;k8s&lt;/h1&gt;&lt;h2 id=&quot;一-环境搭建&quot;&gt;&lt;a href=&quot;#一-环境搭建&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>集群调度 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/ji-qun-diao-du.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/ji-qun-diao-du.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T07:00:02.305Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;调度过程&quot;&gt;&lt;a href=&quot;#调度过程&quot; class=&quot;headerlink&quot; title=&quot;调度过程&quot;&gt;&lt;/a&gt;调度过程&lt;/h2&gt;&lt;p&gt;调度分为几个部分：首先是&lt;strong&gt;过滤掉不满足条件&lt;/strong&gt;的节点，这个过程称为</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>存储 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/cun-chu.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/cun-chu.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T07:00:02.321Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;参考地址：https-www-yuque-com-u12604243-mc2aau-qgh2pg-IHoc8&quot;&gt;&lt;a href=&quot;#参考地址：https-www-yuque-com-u12604243-mc2aau-qgh2pg-IHoc8&quot;</summary>
         
       
     

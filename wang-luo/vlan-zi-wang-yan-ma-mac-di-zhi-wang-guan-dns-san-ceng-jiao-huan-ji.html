@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="集群调度 使用, 学习">
+    <meta name="keywords" content="vlan、子网掩码、MAC地址、网关、DNS、三层交换机, 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="调度过程调度分为几个部分：首先是过滤掉不满足条件的节点，这个过程称为 predicate；然后对通过的节点按照优先级排序，这个是 priority；最后从中选择优先级最高的节点。如果中间任何一步骤有错误，就直接返回错误。Predicate ">
+    <meta name="description" content="01 什么是VLAN
+VLAN中文是“虚拟局域网”。LAN可以是由少数几台家用计算机构成的网络，也可以是数以百计的计算机构成的企业网络。VLAN所指的LAN特指使用路由器分割的网络——也就是广播域。
+听上面的概念，肯定有不少朋友是一头雾水的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>集群调度 使用 | 小萝卜 Blog</title>
+    <title>vlan、子网掩码、MAC地址、网关、DNS、三层交换机 | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -344,13 +346,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        集群调度 使用
+                        vlan、子网掩码、MAC地址、网关、DNS、三层交换机
                     </div>
                 </div>
             </div>
@@ -461,8 +463,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Kubernetes/" target="_blank">
-                            <span class="chip bg-color">Kubernetes</span>
+                        <a href="/tags/%E7%BD%91%E7%BB%9C/" target="_blank">
+                            <span class="chip bg-color">网络</span>
                         </a>
                         
                     </div>
@@ -473,8 +475,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/k8s/" class="post-category" target="_blank">
-                            k8s
+                        <a href="/categories/network/" class="post-category" target="_blank">
+                            network
                         </a>
                         
                     </div>
@@ -485,7 +487,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-06
+                    2023-01-28
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -499,14 +501,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    10 分
                 </div>
                 
                 
@@ -517,180 +519,107 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="调度过程"><a href="#调度过程" class="headerlink" title="调度过程"></a>调度过程</h2><p>调度分为几个部分：首先是<strong>过滤掉不满足条件</strong>的节点，这个过程称为 <strong>predicate</strong>；然后对通过的节点按照优先级排序，这个是 <strong>priority</strong>；最后从中选择<strong>优先级最高的节点</strong>。如果中间任何一步骤有错误，就直接返回错误。Predicate 有一系列的算法可以使用：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637141679431-1ca2587a-f7f0-48bd-96a2-60f968923735.png#clientId=u8142e09e-abda-4&amp;from=paste&amp;height=422&amp;id=u9944d429&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=422&amp;originWidth=893&amp;originalType=binary&amp;ratio=1&amp;size=199391&amp;status=done&amp;style=none&amp;taskId=u33d14cbf-ad58-44b4-a979-c42e5f88884&amp;width=893" alt="image.png"><br>如果在 <strong>predicate <strong>过程中没有合适的节点，</strong>pod 会一直在 pending 状态</strong>，不断重试调度，直到有节点满足条件。经过这个步骤，如果有多个节点满足条件，就继续 <strong>priorities <strong>过程：按照</strong>优先级大小对节点排序</strong>。优先级由一系列键值对组成，键是该优先级项的名称，值是它的权重（该项的重要性）。这些优先级选项包括：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637141723086-4ccda8d2-e19c-4b56-bcc8-16a560ce308a.png#clientId=u8142e09e-abda-4&amp;from=paste&amp;height=247&amp;id=u53e449b8&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=247&amp;originWidth=930&amp;originalType=binary&amp;ratio=1&amp;size=155294&amp;status=done&amp;style=none&amp;taskId=ue8e33cdb-6442-4b08-8f12-2bc539f8f5b&amp;width=930" alt="image.png"></p>
-<h2 id="亲和性"><a href="#亲和性" class="headerlink" title="亲和性"></a>亲和性</h2><h3 id="节点亲和性（pod-spec-nodeAffinity）"><a href="#节点亲和性（pod-spec-nodeAffinity）" class="headerlink" title="节点亲和性（pod.spec.nodeAffinity）"></a>节点亲和性（pod.spec.nodeAffinity）</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637141900615-158977f3-a3c6-4fa9-a7e0-9e95388277e4.png#clientId=u8142e09e-abda-4&amp;from=paste&amp;height=436&amp;id=u3b26b576&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=436&amp;originWidth=833&amp;originalType=binary&amp;ratio=1&amp;size=138128&amp;status=done&amp;style=none&amp;taskId=ue5808968-0aa2-4536-98d5-eea3595a62f&amp;width=833" alt="image.png"></p>
-<h4 id="硬策略-requiredDuringSchedulingIgnoredDuringExecution"><a href="#硬策略-requiredDuringSchedulingIgnoredDuringExecution" class="headerlink" title="硬策略 - requiredDuringSchedulingIgnoredDuringExecution"></a>硬策略 - requiredDuringSchedulingIgnoredDuringExecution</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> affinity
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> node<span class="token punctuation">-</span>affinity<span class="token punctuation">-</span>pod
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> with<span class="token punctuation">-</span>node<span class="token punctuation">-</span>affinity
-      <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-  <span class="token key atrule">affinity</span><span class="token punctuation">:</span>
-    <span class="token key atrule">nodeAffinity</span><span class="token punctuation">:</span>
-      <span class="token key atrule">requiredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span>
-        <span class="token key atrule">nodeSelectorTerms</span><span class="token punctuation">:</span>
-          <span class="token punctuation">-</span> <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
-              <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> kubernetes.io/hostname
-                <span class="token key atrule">operator</span><span class="token punctuation">:</span> NotIn
-                <span class="token key atrule">values</span><span class="token punctuation">:</span>
-                  <span class="token punctuation">-</span> k8s<span class="token punctuation">-</span>node<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="软策略-preferredDuringSchedulingIgnoredDuringExecution"><a href="#软策略-preferredDuringSchedulingIgnoredDuringExecution" class="headerlink" title="软策略 - preferredDuringSchedulingIgnoredDuringExecution"></a>软策略 - preferredDuringSchedulingIgnoredDuringExecution</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> affinity
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> node<span class="token punctuation">-</span>affinity<span class="token punctuation">-</span>pod
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> with<span class="token punctuation">-</span>node<span class="token punctuation">-</span>affinity
-      <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-  <span class="token key atrule">affinity</span><span class="token punctuation">:</span>
-    <span class="token key atrule">nodeAffinity</span><span class="token punctuation">:</span>
-      <span class="token key atrule">preferredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">1</span>
-          <span class="token key atrule">preference</span><span class="token punctuation">:</span>
-            <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
-              <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> source
-                <span class="token key atrule">operator</span><span class="token punctuation">:</span> In
-                <span class="token key atrule">values</span><span class="token punctuation">:</span>
-                  <span class="token punctuation">-</span> test<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Pod-亲和性-pod-spec-affinity-podAffinity-x2F-podAntiAffinity"><a href="#Pod-亲和性-pod-spec-affinity-podAffinity-x2F-podAntiAffinity" class="headerlink" title="Pod 亲和性(pod.spec.affinity.podAffinity/podAntiAffinity)"></a>Pod 亲和性(pod.spec.affinity.podAffinity/podAntiAffinity)</h3><ul>
-<li><strong>硬策略 - requiredDuringSchedulingIgnoredDuringExecution</strong></li>
-<li><strong>软策略 - preferredDuringSchedulingIgnoredDuringExecution</strong><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-      <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-      <span class="token key atrule">affinity</span><span class="token punctuation">:</span>
-        <span class="token key atrule">podAffinity</span><span class="token punctuation">:</span>
-          <span class="token key atrule">requiredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span> <span class="token comment">#硬策略</span>
-            <span class="token punctuation">-</span> <span class="token key atrule">labelSelector</span><span class="token punctuation">:</span>
-                <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
-                  <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> app
-                    <span class="token key atrule">operator</span><span class="token punctuation">:</span> In
-                    <span class="token key atrule">values</span><span class="token punctuation">:</span>
-                      <span class="token punctuation">-</span> pod<span class="token punctuation">-</span><span class="token number">1</span>
-              <span class="token key atrule">topologyKey</span><span class="token punctuation">:</span> kubernetes.io/hostname
-        <span class="token key atrule">podAntiAffinity</span><span class="token punctuation">:</span>
-          <span class="token key atrule">preferredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span> <span class="token comment">#软策略</span>
-            <span class="token punctuation">-</span> <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">1</span>
-              <span class="token key atrule">podAffinityTerm</span><span class="token punctuation">:</span>
-                <span class="token key atrule">labelSelector</span><span class="token punctuation">:</span>
-                  <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
-                    <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> app
-                      <span class="token key atrule">operator</span><span class="token punctuation">:</span> In
-                      <span class="token key atrule">values</span><span class="token punctuation">:</span>
-                        <span class="token punctuation">-</span> pod<span class="token punctuation">-</span><span class="token number">2</span>
-                <span class="token key atrule">topologyKey</span><span class="token punctuation">:</span> kubernetes.io/hostname<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="https://cdn.nlark.com/yuque/0/2021/png/12993007/1637142207783-5bc4a765-8476-406b-a924-d2866abd6b32.png#clientId=u8142e09e-abda-4&amp;from=paste&amp;height=428&amp;id=uc3c7ca0c&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=428&amp;originWidth=932&amp;originalType=binary&amp;ratio=1&amp;size=93525&amp;status=done&amp;style=none&amp;taskId=u50685864-94ae-405b-a935-19016a0d1d2&amp;width=932" alt="image.png"></li>
-</ul>
-<h4 id="注：拓扑域"><a href="#注：拓扑域" class="headerlink" title="注：拓扑域"></a>注：拓扑域</h4><p>第一种，在使用云存储服务的时候，经常会遇到 <strong>region</strong>，也就是地区的概念，在 K8s 中常通过 label failure-domain.beta.kubernetes.io/region 来标识。这个是为了标识单个 K8s 集群管理的跨 region 的 nodes 到底属于哪个地区；<br>第二种，比较常用的是<strong>可用区</strong>，也就是** available zone**，在 K8s 中常通过 label failure-domain.beta.kubernetes.io/zone 来标识。这个是为了标识单个 K8s 集群管理的跨 zone 的 nodes 到底属于哪个可用区；<br>第三种，是 <strong>hostname</strong>，就是单机维度，是拓扑域为 **node **范围，在 K8s 中常通过 label kubernetes.io/hostname 来标识，<br>[</p>
-<p>](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30336949/article/details/112485203">https://blog.csdn.net/weixin_30336949/article/details/112485203</a>)</p>
-<h2 id="污点和容忍"><a href="#污点和容忍" class="headerlink" title="污点和容忍"></a>污点和容忍</h2><p>节点亲和性，是 pod 的一种属性（偏好或硬性要求），它使 pod 被吸引到一类特定的节点。Taint 则相反，它使节点能够<strong>排斥</strong>一类特定的 pod。</p>
-<p>**Taint **和 **toleration **相互配合，可以用来避免 <strong>pod 被分配到不合适的节点上</strong>。每个节点上都可以应用一个或多个 taint，这表示对于那些不能容忍这些 taint 的 pod，是不会被该节点接受的。如果将 toleration 应用于 pod 上，则表示这些 pod 可以（但不要求）被调度到具有匹配 taint 的节点上。</p>
-<h3 id="污点"><a href="#污点" class="headerlink" title="污点"></a>污点</h3><ul>
-<li><strong>NoSchedule</strong>：表示 k8s 将不会将 Pod 调度到具有该污点的 Node 上</li>
-<li><strong>PreferNoSchedule</strong>：表示 k8s 将尽量避免将 Pod 调度到具有该污点的 Node 上</li>
-<li><strong>NoExecute</strong>：将不会将 Pod 调度到具有该污点的 Node 上，同时会将 Node 上已经存在的 Pod 驱逐出去</li>
-</ul>
-<h4 id="1-查看污点"><a href="#1-查看污点" class="headerlink" title="1.查看污点"></a>1.查看污点</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubectl describe <span class="token function">node</span> k8s-master
+                <h2 id="01-什么是VLAN"><a href="#01-什么是VLAN" class="headerlink" title="01 什么是VLAN"></a>01 什么是VLAN</h2><blockquote>
+<p>VLAN中文是“虚拟局域网”。LAN可以是由少数几台家用计算机构成的网络，也可以是数以百计的计算机构成的企业网络。VLAN所指的LAN特指使用路由器分割的网络——也就是广播域。</p>
+<p>听上面的概念，肯定有不少朋友是一头雾水的，什么是虚拟局域网？好好的，为什么要划分vlan？</p>
+</blockquote>
+<p><strong>这里举个例：通俗的了解</strong></p>
+<blockquote>
+<p>一所高中，新学期高一招了800个学生，这800个学生，如果放在一个班里，那肯定是管理不过来，面对800个人，老师看了也头疼，这边在授课，那边完全听不到，老师布置什么任务，也会有一些传达不到，老师要是想找某个学生的信息，要从800份信息中去找，极其麻烦，浪费时间；</p>
+<p>而实际中，也是一样，电脑A要想要与电脑B通信，于是电脑A就需要发送arp请求，而网络中电脑众多，最终ARP请求会被转发到同一网络中的所有电脑，才能找到电脑B，如此一来，为了找到电脑B，消耗了网络整体的带宽，收到广播信息的计算机还要消耗一部分CPU时间来对它进行处理。造成了网络带宽和CPU运算能力的大量无谓消耗</p>
+</blockquote>
+<p><strong>那么怎么办呢？</strong></p>
+<blockquote>
+<p>学校就针对这800个学生，分成了10个班，每个班80人，分别命名为高一（1）班，高一（2）班、、、、高一（10）班，每个人都会获得一个班级编号。</p>
+<p>1101表示一班01号学生。</p>
+<p>1102表示一班02号学生。</p>
+<p>1201表示2班01号学生。</p>
+<p>同一个班的学生编号尾数不同，其它的都相同。</p>
+<p>那么这样老师再管理起来就轻松多了，可以把一班这80人管理的妥妥的，隔壁2班与3班乱成一锅粥也不管一班的事，我就要这一班80人好好上课就行。</p>
+<p>这就是vlan，每个班就相当于一个vlan，而每个班名称，就相当于vlan的名称，而每个学生的编号就是ip地址；同班同学（同一个vlan的ip），因为同一个教室，朝夕相处，且可以相互通信，不同班的同学，若不做其它工作，很难往来通信。</p>
+<p>所以同一个vlan间，可以相互通信；不同vlan，若不做配置，不能相互通信。</p>
+<p>那么不同vlan如何通通信呢？就需要单臂路由与三层交换机。</p>
+</blockquote>
+<h2 id="02-单臂路由与三层交换机"><a href="#02-单臂路由与三层交换机" class="headerlink" title="02 单臂路由与三层交换机"></a>02 单臂路由与三层交换机</h2><blockquote>
+<p>我们知道要实现不同vlan间通信，就必须需要有路由功能，不同VLAN之间相互通信的两种方式（单臂路由、三层交换机）。</p>
+</blockquote>
+<p><strong>什么是单臂路由？</strong></p>
+<p>单臂路由的实现方式，其实就是普通二层交换机加路由器，从而实现不同vlan间的可以互相通信。</p>
+<img src="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji/640.jpeg" class="" title="图片">
 
-Taints:         node-role.kubernetes.io/master:NoSchedule
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="2-污点的设置、查看和去除"><a href="#2-污点的设置、查看和去除" class="headerlink" title="2.污点的设置、查看和去除"></a>2.污点的设置、查看和去除</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 设置污点</span>
-$ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1=value1<span class="token punctuation">:</span>NoSchedule
-$ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 type=master<span class="token punctuation">:</span>NoExecute
+<p><strong>那什么是三层交换机呢？</strong></p>
+<blockquote>
+<p>对于小型的网络，单臂路由可以应付，但随着VLAN之间流量的不断增加，很可能导致路由器成为整个网络的瓶颈，出现掉包、或者通信堵塞。</p>
+<p>为了解决上述问题，三层交换机应运而生。三层交换机，本质上就是“带有路由功能的（二层）交换机”。路由属于OSI参照模型中第三层网络层的功能，因此带有第三层路由功能的交换机才被称为“三层交换机”。</p>
+<p>关于三层交换机的内部结构，可以参照下面的简图</p>
+</blockquote>
+<img src="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji/640-16748944419483.png" class="" title="图片">
 
-<span class="token comment"># 节点说明中查找Taints字段</span>
-$ kubectl describe pod pod<span class="token punctuation">-</span>name
+<blockquote>
+<p>在一台本体内，分别设置了交换机模块和路由器模块；而内置的路由模块与交换模块相同，使用ASIC硬件处理路由。因此，与传统的路由器相比，可以实现高速路由。并且，路由与交换模块是汇聚链接的，由于是内部连接，可以确保相当大的带宽，所以对于正规的项目，需要使用三层交换机来实现网网络间的通信。</p>
+</blockquote>
+<h2 id="03-网关与默认网关"><a href="#03-网关与默认网关" class="headerlink" title="03 网关与默认网关"></a>03 网关与默认网关</h2><blockquote>
+<p>在了解了vlan与三层交换机后，能不能通信，还需要看网关是否正确。</p>
+</blockquote>
+<h3 id="一、什么是网关"><a href="#一、什么是网关" class="headerlink" title="一、什么是网关"></a><strong>一、什么是网关</strong></h3><blockquote>
+<p>网关(Gateway)又称网间连接器、协议转换器。网关在传输层上以实现网络互连，是最复杂的网络互连设备，仅用于两个高层协议不同的网络互连。</p>
+</blockquote>
+<h3 id="二、如何来理解网关"><a href="#二、如何来理解网关" class="headerlink" title="二、如何来理解网关"></a><strong>二、如何来理解网关</strong></h3><blockquote>
+<p>大家都知道，从一个房间走到另一个房间，必然要经过<strong>一扇门</strong>。同样，从一个网络向另一个网络发送信息，也必须经过一道“关口”，这道关口就是网关。顾名思义，网关(Gateway)就是一个网络连接到另一个网络的“<strong>关口</strong>”。</p>
+<p>按照不同的分类标准，网关也有很多种。TCP/IP协议里的网关是最常用的，在这里我们所讲的“网关”均指TCP/IP协议下的网关。</p>
+</blockquote>
+<h3 id="三、网关的ip地址"><a href="#三、网关的ip地址" class="headerlink" title="三、网关的ip地址"></a><strong>三、网关的ip地址</strong></h3><p><strong>那么网关到底是什么呢？</strong></p>
+<p>网关实质上是一个网络通向其他网络的IP地址，网关在网段内的可用<strong>ip中选一个</strong>，不过，一般用的是<strong>第1个和最后一个</strong>。</p>
+<blockquote>
+<p><strong>例如</strong></p>
+<p>比如有网络A和网络B，</p>
+<p><strong>网络A：</strong>的IP地址范围为“192.168.1.1~192. 168.1.254”，子网掩255.255.255.0；</p>
+<p>如果需要与其它网段通信，那么它的网关可以设置为192.168.1.1，当然也可以设置为<strong>网段内</strong>其它的一个ip地址。</p>
+<p><strong>网络B：</strong>的IP地址范为“192.168.2.1~192.168.2.254”，子网掩码255.255.255.0。</p>
+<p>如果需要与其它网段通信，那么它的网关可以设置为192.168.2.1，当然也可以设置为<strong>网段内</strong>其它的一个ip地址。</p>
+</blockquote>
+<img src="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji/640-16748945544036.jpeg" class="" title="图片">
 
-<span class="token comment"># 去除污点</span>
-$ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1<span class="token punctuation">:</span>NoSchedule<span class="token punctuation">-</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="容忍"><a href="#容忍" class="headerlink" title="容忍"></a>容忍</h4><p>设置了污点的 Node 将根据 taint 的 effect：<strong>NoSchedule</strong>、<strong>PreferNoSchedule</strong>、<strong>NoExecute <strong>和 Pod 之间产生</strong>互斥</strong>的关系，Pod 将在一定程度上不会被调度到 Node 上。但我们可以在 Pod 上设置容忍，意思是设置了<strong>容忍的 Pod 将可以容忍污点的存在</strong>，可以被调度到存在污点的 Node 上。</p>
+<h3 id="四、网关是如何实现通信？"><a href="#四、网关是如何实现通信？" class="headerlink" title="四、网关是如何实现通信？"></a><strong>四、网关是如何实现通信？</strong></h3><blockquote>
+<p>在没有<strong>路由器</strong>的情况下，不同的两个网络之间是<strong>不能</strong>进行TCP/IP通信的，即使是两个网络连接在同一台交换机(或集线器)上，TCP/IP协议也会根据子网掩码(255.255.255.0)判定两个网络中的主机处在不同的网络里。而要实现这两个网络之间的通信，则<strong>必须通过网关</strong>。</p>
+<p>如果<strong>网络A</strong>中的主机发现<strong>数据包</strong>的目的主机<strong>不在</strong>本地网络中，就把数据包转发给它<strong>自己的网关</strong>，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机(如附图所示)。网络B向网络A转发数据包的过程。</p>
+<p>所以说，只有设置好网关的<strong>IP地址</strong>，TCP/IP协议才能实现不同网络之间的相互通信。</p>
+</blockquote>
+<h3 id="五、什么是默认网关？"><a href="#五、什么是默认网关？" class="headerlink" title="五、什么是默认网关？"></a><strong>五、什么是默认网关？</strong></h3><blockquote>
+<p>如果搞清了什么是网关，默认网关也就好理解了。就好像一个房间可以有多扇门一样，一台主机可以有多个网关。<strong>默认网关</strong>的意思是一台主机如果找不到可用的网关，就把数据包发给默认<strong>指定的网关</strong>，由这个网关来处理数据包。现在<strong>主机</strong>使用的网关，一般指的是默认网关。</p>
+</blockquote>
+<h2 id="04-什么是DNS"><a href="#04-什么是DNS" class="headerlink" title="04 什么是DNS"></a>04 什么是DNS</h2><blockquote>
+<p>DNS是域名解析服务器（Domain Name System），是把网址变成IP地址的服务器。</p>
+<p>DNS说白了是把域名翻译成IP地址用的，这里面<strong>举个例子</strong>，大家就很容易清楚了。</p>
+<p>例如我们在浏览器里面输入 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 的时候，机器要跟百度这个网站进行<strong>通信</strong>，机器要往外面<strong>发送</strong>数据包，数据包里面要写百度这台服务器的<strong>IP地址</strong>，我们不知道IP地址是多少，那么就需要主机<strong>问DNS服务器</strong>，DNS服务器就自动帮我们把 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 这个域名<strong>翻译成</strong>了IP地址61.135.169.105。然后写到了数据包的目的IP地址里面就可以进行通信。</p>
+<p>就跟我们写信一样，你得写个收信人的<strong>地址</strong>邮局才能给你发送吧，你给国外写信，你写中文地址邮局不认识，需要这个一个人帮你翻译成英语。这就是DNS的作用，所以你的在本地连接里面写DNS才可以正常浏览网页，如果不设置DNS，是无法正常访问网页的。</p>
+</blockquote>
+<h2 id="05-MAC地址与IP"><a href="#05-MAC地址与IP" class="headerlink" title="05 MAC地址与IP"></a>05 MAC地址与IP</h2><blockquote>
+<p>讲到MAC地址，就不得不提ip地址，这里顺便把ip地址也说下。</p>
+<p><strong>IP与MAC</strong></p>
+<p>虽然现在已经ipv6了，但我们基本用的大多数还是ipv4协议，所谓ip就是你电脑整个<strong>网络的编号</strong>。其他电脑想访问电脑就得需要这个编号。但是这个编号很多情况下是一直在<strong>变化</strong>的。唯一不变的是你的MAC地址：<strong>物理地址</strong>。</p>
+<p>MAC是网络中用来标识网卡设备的唯一网络地址。由相关硬件制造商统一分配，每台电脑的MAC地址都是<strong>唯一</strong>的。</p>
+<p>做个比喻，你经常搬家，你没搬一次家都有一个地址，XX小区XX单元XX号，这个就是IP。但是你的名字不变，这个就是MAC，不同的是我们的<strong>MAC不允许重名。</strong></p>
+</blockquote>
+<img src="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji/640-16748946212809.jpeg" class="" title="图片">
+
+<blockquote>
+<p><strong>我们的IP分为两个部分：</strong>如上图分为<strong>网络部分</strong>和<strong>主机部分</strong>。网络部分好比就是你在XX省XX市XX镇，这个是国家固定下来了的。但是XX小区XX单元XX号是开发商自己定的。两个编号<strong>加起来</strong>就是你的ip了。不同的是在现实中两个编号的长度是固定的，在网络上A、B、C、D的ip地址却是变化的，这个在前天有详细讲到。</p>
+</blockquote>
+<h2 id="06-子网掩码"><a href="#06-子网掩码" class="headerlink" title="06 子网掩码"></a>06 子网掩码</h2><blockquote>
+<p>子网掩码是为了区分网络位和主机位，上面我们说到过，一个ip地址是由<strong>网络部分</strong>和<strong>主机部分。</strong>正如一个人的名字由姓与名组成。</p>
+<p>那么我们可以把IP地址比作一个人的名字，那么子网掩码就像是一份名单，可以快速的知道那些人同姓，那些人不同姓，把同姓的人分在一组，让他们之前可以互相交流。</p>
+</blockquote>
+<blockquote>
+<p><strong>举个例子</strong></p>
+<p><strong>有一个网段</strong>是192.168.1.0-192.1.254，这个网段就像一个村子一样，就称它为<strong>安防村</strong>，此这网段有个ip地址是192.168.1.1，我们就叫他安防一，另外一个人叫安防二，它的ip地址为192.168.1.2，我们一看他们，就知道他们是同村的。</p>
+<p><strong>另外有一个网段，</strong>是192.168.0.0——192.168.255.254，我们叫它<strong>安村</strong>，村里有个同样有两个ip地址为92.168.1.1与192.168.1.2，也叫安防一，安防二，那么问题来了？这个时候，如何区分他们是属于那个村的？</p>
+<p>这个时候就需要<strong>子网掩码</strong>了来判断他们是属于那个网段的，需要把安防一、安防二带到村里去认下，就知道他们是属于那个村了，<strong>安防村</strong>的网段是255.255.255.0，<strong>安村</strong>的网段是255.255.0.0。</p>
+<p>网络中也会出现类似于“同名”“同姓”的ip地址，如何区分他们到底是属于那个网段，就需要依靠子网掩码了。</p>
+</blockquote>
 <ul>
-<li>pod.spec.tolerations<ul>
-<li>其中 operator 的值为 Exists 将会忽略 value 值</li>
-<li>其中 key, value, effect 要与 Node 上设置的 taint 保持一致</li>
-<li>其中 tolerationSeconds 用于描述当 Pod 需要被驱逐时可以在 Pod 上继续保留运行的时间<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span><span class="token number">3</span>
-      <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-  <span class="token key atrule">tolerations</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> <span class="token string">"type"</span>
-      <span class="token key atrule">operator</span><span class="token punctuation">:</span> "Equal" //操作符
-      <span class="token key atrule">value</span><span class="token punctuation">:</span> "master"  //key，value
-      <span class="token key atrule">effect</span><span class="token punctuation">:</span> "NoSchedule"   //污点策略
-      <span class="token key atrule">tolerationSeconds</span><span class="token punctuation">:</span> 3600 //保留运行时间秒
-    <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> <span class="token string">"type"</span>
-      <span class="token key atrule">operator</span><span class="token punctuation">:</span> <span class="token string">"Equal"</span>
-      <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">"master"</span>
-      <span class="token key atrule">effect</span><span class="token punctuation">:</span> <span class="token string">"NoExecute"</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> <span class="token string">"type"</span>
-      <span class="token key atrule">operator</span><span class="token punctuation">:</span> <span class="token string">"Exists"</span>
-      <span class="token key atrule">effect</span><span class="token punctuation">:</span> <span class="token string">"NoSchedule"</span>
-      
-<span class="token punctuation">---</span>
-<span class="token key atrule">tolerations</span><span class="token punctuation">:</span>  当不指定 key 值时，表示容忍所有的污点 key
-  <span class="token key atrule">operator</span><span class="token punctuation">:</span> <span class="token string">"Exists"</span>
-  
-<span class="token punctuation">---</span>
-<span class="token key atrule">tolerations</span><span class="token punctuation">:</span>  <span class="token comment">#当不指定 effect 值时，表示容忍所有的污点作用</span>
-
-  <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> <span class="token string">"key"</span>
-    <span class="token key atrule">operator</span><span class="token punctuation">:</span> <span class="token string">"Exists"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>参考链接（<a href="javascript:void(0);">智能制造之家</a>）： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIwMjMxODAzNA==&amp;mid=2247485460&amp;idx=1&amp;sn=03053f38fcf0ed609314f3674e8f069d&amp;chksm=96e1c1a9a19648bfbbec63293a5d965125bf54bfeb0dc9c215de0451138b7136edcc67e4e093&amp;scene=21#wechat_redirect">https://mp.weixin.qq.com/s?__biz=MzIwMjMxODAzNA==&amp;mid=2247485460&amp;idx=1&amp;sn=03053f38fcf0ed609314f3674e8f069d&amp;chksm=96e1c1a9a19648bfbbec63293a5d965125bf54bfeb0dc9c215de0451138b7136edcc67e4e093&amp;scene=21#wechat_redirect</a></li>
 </ul>
-</li>
-</ul>
-<h2 id="指定调度节点"><a href="#指定调度节点" class="headerlink" title="指定调度节点"></a>指定调度节点</h2><p>将 Pod 直接调度到指定的 Node 节点上，会跳过 Scheduler 的调度策略，该匹配规则是<strong>强制匹配。</strong></p>
-<h4 id="1-通过nodeName"><a href="#1-通过nodeName" class="headerlink" title="1.通过nodeName"></a>1.通过nodeName</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> extensions/v1beta1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> myweb
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">7</span>
-  <span class="token key atrule">template</span><span class="token punctuation">:</span>
-    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-        <span class="token key atrule">app</span><span class="token punctuation">:</span> myweb
-    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-      <span class="token key atrule">nodeName</span><span class="token punctuation">:</span> k8s<span class="token punctuation">-</span>node1  <span class="token comment">## 通过nodename</span>
-      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> myweb
-          <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-          <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-            <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="2-通过标签"><a href="#2-通过标签" class="headerlink" title="2.通过标签"></a>2.通过标签</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> extensions/v1beta1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> myweb
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
-  <span class="token key atrule">template</span><span class="token punctuation">:</span>
-    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-        <span class="token key atrule">app</span><span class="token punctuation">:</span> myweb
-    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-    <span class="token key atrule">nodeSelector</span><span class="token punctuation">:</span>  <span class="token comment">#通过标签选择</span>
-      <span class="token key atrule">type</span><span class="token punctuation">:</span> BackendNode
-    <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> myweb
-        <span class="token key atrule">image</span><span class="token punctuation">:</span> hub.escape.com/library/myapp<span class="token punctuation">:</span>v1
-        ports<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -725,9 +654,9 @@ $ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1<span
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《集群调度 使用》
+                    《vlan、子网掩码、MAC地址、网关、DNS、三层交换机》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/ji-qun-diao-du.html" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html" property="cc:attributionName"
                rel="cc:attributionURL">
                 XieJiayi
             </a> is licensed under a
@@ -768,7 +697,7 @@ $ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1<span
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'kubernetes/ji-qun-diao-du.html',
+        id: 'wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1052,48 +981,50 @@ $ kubectl taint nodes k8s<span class="token punctuation">-</span>node1 key1<span
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/kubernetes/k8s-ji-chu-ming-ling-he-qi-ta-qing-kuang-ji-lu.html">
+                <a href="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="k8s相关基础命令 使用">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="vlan、子网掩码、MAC地址、网关、DNS、三层交换机">
                         
-                        <span class="card-title">k8s相关基础命令 使用</span>
+                        <span class="card-title">vlan、子网掩码、MAC地址、网关、DNS、三层交换机</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            k8s一.环境搭建参考地址 ：https://www.cnblogs.com/tz90/p/15466646.html
-#最新、最全、最详细的 K8S 学习笔记总结（2021最新版）
-https://www.jianshu.com/p/2c
+                            01 什么是VLAN
+VLAN中文是“虚拟局域网”。LAN可以是由少数几台家用计算机构成的网络，也可以是数以百计的计算机构成的企业网络。VLAN所指的LAN特指使用路由器分割的网络——也就是广播域。
+听上面的概念，肯定有不少朋友是一头雾水的
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category" target="_blank">
-                                    k8s
+                            <a href="/categories/network/" class="post-category" target="_blank">
+                                    network
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Kubernetes/" target="_blank">
-                        <span class="chip bg-color">Kubernetes</span>
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" target="_blank">
+                        <span class="chip bg-color">网络</span>
                     </a>
                     
                 </div>
@@ -1107,32 +1038,32 @@ https://www.jianshu.com/p/2c
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/kubernetes/cun-chu.html">
+                <a href="/go/go-zeor.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="存储 使用">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="go-zeor 框架的使用">
                         
-                        <span class="card-title">存储 使用</span>
+                        <span class="card-title">go-zeor 框架的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            参考地址：https://www.yuque.com/u12604243/mc2aau/qgh2pg#IHoc8ConfigMap创建Map#使用目录创建
-kubectl create configmap ganme-config --fr
+                            g
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category" target="_blank">
-                                    k8s
+                            <a href="/categories/Go/" class="post-category" target="_blank">
+                                    Go
                                 </a>
                             
                             
@@ -1142,8 +1073,8 @@ kubectl create configmap ganme-config --fr
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Kubernetes/" target="_blank">
-                        <span class="chip bg-color">Kubernetes</span>
+                    <a href="/tags/Go/" target="_blank">
+                        <span class="chip bg-color">Go</span>
                     </a>
                     
                 </div>
