@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-04-06T08:26:16.203Z</updated>
+  <updated>2023-04-07T02:43:08.794Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于prometheus的告警监控</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html</id>
+    <published>2023-04-07T02:21:14.000Z</published>
+    <updated>2023-04-07T02:43:08.794Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;prometheus系统架构图&quot;&gt;&lt;a href=&quot;#prometheus系统架构图&quot; class=&quot;headerlink&quot; title=&quot;prometheus系统架构图&quot;&gt;&lt;/a&gt;prometheus系统架构图&lt;/h1&gt;&lt;h1 id=&quot;&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+  </entry>
   
   <entry>
     <title>Dockerfile的使用</title>
@@ -499,31 +524,6 @@
         
     <summary type="html">&lt;h2 id=&quot;资源限制&quot;&gt;&lt;a href=&quot;#资源限制&quot; class=&quot;headerlink&quot; title=&quot;资源限制&quot;&gt;&lt;/a&gt;资源限制&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;spec.containers[].resources.limits.cpu ： CPU 上限，</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>其他插件 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/qi-ta-cha-jian.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/qi-ta-cha-jian.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T07:00:02.340Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、Grafana-Prometheus-node-exporter&quot;&gt;&lt;a href=&quot;#一、Grafana-Prometheus-node-exporter&quot; class=&quot;headerlink&quot; title=&quot;一、Grafana + Prometheus</summary>
         
       
     

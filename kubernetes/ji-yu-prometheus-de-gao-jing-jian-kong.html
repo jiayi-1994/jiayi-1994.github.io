@@ -4,12 +4,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Dockerfile的使用, 学习">
+    <meta name="keywords" content="基于prometheus的告警监控, 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="DockerFile介绍镜像的定制实际上就是定制每一层所添加的配置、文件。如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么之前提及的无法重复的问题、镜
-像构建透明性的问题、体积的问题就都会解决">
+    <meta name="description" content="prometheus系统架构图手动试验：1.部署一个简单的webhook服务
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  alert-webhook
+  namespac">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +22,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Dockerfile的使用 | 小萝卜 Blog</title>
+    <title>基于prometheus的告警监控 | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,7 +337,7 @@
 <script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
     (function() {
-        let pwd = '';
+        let pwd = '7676aaafb027c825bd9abab78b234070e702752f625b752e55e55b48e607e358';
         if (pwd && pwd.length > 0) {
             if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
                 alert('密码错误，将返回主页！');
@@ -345,13 +350,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Dockerfile的使用
+                        基于prometheus的告警监控
                     </div>
                 </div>
             </div>
@@ -466,10 +471,6 @@
                             <span class="chip bg-color">Kubernetes</span>
                         </a>
                         
-                        <a href="/tags/devops/" target="_blank">
-                            <span class="chip bg-color">devops</span>
-                        </a>
-                        
                     </div>
                     
                 </div>
@@ -478,8 +479,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/devops/" class="post-category" target="_blank">
-                            devops
+                        <a href="/categories/k8s/" class="post-category" target="_blank">
+                            k8s
                         </a>
                         
                     </div>
@@ -490,7 +491,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-06
+                    2023-04-07
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -504,14 +505,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
                 
@@ -522,221 +523,271 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="DockerFile介绍"><a href="#DockerFile介绍" class="headerlink" title="DockerFile介绍"></a>DockerFile介绍</h1><p>镜像的定制实际上就是定制每一层所添加的配置、文件。如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么之前提及的无法重复的问题、镜</p>
-<p>像构建透明性的问题、体积的问题就都会解决。这个脚本就是Dockerfile。</p>
-<p>　　Dockerfile是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每</p>
-<p>一条指令的内容，就是描述该层应当如何构建。</p>
-<h2 id="Go的DockerFile"><a href="#Go的DockerFile" class="headerlink" title="Go的DockerFile"></a>Go的DockerFile</h2><pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token comment"># FROM 基于 golang:1.20</span>
-<span class="token instruction"><span class="token keyword">FROM</span> golang:1.20 <span class="token keyword">AS</span> builder</span>
+                <h1 id="prometheus系统架构图"><a href="#prometheus系统架构图" class="headerlink" title="prometheus系统架构图"></a>prometheus系统架构图</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong/image-20230407102540604.png" class="" title="image-20230407102540604"></h1><h1 id="手动试验："><a href="#手动试验：" class="headerlink" title="手动试验："></a>手动试验：</h1><p>1.部署一个简单的webhook服务</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span>  alert<span class="token punctuation">-</span>webhook
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span>  alert<span class="token punctuation">-</span>webhook
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> alert<span class="token punctuation">-</span>webhook
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span>  alert<span class="token punctuation">-</span>webhook
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span>  alert<span class="token punctuation">-</span>webhook
+        <span class="token key atrule">image</span><span class="token punctuation">:</span>  172.32.1.175<span class="token punctuation">:</span>10043/demo/alert<span class="token punctuation">-</span>webhook<span class="token punctuation">:</span><span class="token number">1.0</span>
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span>  <span class="token number">8080</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span>  alert<span class="token punctuation">-</span>webhook
+      <span class="token key atrule">imagePullSecrets</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> secret<span class="token punctuation">-</span>wangsu
 
-<span class="token comment"># ENV 设置环境变量</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOPATH=/opt/repo</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GO111MODULE=on</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOPROXY=https://goproxy.cn,https://gocenter.io,https://goproxy.io,direct</span>
-<span class="token instruction"><span class="token keyword">ENV</span> CGO_ENABLED=0</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOOS=linux</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> alert<span class="token punctuation">-</span>webhook
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> alert<span class="token punctuation">-</span>webhook
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> NodePort
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> alert<span class="token punctuation">-</span>webhook
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token instruction"><span class="token keyword">WORKDIR</span> <span class="token variable">$GOPATH</span>/app</span>
-<span class="token comment"># COPY 源路径 目标路径</span>
-<span class="token instruction"><span class="token keyword">COPY</span> . <span class="token variable">$GOPATH</span>/app</span>
+<ol start="2">
+<li>调整 kubectl -n monitoring get secrets  路径下的alertmanager.yaml配置文件</li>
+</ol>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">
+参考模板：
+<span class="token key atrule">global</span><span class="token punctuation">:</span>
+  <span class="token key atrule">resolve_timeout</span><span class="token punctuation">:</span> <span class="token string">'5m'</span>
+  <span class="token key atrule">smtp_smarthost</span><span class="token punctuation">:</span> <span class="token string">'smtp.126.com:25'</span>   
+  <span class="token key atrule">smtp_from</span><span class="token punctuation">:</span> <span class="token string">'looknicemm@126.com'</span> 
+  <span class="token key atrule">smtp_auth_username</span><span class="token punctuation">:</span> <span class="token string">'looknicemm@126.com'</span> 
+  <span class="token key atrule">smtp_auth_password</span><span class="token punctuation">:</span> <span class="token string">'KNPYYGBKYJKKOQQA'</span>  <span class="token comment">#邮箱的授权密码 (如果是163邮箱，需要在设置-&gt;常规设置-&gt;点击左侧的客户端授权密码-&gt;开启授权密码)</span>
+<span class="token key atrule">templates</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token string">'*.tmpl'</span> <span class="token comment">#加载所有消息通知模板</span>
+<span class="token key atrule">inhibit_rules</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">equal</span><span class="token punctuation">:</span>   <span class="token comment"># 如果告警出现critical 那么在相同的namespace和alertname下的 warning|info级别的告警都会被抑制</span>
+  <span class="token punctuation">-</span> namespace
+  <span class="token punctuation">-</span> alertname
+  <span class="token key atrule">source_matchers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> severity = critical
+  <span class="token key atrule">target_matchers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> severity =~ warning<span class="token punctuation">|</span>info
+<span class="token punctuation">-</span> <span class="token key atrule">equal</span><span class="token punctuation">:</span>    <span class="token comment"># 确保这个配置下的标签内容相同才会抑制，也就是说警报中必须有这三个标签值才会被抑制。</span>
+  <span class="token punctuation">-</span> namespace
+  <span class="token punctuation">-</span> alertname
+  <span class="token key atrule">source_matchers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> severity = warning
+  <span class="token key atrule">target_matchers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> severity = info
+<span class="token key atrule">route</span><span class="token punctuation">:</span>
+  <span class="token key atrule">receiver</span><span class="token punctuation">:</span> <span class="token string">'default-receiver'</span>
+  <span class="token key atrule">group_by</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'alertname'</span><span class="token punctuation">,</span><span class="token string">'namespace'</span><span class="token punctuation">]</span>  <span class="token comment">#将传入警报分组在一起的标签。例如，cluster=A和alertname=LatencyHigh的多个警报将批处理为单个组。</span>
+  <span class="token key atrule">group_wait</span><span class="token punctuation">:</span> 30s  <span class="token comment">#当传入的警报创建新的警报组时，至少等待"30s"发送初始通知。</span>
+  <span class="token key atrule">group_interval</span><span class="token punctuation">:</span> 5m  <span class="token comment">#当发送第一个通知时，等待"5m"发送一批新的警报，这些警报开始针对该组触发。 （如果是group_by里的内容为新的如：alertname=1,alertname=2 会马上发送2封邮件, 如果是group_by之外的会等待5m触发一次）</span>
+  <span class="token key atrule">repeat_interval</span><span class="token punctuation">:</span> 4h <span class="token comment">#如果警报已成功发送，请等待"4h"重新发送，重复发送邮件的时间间隔</span>
+  <span class="token key atrule">routes</span><span class="token punctuation">:</span> <span class="token comment">#所有与下列子路由不匹配的警报将保留在根节点，并被分派到'default-receiver'。</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">receiver</span><span class="token punctuation">:</span> <span class="token string">'database-pager'</span>
+    <span class="token key atrule">group_wait</span><span class="token punctuation">:</span> 10s
+    <span class="token key atrule">group_by</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>service<span class="token punctuation">]</span>
+    <span class="token key atrule">match_re</span><span class="token punctuation">:</span>
+      <span class="token key atrule">service</span><span class="token punctuation">:</span> mysql<span class="token punctuation">|</span>cassandra  <span class="token comment">#带有service=mysql或service=cassandra的所有警报都被发送到'database-pager'</span>
+<span class="token key atrule">receivers</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> default<span class="token punctuation">-</span>receiver <span class="token comment">#不同的报警 发送给不同的邮箱</span>
+  <span class="token key atrule">webhook_configs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//alert<span class="token punctuation">-</span>webhook.default<span class="token punctuation">:</span>8080/webhook
+        <span class="token key atrule">send_resolved</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># 恢复通知提醒</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> database<span class="token punctuation">-</span>pager
+  <span class="token key atrule">email_configs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">to</span><span class="token punctuation">:</span> <span class="token string">'690081650@qq.com'</span>
+    <span class="token key atrule">html</span><span class="token punctuation">:</span> <span class="token string">'{{ template "alertemp.html" . }}'</span>     <span class="token comment">#应用哪个模板</span>
+    <span class="token key atrule">headers</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token key atrule">Subject</span><span class="token punctuation">:</span> <span class="token string">"[INFO] 报警邮件test"</span> <span class="token punctuation">}</span>   <span class="token comment">#邮件头信息</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment"># RUN 执行 go build .</span>
-<span class="token instruction"><span class="token keyword">RUN</span>  cd <span class="token variable">$GOPATH</span>/app &amp;&amp;go build main.go</span>
-
-<span class="token comment"># FROM 基于 alpine:latest</span>
-<span class="token instruction"><span class="token keyword">FROM</span> alpine:latest</span>
-
-<span class="token comment"># RUN 设置 Asia/Shanghai 时区</span>
-<span class="token instruction"><span class="token keyword">RUN</span> apk --no-cache add tzdata  &amp;&amp; <span class="token operator">\</span>
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; <span class="token operator">\</span>
-    echo <span class="token string">"Asia/Shanghai"</span> &gt; /etc/timezone</span>
-
-<span class="token comment"># COPY 源路径 目标路径 从镜像中 COPY</span>
-<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /opt/repo/app/main /opt/ginctl</span>
-
-<span class="token comment"># EXPOSE 设置端口映射</span>
-<span class="token instruction"><span class="token keyword">EXPOSE</span> 9999/tcp</span>
-
-<span class="token comment"># WORKDIR 设置工作目录</span>
-<span class="token instruction"><span class="token keyword">WORKDIR</span> /opt</span>
-
-<span class="token comment"># CMD 设置启动命令</span>
-<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"./ginctl"</span>, <span class="token string">"-env"</span>, <span class="token string">"fat"</span>]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="Dockerfile-指令介绍"><a href="#Dockerfile-指令介绍" class="headerlink" title="Dockerfile 指令介绍"></a>Dockerfile 指令介绍</h2><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a><strong><strong>FROM</strong></strong></h3><p>1、介绍</p>
-<ul>
-<li>FROM指令用于为镜像文件构建过程指定基础镜像，后续的指令运行于此基础镜像所提供的运行环境；</li>
-<li>配合AS可以做成区分运行时镜像和构建时镜像</li>
-</ul>
-<p>2、示例： </p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token constant">FROM</span> <span class="token literal-property property">golang</span><span class="token operator">:</span><span class="token number">1.20</span> <span class="token constant">AS</span> builder
-
-# <span class="token constant">COPY</span> 源路径 目标路径 从镜像中 <span class="token constant">COPY</span>
-<span class="token constant">COPY</span> <span class="token operator">--</span>from<span class="token operator">=</span>builder <span class="token operator">/</span>opt<span class="token operator">/</span>repo<span class="token operator">/</span>app<span class="token operator">/</span>main <span class="token operator">/</span>opt<span class="token operator">/</span>ginctl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a><strong><strong>MAINTAINER</strong></strong></h3><p>1、介绍</p>
-<ul>
-<li>用于让dockerfile制作者提供本人的详细信息</li>
-</ul>
-<p>2、示例</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> golang:1.20 <span class="token keyword">AS</span> builder</span>
-<span class="token instruction"><span class="token keyword">MAINTAINER</span> <span class="token string">'xiejiayi &lt;looknicemm@126.com&gt;'</span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h3 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a><strong><strong>COPY</strong></strong></h3><p>1、介绍</p>
-<ul>
-<li>用于从docker主机复制新文件或者目录至创建的新镜像指定路径中</li>
-<li>目标路径，即正在创建的image的文件系统路径；建议使用绝对路径，否则，COPY指定以WORKDIR为其实路径</li>
-</ul>
-<p>2、示例</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token comment"># FROM 基于 golang:1.20</span>
-<span class="token instruction"><span class="token keyword">FROM</span> golang:1.20 <span class="token keyword">AS</span> builder</span>
-<span class="token instruction"><span class="token keyword">MAINTAINER</span> <span class="token string">'xiejiayi &lt;looknicemm@126.com&gt;'</span></span>
-<span class="token comment"># COPY 源路径 目标路径</span>
-<span class="token instruction"><span class="token keyword">COPY</span> . <span class="token variable">$GOPATH</span>/app</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a><strong><strong>ENV</strong></strong></h3><p>1、介绍</p>
-<ul>
-<li>用于为镜像定义所需的环境变量，并可被Dockerfile文件中位于其后的其它指令(如ENV、ADD、COPY等)所调用</li>
-</ul>
-<p>2、示例</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token comment"># FROM 基于 golang:1.20</span>
-<span class="token instruction"><span class="token keyword">FROM</span> golang:1.20 <span class="token keyword">AS</span> builder</span>
-<span class="token instruction"><span class="token keyword">MAINTAINER</span> <span class="token string">'xiejiayi &lt;looknicemm@126.com&gt;'</span></span>
-
-<span class="token comment"># ENV 设置环境变量</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOPATH=/opt/repo</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GO111MODULE=on</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOPROXY=https://goproxy.cn,https://gocenter.io,https://goproxy.io,direct</span>
-<span class="token instruction"><span class="token keyword">ENV</span> CGO_ENABLED=0</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOOS=linux</span>
-
-<span class="token comment"># COPY 源路径 目标路径</span>
-<span class="token instruction"><span class="token keyword">COPY</span> . <span class="token variable">$GOPATH</span>/app</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a><strong><strong>WORKDIR</strong></strong></h3><p>1、介绍</p>
-<ul>
-<li>用于为Dockerfile中所有的RUN、CMD、ENTRYPOINT、COPY和ADD指定设定工作目录</li>
-</ul>
-<p>2、示例</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token comment"># FROM 基于 golang:1.20</span>
-<span class="token instruction"><span class="token keyword">FROM</span> golang:1.20 <span class="token keyword">AS</span> builder</span>
-<span class="token instruction"><span class="token keyword">MAINTAINER</span> <span class="token string">'xiejiayi &lt;looknicemm@126.com&gt;'</span></span>
-
-<span class="token comment"># ENV 设置环境变量</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOPATH=/opt/repo</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GO111MODULE=on</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOPROXY=https://goproxy.cn,https://gocenter.io,https://goproxy.io,direct</span>
-<span class="token instruction"><span class="token keyword">ENV</span> CGO_ENABLED=0</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOOS=linux</span>
-
-<span class="token comment">#用于为Dockerfile中所有的RUN、CMD、ENTRYPOINT、COPY和ADD指定设定工作目录</span>
-<span class="token instruction"><span class="token keyword">WORKDIR</span> <span class="token variable">$GOPATH</span>/app</span>
-
-<span class="token comment"># COPY 源路径 目标路径</span>
-<span class="token instruction"><span class="token keyword">COPY</span> . <span class="token variable">$GOPATH</span>/app</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a><strong><strong>RUN</strong></strong></h3><p>1、介绍</p>
-<ul>
-<li>用于指定docker build过程中运行的程序，其可以是任何命令</li>
-</ul>
-<p>2、示例</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token comment"># FROM 基于 golang:1.20</span>
-<span class="token instruction"><span class="token keyword">FROM</span> golang:1.20 <span class="token keyword">AS</span> builder</span>
-<span class="token instruction"><span class="token keyword">MAINTAINER</span> <span class="token string">'xiejiayi &lt;looknicemm@126.com&gt;'</span></span>
-
-<span class="token comment"># ENV 设置环境变量</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOPATH=/opt/repo</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GO111MODULE=on</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOPROXY=https://goproxy.cn,https://gocenter.io,https://goproxy.io,direct</span>
-<span class="token instruction"><span class="token keyword">ENV</span> CGO_ENABLED=0</span>
-<span class="token instruction"><span class="token keyword">ENV</span> GOOS=linux</span>
-
-<span class="token comment">#用于为Dockerfile中所有的RUN、CMD、ENTRYPOINT、COPY和ADD指定设定工作目录</span>
-<span class="token instruction"><span class="token keyword">WORKDIR</span> <span class="token variable">$GOPATH</span>/app</span>
-
-<span class="token comment"># COPY 源路径 目标路径</span>
-<span class="token instruction"><span class="token keyword">COPY</span> . <span class="token variable">$GOPATH</span>/app</span>
-
-<span class="token comment"># RUN 执行 go build .</span>
-<span class="token instruction"><span class="token keyword">RUN</span>  cd <span class="token variable">$GOPATH</span>/app &amp;&amp;go build main.go</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><p>1、介绍</p>
-<ul>
-<li>用于为容器打开指定要监听的端口以实现与外部通信</li>
-</ul>
-<p>2、 示例</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token comment"># FROM 基于 alpine:latest</span>
-<span class="token instruction"><span class="token keyword">FROM</span> alpine:latest</span>
-
-<span class="token comment"># RUN 设置 Asia/Shanghai 时区</span>
-<span class="token instruction"><span class="token keyword">RUN</span> apk --no-cache add tzdata  &amp;&amp; <span class="token operator">\</span>
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; <span class="token operator">\</span>
-    echo <span class="token string">"Asia/Shanghai"</span> &gt; /etc/timezone</span>
-
-<span class="token comment"># COPY 源路径 目标路径 从镜像中 COPY</span>
-<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /opt/repo/app/main /opt/ginctl</span>
-
-<span class="token comment"># EXPOSE 设置端口映射</span>
-<span class="token instruction"><span class="token keyword">EXPOSE</span> 9999/tcp</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a><strong><strong>CMD</strong></strong></h2><p>1、介绍</p>
-<ul>
-<li>类似于RUN指令，CMD指令也可用于运行任何命令或应用程序，不过，二者的运行时间点不同</li>
-<li>CMD指令的首要目的在于为启动的容器指定默认要运行的程序，且其运行结束后，容器也将终止；不过，CMD指定的命令其可以被docker run的命令行选项所覆盖</li>
-</ul>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token comment"># CMD 设置启动命令</span>
-<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"./ginctl"</span>, <span class="token string">"-env"</span>, <span class="token string">"fat"</span>]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><strong><strong>ENTRYPOINT</strong></strong></p>
-<p>1、</p>
-<ul>
-<li>类似CMD指令的功能，用于为容器指定默认运行程序，从而使容器像是一个单独的可执行程序</li>
-<li>与CMD不同的是，由ENTRYPOINT启动的程序不会被docker run命令行指定的参数所覆盖，而且，这些命令行参数会被当作参数传递给ENTRYPOINT指定指定的程序</li>
-<li>不过，docker run命令的–entrypoint选项的参数可覆盖ENTRYPOINT指令指定的程序</li>
-</ul>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">ENTRYPOINT</span> /bin/httpd -f -h <span class="token variable">${WEB_DOC_ROOT}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="HEALTHCHECK"><a href="#HEALTHCHECK" class="headerlink" title="HEALTHCHECK"></a><strong>HEALTHCHECK</strong></h2><p>1、介绍</p>
-<ul>
-<li>HEALTHCHECK指令告诉Docker如何测试容器以检查它是否仍在工作</li>
-<li>即使服务器进程仍在运行，也可以检测出陷入无限循环且无法处理新连接的Web服务器等情况</li>
-</ul>
-<p>2、语法格式</p>
-<p>HEALTHCHECK [OPTIONS] CMD command (通过在容器内运行命令来检查容器运行状况)</p>
-<p>HEALTHCHECK NONE (禁用从基础映像继承的任何运行状况检查)</p>
-<p>1）常见选项：</p>
-<ul>
-<li>-interval=DURATION (default: 30s)：每隔多长时间探测一次，默认30秒</li>
-<li><ul>
-<li>timeout= DURATION (default: 30s)：服务响应超时时长，默认30秒</li>
-</ul>
+<ol start="3">
+<li><p>删除pod 查看zstack-prometheus-alertmanager svc对应下的status看是否已经修改成功 <a target="_blank" rel="noopener" href="http://172.31.12.6:32140/#/alerts">http://172.31.12.6:32140/#/alerts</a> </p>
 </li>
-<li>-start-period= DURATION (default: 0s)：服务启动多久后开始探测，默认0秒</li>
-<li>-retries=N (default: 3)：认为检测失败几次为宕机，默认3次</li>
-</ul>
-<p>2）返回值</p>
-<ul>
-<li>0：容器成功是健康的，随时可以使用</li>
-<li>1：不健康的容器无法正常工作</li>
-<li>2：保留不使用此退出代码</li>
-</ul>
-<p>3、示例</p>
-<p>1）编写dockerfile文件</p>
-<p>检测web1容器的10080端口（其实打开的是80端口，10080并没有打开，所以会检测失败）</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> busybox:latest</span>
+<li><p>收到相关的告警信息</p>
+</li>
+</ol>
+<p>Alatermanager：访问webhook的访问数据</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"4"</span><span class="token punctuation">,</span>
+    <span class="token property">"groupKey"</span><span class="token operator">:</span> <span class="token string">"{}:{alertname=\"CPUThrottlingHigh\", namespace=\"zstack-middleware\"}"</span><span class="token punctuation">,</span>
+    <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"firing"</span><span class="token punctuation">,</span>
+    <span class="token property">"receiver"</span><span class="token operator">:</span> <span class="token string">"default-receiver"</span><span class="token punctuation">,</span>
+    <span class="token property">"groupLabels"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"alertname"</span><span class="token operator">:</span> <span class="token string">"CPUThrottlingHigh"</span><span class="token punctuation">,</span>
+        <span class="token property">"namespace"</span><span class="token operator">:</span> <span class="token string">"zstack-middleware"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"commonLabels"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"alertname"</span><span class="token operator">:</span> <span class="token string">"CPUThrottlingHigh"</span><span class="token punctuation">,</span>
+        <span class="token property">"container"</span><span class="token operator">:</span> <span class="token string">"metrics"</span><span class="token punctuation">,</span>
+        <span class="token property">"namespace"</span><span class="token operator">:</span> <span class="token string">"zstack-middleware"</span><span class="token punctuation">,</span>
+        <span class="token property">"prometheus"</span><span class="token operator">:</span> <span class="token string">"monitoring/zstack-prometheus-prometheus"</span><span class="token punctuation">,</span>
+        <span class="token property">"severity"</span><span class="token operator">:</span> <span class="token string">"info"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"commonAnnotations"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"runbook_url"</span><span class="token operator">:</span> <span class="token string">"https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-cputhrottlinghigh"</span><span class="token punctuation">,</span>
+        <span class="token property">"summary"</span><span class="token operator">:</span> <span class="token string">"Processes experience elevated CPU throttling."</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"externalURL"</span><span class="token operator">:</span> <span class="token string">"http://zstack-prometheus-alertmanager.monitoring:9093"</span><span class="token punctuation">,</span>
+    <span class="token property">"alerts"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"labels"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"alertname"</span><span class="token operator">:</span> <span class="token string">"CPUThrottlingHigh"</span><span class="token punctuation">,</span>
+                <span class="token property">"container"</span><span class="token operator">:</span> <span class="token string">"metrics"</span><span class="token punctuation">,</span>
+                <span class="token property">"namespace"</span><span class="token operator">:</span> <span class="token string">"zstack-middleware"</span><span class="token punctuation">,</span>
+                <span class="token property">"pod"</span><span class="token operator">:</span> <span class="token string">"postgres-postgresql-0"</span><span class="token punctuation">,</span>
+                <span class="token property">"prometheus"</span><span class="token operator">:</span> <span class="token string">"monitoring/zstack-prometheus-prometheus"</span><span class="token punctuation">,</span>
+                <span class="token property">"severity"</span><span class="token operator">:</span> <span class="token string">"info"</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"annotations"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"36.43% throttling of CPU in namespace zstack-middleware for container metrics in pod postgres-postgresql-0."</span><span class="token punctuation">,</span>
+                <span class="token property">"runbook_url"</span><span class="token operator">:</span> <span class="token string">"https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-cputhrottlinghigh"</span><span class="token punctuation">,</span>
+                <span class="token property">"summary"</span><span class="token operator">:</span> <span class="token string">"Processes experience elevated CPU throttling."</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"startsAt"</span><span class="token operator">:</span> <span class="token string">"2022-10-26T06:44:50.751Z"</span><span class="token punctuation">,</span>
+            <span class="token property">"endsAt"</span><span class="token operator">:</span> <span class="token string">"0001-01-01T00:00:00Z"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"labels"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"alertname"</span><span class="token operator">:</span> <span class="token string">"CPUThrottlingHigh"</span><span class="token punctuation">,</span>
+                <span class="token property">"container"</span><span class="token operator">:</span> <span class="token string">"metrics"</span><span class="token punctuation">,</span>
+                <span class="token property">"namespace"</span><span class="token operator">:</span> <span class="token string">"zstack-middleware"</span><span class="token punctuation">,</span>
+                <span class="token property">"pod"</span><span class="token operator">:</span> <span class="token string">"postgres-postgresql-1"</span><span class="token punctuation">,</span>
+                <span class="token property">"prometheus"</span><span class="token operator">:</span> <span class="token string">"monitoring/zstack-prometheus-prometheus"</span><span class="token punctuation">,</span>
+                <span class="token property">"severity"</span><span class="token operator">:</span> <span class="token string">"info"</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"annotations"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"36.28% throttling of CPU in namespace zstack-middleware for container metrics in pod postgres-postgresql-1."</span><span class="token punctuation">,</span>
+                <span class="token property">"runbook_url"</span><span class="token operator">:</span> <span class="token string">"https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-cputhrottlinghigh"</span><span class="token punctuation">,</span>
+                <span class="token property">"summary"</span><span class="token operator">:</span> <span class="token string">"Processes experience elevated CPU throttling."</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"startsAt"</span><span class="token operator">:</span> <span class="token string">"2022-10-25T21:18:20.751Z"</span><span class="token punctuation">,</span>
+            <span class="token property">"endsAt"</span><span class="token operator">:</span> <span class="token string">"0001-01-01T00:00:00Z"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token instruction"><span class="token keyword">MAINTAINER</span> <span class="token string">'111'</span></span>
+<img src="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong/image-20230407102824537.png" class="" title="image-20230407102824537">
 
-<span class="token instruction"><span class="token keyword">ENV</span> WEB_DOC_ROOT=<span class="token string">"/data/web/html"</span></span>
+<h1 id="自定义报警规则："><a href="#自定义报警规则：" class="headerlink" title="自定义报警规则："></a><a target="_blank" rel="noopener" href="https://yunlzheng.gitbook.io/prometheus-book/part-iii-prometheus-shi-zhan/operator/use-operator-manage-prometheus">自定义报警规则</a>：</h1><p>1、参考prometheus规则（包含大部分通用规则）：<a target="_blank" rel="noopener" href="https://awesome-prometheus-alerts.grep.to/">https://awesome-prometheus-alerts.grep.to/</a></p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> monitoring.coreos.com/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PrometheusRule
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">custom-alerting-rule-level</span><span class="token punctuation">:</span> cluster
+    <span class="token key atrule">role</span><span class="token punctuation">:</span> alert<span class="token punctuation">-</span>rules
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> custom<span class="token punctuation">-</span>alerting<span class="token punctuation">-</span>rule
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> monitoring
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">groups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> alerting.custom.defaults.0
+    <span class="token key atrule">rules</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">alert</span><span class="token punctuation">:</span> fe
+      <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+        <span class="token key atrule">kind</span><span class="token punctuation">:</span> Node
+        <span class="token key atrule">message</span><span class="token punctuation">:</span> <span class="token string">""</span>
+        <span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token string">'["172-20-17-188"]'</span>
+        <span class="token key atrule">rule_update_time</span><span class="token punctuation">:</span> <span class="token string">"2022-10-09T10:14:48Z"</span>
+        <span class="token key atrule">rules</span><span class="token punctuation">:</span> <span class="token string">'[{"_metricType":"instance:node_cpu_utilisation:rate5m{$1}","condition_type":"&lt;","thresholds":"90","unit":"%"}]'</span>
+        <span class="token key atrule">summary</span><span class="token punctuation">:</span> 节点 172.32.1.174 CPU 用量 &lt; 90%
+      <span class="token key atrule">expr</span><span class="token punctuation">:</span>  instance<span class="token punctuation">:</span>node_cpu_utilisation<span class="token punctuation">:</span>rate5m<span class="token punctuation">{</span> instance=~"172.32.1.174.<span class="token important">*|172.32.1.179.*"</span><span class="token punctuation">}</span>  &lt;0.9
+      <span class="token key atrule">for</span><span class="token punctuation">:</span> 1m
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">alerttype</span><span class="token punctuation">:</span> metric
+        <span class="token key atrule">severity</span><span class="token punctuation">:</span> warning
+        <span class="token key atrule">service</span><span class="token punctuation">:</span> mysql
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token instruction"><span class="token keyword">RUN</span> mkdir -p <span class="token variable">${WEB_DOC_ROOT}</span> &amp;&amp; <span class="token operator">\</span>
+<p>2、 基于工作负载的某项指标进行检测</p>
+<pre class="line-numbers language-none"><code class="language-none">node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate * ON(pod) GROUP_LEFT() namespace_workload_pod:kube_pod_owner:relabel{ workload_type="deployment",workload=~"alert-webhook|asd"} &gt;0
 
-echo <span class="token string">"&lt;h1&gt;Busybox httpd server&lt;/h1&gt;"</span> &gt; <span class="token variable">${WEB_DOC_ROOT}</span>/index.html</span>
+workload_type：取值为：  deployment，statefulset，daemonset<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<span class="token instruction"><span class="token keyword">CMD</span> /bin/httpd -f -h <span class="token variable">${WEB_DOC_ROOT}</span></span>
+<p>3、基于helm应用的所有工作负载（sts，deploy，ds）的某项指标检测 —– 需要补充一个自己开发helm-exporter采集器</p>
+<pre class="line-numbers language-none"><code class="language-none">node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate  * ON(pod) GROUP_LEFT() (namespace_workload_pod:kube_pod_owner:relabel{} * on(workload,workload_type) GROUP_LEFT() helm_chart_workload_list{chart=~"helm-exporter|zstack-edge"})
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<span class="token instruction"><span class="token keyword">HEALTHCHECK</span> <span class="token options"><span class="token property">--start-period</span><span class="token punctuation">=</span><span class="token string">3s</span></span> <span class="token keyword">CMD</span> wget -O - -q [http://<span class="token variable">${IP:-0.0.0.0}</span>:10080/]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="自定义采集器："><a href="#自定义采集器：" class="headerlink" title="自定义采集器："></a>自定义采集器：</h1><p>   1.基于client-golang的SDK工具包进行exporter采集器开发参考Demo:<a target="_blank" rel="noopener" href="https://github.com/prometheus/client_golang/blob/main/examples/gocollector/main.go">https://github.com/prometheus/client_golang/blob/main/examples/gocollector/main.go</a></p>
+<p>   2.配置prometheus拉取采集信息servicemonitors (最终会写到prometheus中/etc/prometheus/config_out/prometheus.env.yaml的配置文件中)</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> monitoring.coreos.com/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceMonitor
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+    <span class="token key atrule">meta.helm.sh/release-name</span><span class="token punctuation">:</span> prometheus
+    <span class="token key atrule">meta.helm.sh/release-namespace</span><span class="token punctuation">:</span> monitoring
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app.kubernetes.io/instance</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>exporter
+    <span class="token key atrule">app.kubernetes.io/managed-by</span><span class="token punctuation">:</span> Helm
+    <span class="token key atrule">app.kubernetes.io/name</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>exporter
+    <span class="token key atrule">app.kubernetes.io/version</span><span class="token punctuation">:</span> 1.2.3
+    <span class="token key atrule">helm.sh/chart</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>exporter<span class="token punctuation">-</span>1.2.3_4dc0dfc
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>exporter
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> monitoring
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> /metrics
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> http
+  <span class="token key atrule">namespaceSelector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchNames</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> monitoring
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app.kubernetes.io/name</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>exporter
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>规则设置后可以到<a target="_blank" rel="noopener" href="http://172.32.1.210:10006/targets%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F">http://172.32.1.210:10006/targets查看是否配置成功</a></li>
+</ol>
+<img src="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong/image-20230407104255439.png" class="" title="image-20230407104255439">
+
+<img src="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong/image-20230407104305177.png" class="" title="image-20230407104305177">
+
+<h1 id="设计思路："><a href="#设计思路：" class="headerlink" title="设计思路："></a>设计思路：</h1><img src="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong/image-20230407103203315.png" class="" title="image-20230407103203315">
+
+<p>整个报警链路完成：</p>
+<ol>
+<li>首先是Prometheus根据告警规则告警，如果增删改规则参考PrometheusRule（<a target="_blank" rel="noopener" href="https://blog.csdn.net/wzy_168/article/details/103290235%EF%BC%89">https://blog.csdn.net/wzy_168/article/details/103290235）</a></li>
+<li>Prometheus的告警经过Alertmanager静默、抑制、分组等配置到达Alertmanager</li>
+<li>AlterManager通过配置webhook，地址填Edge自定义转换器的地址。</li>
+<li>Edge自定义转换器中webhook地址去调用其他通知渠道（如：邮箱、<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/705415">钉钉</a>、微信…..）。</li>
+</ol>
+<h1 id="词语解释："><a href="#词语解释：" class="headerlink" title="词语解释："></a>词语解释：</h1><p>​    1. alert State:  </p>
+<p><strong>Inactive</strong> 警报未激活；</p>
+<p><strong>Pending</strong>：警报已满足测试表达式条件，但未达到for指定的持续时间；</p>
+<p><strong>Firing</strong>：警报满足测试表达式条件，且持续时间达到了for指定的持续时间</p>
+<img src="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong/image-20230407103239678.png" class="" title="image-20230407103239678">
+
+<h1 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wzy_168/article/details/103295971">https://blog.csdn.net/wzy_168/article/details/103295971</a> prometheus-operator使用【了解Alertmanager通知机制】</li>
+<li><a target="_blank" rel="noopener" href="https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/alert/alert-manager-route">https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/alert/alert-manager-route</a> 基于标签的告警处理路由</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/prometheus/client_golang">https://github.com/prometheus/client_golang</a> prometheus开发sdk包，支持自定义采集器开发</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/sstarcher/helm-exporter">https://github.com/sstarcher/helm-exporter</a> 应用采集器包，可以进行二次开发</li>
+<li><a target="_blank" rel="noopener" href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/">https://prometheus.io/docs/prometheus/latest/configuration/configuration/</a> 官网配置字段说明</li>
+<li><a target="_blank" rel="noopener" href="https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/">https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/</a> 官网alert rules 字段说明</li>
+</ol>
 
             </div>
             <hr />
@@ -771,9 +822,9 @@ echo <span class="token string">"&lt;h1&gt;Busybox httpd server&lt;/h1&gt;"</spa
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Dockerfile的使用》
+                    《基于prometheus的告警监控》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/devops/dockerfile-de-shi-yong.html" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html" property="cc:attributionName"
                rel="cc:attributionURL">
                 XieJiayi
             </a> is licensed under a
@@ -814,7 +865,7 @@ echo <span class="token string">"&lt;h1&gt;Busybox httpd server&lt;/h1&gt;"</spa
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'devops/dockerfile-de-shi-yong.html',
+        id: 'kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1098,9 +1149,10 @@ echo <span class="token string">"&lt;h1&gt;Busybox httpd server&lt;/h1&gt;"</spa
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html">
                     <div class="card-image">
@@ -1124,9 +1176,9 @@ metadata:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1139,6 +1191,7 @@ metadata:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1157,33 +1210,32 @@ metadata:
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/wang-luo/vlan-zi-wang-yan-ma-mac-di-zhi-wang-guan-dns-san-ceng-jiao-huan-ji.html">
+                <a href="/devops/dockerfile-de-shi-yong.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="vlan、子网掩码、MAC地址、网关、DNS、三层交换机">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Dockerfile的使用">
                         
-                        <span class="card-title">vlan、子网掩码、MAC地址、网关、DNS、三层交换机</span>
+                        <span class="card-title">Dockerfile的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            01 什么是VLAN
-VLAN中文是“虚拟局域网”。LAN可以是由少数几台家用计算机构成的网络，也可以是数以百计的计算机构成的企业网络。VLAN所指的LAN特指使用路由器分割的网络——也就是广播域。
-听上面的概念，肯定有不少朋友是一头雾水的
+                            DockerFile介绍镜像的定制实际上就是定制每一层所添加的配置、文件。如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么之前提及的无法重复的问题、镜
+像构建透明性的问题、体积的问题就都会解决
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-28
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/network/" class="post-category" target="_blank">
-                                    network
+                            <a href="/categories/devops/" class="post-category" target="_blank">
+                                    devops
                                 </a>
                             
                             
@@ -1193,8 +1245,12 @@ VLAN中文是“虚拟局域网”。LAN可以是由少数几台家用计算机�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BD%91%E7%BB%9C/" target="_blank">
-                        <span class="chip bg-color">网络</span>
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
+                    </a>
+                    
+                    <a href="/tags/devops/" target="_blank">
+                        <span class="chip bg-color">devops</span>
                     </a>
                     
                 </div>
