@@ -4,13 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="harbor 使用, 学习">
+    <meta name="keywords" content="基于karmada的多集群管理(一), 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="Download harbor helm charthelm repo add harbor https://helm.goharbor.io
-helm fetch harbor/harbor --untar
-kubectl create ">
+    <meta name="description" content="基于karmada的多集群管理(一)简介Karmada（Kubernetes Armada）是基于Kubernetes原生API的多集群管理系统。在多云和混合云场景下，Karmada提供可插拔，全自动化管理多集群应用，实现多云集中管理、高可">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +16,7 @@ kubectl create ">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>harbor 使用 | 小萝卜 Blog</title>
+    <title>基于karmada的多集群管理(一) | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -346,13 +344,13 @@ kubectl create ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        harbor 使用
+                        基于karmada的多集群管理(一)
                     </div>
                 </div>
             </div>
@@ -487,7 +485,7 @@ kubectl create ">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-06
+                    2023-04-07
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -501,14 +499,14 @@ kubectl create ">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    214
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    11 分
                 </div>
                 
                 
@@ -519,45 +517,293 @@ kubectl create ">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Download-harbor-helm-chart"><a href="#Download-harbor-helm-chart" class="headerlink" title="Download harbor helm chart"></a>Download harbor helm chart</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">helm repo <span class="token function">add</span> harbor https://helm.goharbor.io
-helm fetch harbor/harbor <span class="token parameter variable">--untar</span>
-kubectl create ns harbor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <h1 id="基于karmada的多集群管理-一"><a href="#基于karmada的多集群管理-一" class="headerlink" title="基于karmada的多集群管理(一)"></a>基于karmada的多集群管理(一)</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>Karmada</strong>（Kubernetes Armada）是基于Kubernetes原生API的多集群管理系统。在多云和混合云场景下，Karmada提供可插拔，全自动化管理多集群应用，实现多云集中管理、高可用性、故障恢复和流量调度。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><h4 id="跨云多集群多模式管理"><a href="#跨云多集群多模式管理" class="headerlink" title="跨云多集群多模式管理"></a>跨云多集群多模式管理</h4><ul>
+<li><p>安全隔离：</p>
+<ul>
+<li>为每个集群创建一个namespace，以<code>karmada-es-</code>为前缀。</li>
+</ul>
+</li>
+<li><p>多模式：</p>
+<ul>
+<li>Push：Karmada与成员集群的kube-apiserver直连。</li>
+<li>Pull：在成员集群中装agent组件，Karmada委托任务给agent组件。</li>
+</ul>
+</li>
+</ul>
+<h4 id="多策略的多集群调度"><a href="#多策略的多集群调度" class="headerlink" title="多策略的多集群调度"></a>多策略的多集群调度<a target="_blank" rel="noopener" href="https://karmada.io/zh/docs/key-features/features#%E5%A4%9A%E7%AD%96%E7%95%A5%E7%9A%84%E5%A4%9A%E9%9B%86%E7%BE%A4%E8%B0%83%E5%BA%A6"></a></h4><ul>
+<li>不同调度策略下的集群分发能力:<ul>
+<li>ClusterAffinity：基于ClusterName、Label、Field的定向调度。</li>
+<li>Toleration：基于Taint和Toleration的调度。</li>
+<li>SpreadConstraint：基于集群拓扑的调度。</li>
+<li>ReplicasScheduling：针对有实例的工作负载的复制模式与拆分模式。</li>
+</ul>
+</li>
+<li>差异化配置（OverridePolicy）：<ul>
+<li>ImageOverrider：镜像的差异化配置。</li>
+<li>ArgsOverrider：运行参数的差异化配置。</li>
+<li>CommandOverrider：运行命令的差异化配置。</li>
+<li>PlainText：自定义的差异化配置。</li>
+</ul>
+</li>
+<li>支持重调度：<ul>
+<li>Descheduler（karmada-descheduler）：根据成员集群内实例状态变化触发重调度。</li>
+<li>Scheduler-estimator(karmada-scheduler-estimator)：为调度器提供更精确的成员集群运行实例的期望状态。</li>
+</ul>
+</li>
+</ul>
+<h4 id="应用的跨集群故障迁移"><a href="#应用的跨集群故障迁移" class="headerlink" title="应用的跨集群故障迁移"></a>应用的跨集群故障迁移<a target="_blank" rel="noopener" href="https://karmada.io/zh/docs/key-features/features#%E5%BA%94%E7%94%A8%E7%9A%84%E8%B7%A8%E9%9B%86%E7%BE%A4%E6%95%85%E9%9A%9C%E8%BF%81%E7%A7%BB"></a></h4><ul>
+<li>集群故障迁移：<ul>
+<li>Karmada支持用户设置分发策略，在集群发生故障后，将故障集群实例进行自动的集中式或分散式的迁移。</li>
+</ul>
+</li>
+<li>集群污点设置：<ul>
+<li>当用户为集群设置污点，且资源分发策略无法容忍污点时，Karmada也会自动触发集群实例的迁移。</li>
+</ul>
+</li>
+<li>服务不断服：<ul>
+<li>在实例迁移过程中，Karmada能够保证服务实例不跌零，从而确保服务不会断服。</li>
+</ul>
+</li>
+</ul>
+<h4 id="全局统一资源视图"><a href="#全局统一资源视图" class="headerlink" title="全局统一资源视图"></a>全局统一资源视图<a target="_blank" rel="noopener" href="https://karmada.io/zh/docs/key-features/features#%E5%85%A8%E5%B1%80%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E8%A7%86%E5%9B%BE"></a></h4><ul>
+<li>资源状态收集与聚合：借助资源解释器（Resource Interpreter），将状态收集并聚合到资源模板<ul>
+<li>用户自定义，触发Webhook远程调用。</li>
+<li>对于一些常见资源，在Karmada中固定编码。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://karmada.io/zh/docs/userguide/globalview/aggregated-api-endpoint">统一资源管理</a> ：统一管理资源的创建、更新、删除、查询。</li>
+<li><a target="_blank" rel="noopener" href="https://karmada.io/zh/docs/userguide/globalview/proxy-global-resource">统一运维</a> ：可以在同一个k8s上下文中执行<code>describe</code>、<code>exec</code>、<code>logs</code>。</li>
+<li>资源、事件全局搜索：<ul>
+<li>缓存查询：支持全局模糊搜索、全局精确搜索。</li>
+<li>第三方存储：支持搜索引擎（Elasticsearch或OpenSearch）、关系型数据库、图数据库。</li>
+</ul>
+</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li>Karmada 中有两个上下文环境：<ul>
+<li>karmada-apiserver <code>kubectl config use-context karmada-apiserver </code>   是与 Karmada 控制面交互时要使用的 <strong>主要 kubeconfig</strong></li>
+<li>karmada-host <code>kubectl config use-context karmada-host</code>  仅用于调试 Karmada 对 <code>host cluster</code> 的安装</li>
+<li>你可以通过运行 <code>kubectl config view</code> 随时查看所有集群。 要切换集群上下文，请运行 <code>kubectl config use-context [CONTEXT_NAME]</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h2><img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/jiagou.png" class="" title="架构图">
 
-<h3 id="Update-values-yaml"><a href="#Update-values-yaml" class="headerlink" title="Update values.yaml"></a>Update values.yaml</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vi</span> .harbor/values.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="主要组件"><a href="#主要组件" class="headerlink" title="主要组件"></a>主要组件</h3><ul>
+<li>ETCD：存储Karmada API对象。</li>
+<li>Karmada Scheduler：提供高级的多集群调度策略。</li>
+<li>Karmada Controller Manager: 包含多个Controller，Controller监听karmada对象并且与成员集群API server进行通信并创建成员集群的k8s对象。<ul>
+<li>Cluster Controller：成员集群的生命周期管理与对象管理。</li>
+<li>Policy Controller：监听PropagationPolicy对象，创建ResourceBinding，配置资源分发策略。</li>
+<li>Binding Controller：监听ResourceBinding对象，并创建work对象响应资源清单。</li>
+<li>Execution Controller：监听work对象，并将资源分发到成员集群中。</li>
+</ul>
+</li>
+</ul>
+<h3 id="CRD资源"><a href="#CRD资源" class="headerlink" title="CRD资源"></a>CRD资源</h3><ul>
+<li><p><strong>Resource Template</strong>。这里的ResourceTemplate 只是对 Karmada 可分发的资源对象的一种<strong>抽象</strong>，这里的Resource 包含 Kubernetes 中所有支持的资源对象的类型和我们平时使用k8s的对象例如eployment，Service，Pod，Ingress，PVC，PV， Job没有不同，但是需要我们在global集群进行创建和修改；</p>
+</li>
+<li><p><strong>Propagation Policy</strong>。定义Resource Template需要被调度到那些集群；</p>
+</li>
+<li><p><strong>Resource Binding</strong>。即Resource Template根据Propagation Policy调度之后的结果，保存在ResourceBinding中；</p>
+</li>
+<li><p><strong>Override Policy</strong>。由于我们可能需要在不同集群里面部署不同的版本，或者副本数，我们可以通过Override Policy对Resource Binding中的结果进行修改；</p>
+</li>
+<li><p><strong>Work</strong>。经过Override Policy的渲染，Karmada会产生Work对象，而Work对象所处的namespace跟调度的cluster对应，同时work中包含最终的对象的Spec和Status。对应的Execution Controller和Agent会不断Reconcile Work对象，即在子集群中创建和更新Work中的workload，并更新globa集群中Work的status。</p>
+</li>
+</ul>
+<h2 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h2><img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/v2-66545ac60376a55b3610cc93ca780df8_720w.webp" class="" title="资源调度">
 
-<p>And change:</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">expose</span><span class="token punctuation">:</span>
-  <span class="token key atrule">type</span><span class="token punctuation">:</span> nodePort
-<span class="token key atrule">tls</span><span class="token punctuation">:</span>
-  <span class="token key atrule">commonName</span><span class="token punctuation">:</span> <span class="token string">'core.harbor.domain'</span>
+<h3 id="调度策略插件"><a href="#调度策略插件" class="headerlink" title="调度策略插件"></a>调度策略插件</h3><ul>
+<li>APIInstalled: 用于检查资源的API(CRD)是否安装在目标集群中。</li>
+<li>ClusterAffinity: 用于检查资源选择器是否与集群标签匹配。</li>
+<li>SpreadConstraint: 用于检查 Cluster.Spec 中的 spread 属性即Provider/Zone/Region字段。</li>
+<li>TaintToleration: 用于检查传播策略是否容忍集群的污点。</li>
+<li>ClusterLocality 是一个评分插件，为目标集群进行评分</li>
+</ul>
+<h3 id="分发策略"><a href="#分发策略" class="headerlink" title="分发策略"></a>分发策略</h3><pre class="line-numbers language-none"><code class="language-none">apiVersion: policy.karmada.io/v1alpha1
+kind: PropagationPolicy
+metadata:
+  name: nginx-propagation
+spec:
+  resourceSelectors:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: nginx
+  placement:
+    clusterAffinity:
+      clusterNames:
+        - member1  #分发到成员集群member1和member2
+        - member2
+    replicaScheduling:
+      replicaDivisionPreference: Weighted #划分副本策略
+      replicaSchedulingType: Divided  #调度副本策略
+      weightPreference:  
+        staticWeightList:  #目标集群静态权重
+          - targetCluster:
+              clusterNames:
+                - member1
+            weight: 1
+          - targetCluster:
+              clusterNames:
+                - member2
+            weight: 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token key atrule">persistence</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Duplicated策略"><a href="#Duplicated策略" class="headerlink" title="Duplicated策略"></a>Duplicated策略</h4><p>Duplicated 策略表示将要分发资源的 replicas <strong>相同数量的复制</strong>到所有的目标成员集群中，例如：分发 deployment 资源时，deployment 资源设定的副本数为 10，则分发到所有目标集群的 deployment 的副本数都是 10，如图所示：</p>
+<img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/format,webp.webp" class="" title="Duplicated策略">
 
-<h3 id="Install-helm-chart"><a href="#Install-helm-chart" class="headerlink" title="Install helm chart"></a>Install helm chart</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">helm <span class="token function">install</span> harbor ./harbor <span class="token parameter variable">-n</span> harbor<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="Divided-策略"><a href="#Divided-策略" class="headerlink" title="Divided 策略"></a>Divided 策略</h4><p>Divided 策略表示将要分发资源的 replicas 划分到多个目标成员集群中，例如：分发 deployment 资源时，deployment 资源设定的副本数为 10，则分发到所有目标集群的 deployment 的副本总数是 10。具体如何划分需要根据 ReplicaDivisionPreference 的值来决定，而 <strong>ReplicaDivisionPreference（划分副本策略）</strong> 的值可以设定为 <strong>Aggregated</strong> 或者 <strong>Weighted</strong>。</p>
+<h5 id="Aggregated-策略"><a href="#Aggregated-策略" class="headerlink" title="Aggregated 策略"></a>Aggregated 策略</h5><p>Aggregated 策略表示将副本调度到<strong>尽可能少的目标集群上</strong>，例如目标集群有三个，但是第一个目标集群拥有足够的资源调度到所有的副本，则副本会全部调度到第一个目标集群上，如图所示：</p>
+<img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/format,webp-16808403589318.webp" class="" title="Aggregated 策略">
 
-<h3 id="Wait-for-all-pod-being-ready-and-access-harbor-portal"><a href="#Wait-for-all-pod-being-ready-and-access-harbor-portal" class="headerlink" title="Wait for all pod being ready and access harbor portal"></a>Wait for all pod being ready and access harbor portal</h3><p><a target="_blank" rel="noopener" href="http://192.168.34.2:30002/">http://192.168.34.2:30002</a></p>
-<pre class="line-numbers language-none"><code class="language-none">admin/Harbor12345<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="Weighted-策略"><a href="#Weighted-策略" class="headerlink" title="Weighted 策略"></a>Weighted 策略</h5><p>Weighted 策略具体设置通过 weightPreference 字段设置，如果 weightPreference 不设置，则默认给所有目标集群加相同的静态权重 1。</p>
+<img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/format,webp-168084041430611.webp" class="" title="Weighted 策略">
 
-<h3 id="Download-repository-certs-from"><a href="#Download-repository-certs-from" class="headerlink" title="Download repository certs from"></a>Download repository certs from</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">https://192.168.34.2:30003/harbor/projects/1/repositories<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="karmada-descheduler"><a href="#karmada-descheduler" class="headerlink" title="karmada-descheduler"></a>karmada-descheduler</h5><p>karmada-descheduler在调度策略为<strong>动态划分</strong>时（dynamic division）时才会生效；karmada-descheduler 将每隔一段时间检测一次所有部署，默认情况下每 2 分钟检测一次。在每个周期中，它会通过调用 karmada-scheduler-estimator 找出部署在目标调度集群中有多少不可调度的副本，然后更新ResourceBinding资源的Clusters[i].Replicas字段，并根据当前情况触发 karmada-scheduler 执行“Scale Schedule”。</p>
+<h5 id="karmada-scheduler-estimator"><a href="#karmada-scheduler-estimator" class="headerlink" title="karmada scheduler-estimator"></a>karmada scheduler-estimator</h5><p>当调度策略是动态权重调度或者Aggregated策略时，karmada-scheduler通过调用 karmada-scheduler-estimator不会将过多的副本分配到资源不足的集群中。karmada-scheduler-estimator用来计算集群中CPU，Memory，EphemeralStorage 或者请求创建工作负载中的其他资源是否满足调度需求，对集群中每个节点可调度副本数进行计算，最终计算出该集群可调度的最大副本数。</p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="安装cli工具"><a href="#安装cli工具" class="headerlink" title="安装cli工具"></a><a target="_blank" rel="noopener" href="https://karmada.io/zh/docs/installation/install-cli-tools">安装cli工具</a></h3><h4 id="Karmadactl工具"><a href="#Karmadactl工具" class="headerlink" title="Karmadactl工具"></a>Karmadactl工具</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token number">1</span>.安装指令 <span class="token function">curl</span> <span class="token parameter variable">-s</span> https://raw.githubusercontent.com/karmada-io/karmada/master/hack/install-cli.sh <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="Copy-the-downloaded-ca-crt-to-vm-docker-certs-configuration-folder"><a href="#Copy-the-downloaded-ca-crt-to-vm-docker-certs-configuration-folder" class="headerlink" title="Copy the downloaded ca.crt to vm docker certs configuration folder"></a>Copy the downloaded ca.crt to vm docker certs configuration folder</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /etc/docker/certs.d/core.harbor.domain
-copy the ca.crt to this folder
-systemctl restart <span class="token function">docker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="kubectl-karmada-需要有kubectl环境"><a href="#kubectl-karmada-需要有kubectl环境" class="headerlink" title="kubectl-karmada(需要有kubectl环境)"></a>kubectl-karmada(需要有kubectl环境)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> https://raw.githubusercontent.com/karmada-io/karmada/master/hack/install-cli.sh <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">bash</span> <span class="token parameter variable">-s</span> kubectl-karmada<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="Edit-x2F-etc-x2F-hosts-to-map-core-harbor-domain-to-harbor-svc-clusterip"><a href="#Edit-x2F-etc-x2F-hosts-to-map-core-harbor-domain-to-harbor-svc-clusterip" class="headerlink" title="Edit /etc/hosts to map core.harbor.domain to harbor svc clusterip"></a>Edit /etc/hosts to map core.harbor.domain to harbor svc clusterip</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># host 配置harbor svc的集群ip</span>
-<span class="token number">10.104</span>.231.99 core.harbor.domain<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="安装Karmada"><a href="#安装Karmada" class="headerlink" title="安装Karmada"></a><a target="_blank" rel="noopener" href="https://karmada.io/zh/docs/installation/">安装Karmada</a></h3><ul>
+<li>在你自己的集群上安装 Karmada： karmadactl init <strong>–kube-image-mirror-country=cn</strong>   （国内设置cn区域会下载国内包，否则镜像会一直拉取不下来）</li>
+<li>离线安装 kubectl karmada init –crds /$HOME/crds.tar.gz –private-image-registry xxxx</li>
+</ul>
+<p>​        crd安装包下载地址： <a target="_blank" rel="noopener" href="https://github.com/karmada-io/karmada/releases/download/v1.4.0/crds.tar.gz">https://github.com/karmada-io/karmada/releases/download/v1.4.0/crds.tar.gz</a> （v1.4.x 都用v1.4.0，其他版本同理）</p>
+<p>​        private-image-registry 指定私有仓库镜像地址</p>
+<img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/image-20230407160233637.png" class="" title="安装成功">
 
-<h3 id="Docker-login"><a href="#Docker-login" class="headerlink" title="Docker login"></a>Docker login</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> login <span class="token parameter variable">-u</span> admin <span class="token parameter variable">-p</span> Harbor12345 core.harbor.domain<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">TIPS:
+出现github拉取gz包一直拉不下来情况。配置github对应地址加速
+1. 登录https://ping.chinaz.com/github.com
 
-<h3 id="Docker-tag-a-image-to-core-harbor-domain-and-push-it-and-you-will-see-it-in-harbor-portal"><a href="#Docker-tag-a-image-to-core-harbor-domain-and-push-it-and-you-will-see-it-in-harbor-portal" class="headerlink" title="Docker tag a image to core.harbor.domain and push it and you will see it in harbor portal"></a>Docker tag a image to core.harbor.domain and push it and you will see it in harbor portal</h3><h3 id="Check-repositories-and-blobs"><a href="#Check-repositories-and-blobs" class="headerlink" title="Check repositories and blobs"></a>Check repositories and blobs</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubectl <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> harbor-registry-7d686859d7-xs5nv <span class="token parameter variable">-n</span> harbor <span class="token function">bash</span>
-<span class="token function">ls</span> <span class="token parameter variable">-la</span> /storage/docker/registry/v2/repositories/
-<span class="token function">ls</span> <span class="token parameter variable">-la</span> /storage/docker/registry/v2/blobs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+2. 查询以下域名映射,并分别取访问速度较快的一个ip
+#github
+151.101.229.194  github.global.ssl.fastly.net
+203.208.39.99 assets-cdn.github.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="Database-operator"><a href="#Database-operator" class="headerlink" title="Database operator"></a>Database operator</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubectl <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> harbor-database-0 <span class="token parameter variable">-n</span> harbor -- <span class="token function">bash</span>
-psql <span class="token parameter variable">-U</span> postgres <span class="token parameter variable">-d</span> postgres <span class="token parameter variable">-h</span> <span class="token number">127.0</span>.0.1 <span class="token parameter variable">-p</span> <span class="token number">5432</span>
-<span class="token punctuation">\</span>c registry
-<span class="token keyword">select</span> * from harbor_user<span class="token punctuation">;</span>
-<span class="token punctuation">\</span>dt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h3 id="集群注册和卸载"><a href="#集群注册和卸载" class="headerlink" title="集群注册和卸载"></a><a target="_blank" rel="noopener" href="https://karmada.io/zh/docs/userguide/clustermanager/cluster-registration">集群注册和卸载</a></h3><h4 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h4><h5 id="Push模式"><a href="#Push模式" class="headerlink" title="Push模式"></a>Push模式</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kubectl karmada <span class="token function">join</span> member1 <span class="token parameter variable">--kubeconfig</span><span class="token operator">=</span><span class="token operator">&lt;</span>karmada kubeconfig<span class="token operator">&gt;</span> --karmada-context<span class="token operator">=</span>karmada <span class="token punctuation">\</span>
+--cluster-kubeconfig<span class="token operator">=</span><span class="token operator">&lt;</span>member1 kubeconfig<span class="token operator">&gt;</span> --cluster-context<span class="token operator">=</span>member1
+
+Step <span class="token number">1</span>: Use <span class="token string">"karmadactl join"</span> <span class="token builtin class-name">command</span> to register the cluster to Karmada control plane. --cluster-kubeconfig is kubeconfig of the member cluster.
+<span class="token punctuation">(</span>In karmada<span class="token punctuation">)</span>~<span class="token comment"># MEMBER_CLUSTER_NAME=$(cat ~/.kube/config  | grep current-context | sed 's/: /\n/g'| sed '1d')</span>
+<span class="token punctuation">(</span>In karmada<span class="token punctuation">)</span>~<span class="token comment"># karmadactl --kubeconfig /etc/karmada/karmada-apiserver.config  join ${MEMBER_CLUSTER_NAME} --cluster-kubeconfig=$HOME/.kube/config</span>
+
+Step <span class="token number">2</span>: Show members of karmada
+<span class="token punctuation">(</span>In karmada<span class="token punctuation">)</span>~<span class="token comment"># kubectl --kubeconfig /etc/karmada/karmada-apiserver.config get clusters</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/image-20230407160902558.png" class="" title="添加成员">
+
+<h5 id="Pull模式"><a href="#Pull模式" class="headerlink" title="Pull模式"></a>Pull模式</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token number">1</span>.Karmada集群创建token（有效时间为24H）  karmadactl token create --print-register-command <span class="token parameter variable">--kubeconfig</span> /etc/karmada/karmada-apiserver.config
+<span class="token number">2</span>.karmadactl register <span class="token number">10.10</span>.x.x:32443 <span class="token parameter variable">--token</span> t2jgtm.9nybj0526mjw1jbf --discovery-token-ca-cert-hash sha256:f5a5a43869bb44577dba582e794c3e3750f2050d62f1b1dc80fd3d6a371b6ed4
+
+
+Step <span class="token number">1</span>: Use <span class="token string">"karmadactl register"</span> <span class="token builtin class-name">command</span> to register the cluster to Karmada control plane. <span class="token string">"--cluster-name"</span> is <span class="token builtin class-name">set</span> to cluster of current-context by default.
+<span class="token punctuation">(</span>In member cluster<span class="token punctuation">)</span>~<span class="token comment"># karmadactl register 172.31.12.116:32443 --token on3grp.qhjzderafsh6aofe --discovery-token-ca-cert-hash sha256:a3d6de13a53891fa92ad305dad1aad7990c5e7e46b3f51e504c3d51b52d9012c</span>
+
+Step <span class="token number">2</span>: Show members of karmada
+<span class="token punctuation">(</span>In karmada<span class="token punctuation">)</span>~<span class="token comment"># kubectl --kubeconfig /etc/karmada/karmada-apiserver.config get clusters</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">在Karmada主集群方法1.kubectl karmada unjoin member1 <span class="token parameter variable">--kubeconfig</span><span class="token operator">=</span><span class="token operator">&lt;</span>karmada kubeconfig<span class="token operator">&gt;</span> --cluster-kubeconfig<span class="token operator">=</span><span class="token operator">&lt;</span>member1 kubeconfig<span class="token operator">&gt;</span>
+在work集群方法2.kubectl delete cluster member3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h4><pre class="line-numbers language-none"><code class="language-none">Karmada 的配置文件默认创建到 /etc/karmada/karmada-apiserver.config
+查看pod是否部署成功：kubectl   -n  karmada-system get pod 
+查看cluster: kubectl --kubeconfig /etc/karmada/karmada-apiserver.config get clusters
+切换config: export KUBECONFIG="$HOME/.kube/karmada.config"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="成员部署应用"><a href="#成员部署应用" class="headerlink" title="成员部署应用"></a>成员部署应用</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">[</span>root@172<span class="token punctuation">-</span>31<span class="token punctuation">-</span>12<span class="token punctuation">-</span>116 home<span class="token punctuation">]</span><span class="token comment"># cat deployment.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> policy.karmada.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PropagationPolicy
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>propagation
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">resourceSelectors</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+      <span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">placement</span><span class="token punctuation">:</span>
+    <span class="token key atrule">clusterAffinity</span><span class="token punctuation">:</span>
+      <span class="token key atrule">clusterNames</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> cluster121
+        <span class="token punctuation">-</span> cluster127
+    <span class="token key atrule">replicaScheduling</span><span class="token punctuation">:</span>
+      <span class="token key atrule">replicaDivisionPreference</span><span class="token punctuation">:</span> Weighted
+      <span class="token key atrule">replicaSchedulingType</span><span class="token punctuation">:</span> Divided
+      <span class="token key atrule">weightPreference</span><span class="token punctuation">:</span>
+        <span class="token key atrule">staticWeightList</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">targetCluster</span><span class="token punctuation">:</span>
+              <span class="token key atrule">clusterNames</span><span class="token punctuation">:</span>
+                <span class="token punctuation">-</span> cluster121
+            <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">1</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">targetCluster</span><span class="token punctuation">:</span>
+              <span class="token key atrule">clusterNames</span><span class="token punctuation">:</span>
+                <span class="token punctuation">-</span> cluster127
+            <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h3><h4 id="查看部署情况"><a href="#查看部署情况" class="headerlink" title="查看部署情况"></a>查看部署情况</h4><img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/image-20230407165545754.png" class="" title="image-20230407165545754">
+
+<h4 id="日志查看"><a href="#日志查看" class="headerlink" title="日志查看"></a>日志查看</h4><img src="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li/image-20230407165632384.png" class="" title="image-20230407165632384">
+
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@172-31-12-116 home<span class="token punctuation">]</span><span class="token comment"># karmadactl -h</span>
+karmadactl controls a Kubernetes Cluster Federation.
+
+Basic Commands:
+  get           Display one or many resources
+
+Cluster Registration Commands:
+  init          Install the Karmada control plane <span class="token keyword">in</span> a Kubernetes cluster
+  deinit        Remove the Karmada control plane from the Kubernetes cluster.
+  addons        Enable or disable a Karmada addon
+  <span class="token function">join</span>          Register a cluster to Karmada control plane with Push mode
+  unjoin        Remove a cluster from Karmada control plane
+  token         Manage bootstrap tokens
+  register      Register a cluster to Karmada control plane with Pull mode
+
+Cluster Management Commands:
+  cordon        Mark cluster as unschedulable
+  uncordon      Mark cluster as schedulable
+  taint         Update the taints on one or <span class="token function">more</span> clusters
+
+Troubleshooting and Debugging Commands:
+  logs          Print the logs <span class="token keyword">for</span> a container <span class="token keyword">in</span> a pod <span class="token keyword">in</span> a cluster
+  <span class="token builtin class-name">exec</span>          Execute a <span class="token builtin class-name">command</span> <span class="token keyword">in</span> a container <span class="token keyword">in</span> a cluster
+  describe      Show details of a specific resource or group of resources <span class="token keyword">in</span> a cluster
+  interpret     Validate, <span class="token builtin class-name">test</span> and edit interpreter customization before applying it to the control plane
+
+Advanced Commands:
+  apply         Apply a configuration to a resource by <span class="token function">file</span> name or stdin and propagate them into member clusters
+  promote       Promote resources from legacy clusters to Karmada control plane
+
+Other Commands:
+  completion    Generate the autocompletion script <span class="token keyword">for</span> the specified shell
+  version       Print the version information<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
             <hr />
@@ -592,9 +838,9 @@ psql <span class="token parameter variable">-U</span> postgres <span class="toke
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《harbor 使用》
+                    《基于karmada的多集群管理(一)》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/harbor-an-zhuang.html" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html" property="cc:attributionName"
                rel="cc:attributionURL">
                 XieJiayi
             </a> is licensed under a
@@ -635,7 +881,7 @@ psql <span class="token parameter variable">-U</span> postgres <span class="toke
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'kubernetes/harbor-an-zhuang.html',
+        id: 'kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -919,33 +1165,30 @@ psql <span class="token parameter variable">-U</span> postgres <span class="toke
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/kubernetes/cronjob.html">
+                <a href="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="cronjob 使用">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="基于karmada的多集群管理(一)">
                         
-                        <span class="card-title">cronjob 使用</span>
+                        <span class="card-title">基于karmada的多集群管理(一)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-.spec.schedule 指定任务运行周期，格式同 Cron
-.spec.jobTemplate 指定需要运行的任务，格式同 Job
-.spec.startingDeadlineSeconds 指定任务开始的截止期限
-.spec.co
+                            基于karmada的多集群管理(一)简介Karmada（Kubernetes Armada）是基于Kubernetes原生API的多集群管理系统。在多云和混合云场景下，Karmada提供可插拔，全自动化管理多集群应用，实现多云集中管理、高可
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -958,6 +1201,7 @@ psql <span class="token parameter variable">-U</span> postgres <span class="toke
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -976,26 +1220,30 @@ psql <span class="token parameter variable">-U</span> postgres <span class="toke
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/kubernetes/pod.html">
+                <a href="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="容器组pod 使用">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="基于prometheus的告警监控">
                         
-                        <span class="card-title">容器组pod 使用</span>
+                        <span class="card-title">基于prometheus的告警监控</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            资源限制
-spec.containers[].resources.limits.cpu ： CPU 上限， 可以短暂超过， 容器也不会被停止
-spec.containers[].resources.limits.memory ： 内存上限，
+                            prometheus系统架构图手动试验：1.部署一个简单的webhook服务
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  alert-webhook
+  namespac
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-07
                             </span>
                         <span class="publish-author">
                             

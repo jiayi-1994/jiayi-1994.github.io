@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-04-07T02:43:08.794Z</updated>
+  <updated>2023-04-07T09:26:36.870Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于karmada的多集群管理(一)</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html</id>
+    <published>2023-04-07T03:12:15.000Z</published>
+    <updated>2023-04-07T09:26:36.870Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;基于karmada的多集群管理-一&quot;&gt;&lt;a href=&quot;#基于karmada的多集群管理-一&quot; class=&quot;headerlink&quot; title=&quot;基于karmada的多集群管理(一)&quot;&gt;&lt;/a&gt;基于karmada的多集群管理(一)&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+  </entry>
   
   <entry>
     <title>基于prometheus的告警监控</title>
@@ -498,32 +523,6 @@
         
         
     <summary type="html">&lt;h3 id=&quot;Download-harbor-helm-chart&quot;&gt;&lt;a href=&quot;#Download-harbor-helm-chart&quot; class=&quot;headerlink&quot; title=&quot;Download harbor helm</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>容器组pod 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/pod.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/pod.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T06:58:57.655Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;资源限制&quot;&gt;&lt;a href=&quot;#资源限制&quot; class=&quot;headerlink&quot; title=&quot;资源限制&quot;&gt;&lt;/a&gt;资源限制&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;spec.containers[].resources.limits.cpu ： CPU 上限，</summary>
         
       
     
