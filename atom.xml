@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-04-07T09:38:53.271Z</updated>
+  <updated>2023-04-10T08:11:05.670Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>基于Karmada的多集群管理(一)</title>
+    <title>基于karmada的多集群管理（二）</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li-2.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li-2.html</id>
+    <published>2023-04-10T06:24:20.000Z</published>
+    <updated>2023-04-10T08:11:05.670Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;基于Karmada的多集群管理-调度-二&quot;&gt;&lt;a href=&quot;#基于Karmada的多集群管理-调度-二&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于Karmada的多集群管理（一）</title>
     <link href="https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html"/>
     <id>https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html</id>
     <published>2023-04-07T03:12:15.000Z</published>
-    <updated>2023-04-07T09:38:53.271Z</updated>
+    <updated>2023-04-10T08:11:05.681Z</updated>
     
     
       
@@ -498,31 +523,6 @@
 &lt;li&gt;.spec.schedule 指定任务运行周期，格式同 Cron&lt;/li&gt;
 &lt;li&gt;.spec.jobTemplate 指定需要运行的任务，格式同 Job&lt;/li&gt;
 &lt;li&gt;.spec.startingDeadlineSeconds</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>harbor 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/harbor-an-zhuang.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/harbor-an-zhuang.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T06:57:40.356Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;Download-harbor-helm-chart&quot;&gt;&lt;a href=&quot;#Download-harbor-helm-chart&quot; class=&quot;headerlink&quot; title=&quot;Download harbor helm</summary>
         
       
     
