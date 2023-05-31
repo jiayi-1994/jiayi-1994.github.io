@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="使用 Gomock 进行单元测试, 学习">
+    <meta name="keywords" content="Metallb结合Ingress的使用, 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="在实际项目中，需要进行单元测试的时候。却往往发现有一大堆依赖项。这时候就是 Gomock 大显身手的时候了Gomock 是 Go 语言的一个 mock 框架，官方的那种 🤪
-安装$ go get -u github.com/golang/">
+    <meta name="description" content="Metallb结合Ingress的使用一、Metallb1.简介
+Kubernetes不提供网络负载均衡器的实现（LoadBalancer类型的服务）用于裸机集群。Kubernetes附带的Network LB的实现都是调用各种IaaS平台">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>使用 Gomock 进行单元测试 | 小萝卜 Blog</title>
+    <title>Metallb结合Ingress的使用 | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -345,13 +345,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        使用 Gomock 进行单元测试
+                        Metallb结合Ingress的使用
                     </div>
                 </div>
             </div>
@@ -462,8 +462,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Go/" target="_blank">
-                            <span class="chip bg-color">Go</span>
+                        <a href="/tags/Kubernetes/" target="_blank">
+                            <span class="chip bg-color">Kubernetes</span>
                         </a>
                         
                     </div>
@@ -474,8 +474,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Go/" class="post-category" target="_blank">
-                            Go
+                        <a href="/categories/k8s/" class="post-category" target="_blank">
+                            k8s
                         </a>
                         
                     </div>
@@ -486,7 +486,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-06
+                    2023-05-31
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -500,14 +500,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
                 
@@ -518,124 +518,245 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在实际项目中，需要进行单元测试的时候。却往往发现有一大堆依赖项。这时候就是 <a target="_blank" rel="noopener" href="https://github.com/golang/mock">Gomock</a> 大显身手的时候了<br>Gomock 是 Go 语言的一个 mock 框架，官方的那种 🤪</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ go get <span class="token parameter variable">-u</span> github.com/golang/mock/gomock
-$ go <span class="token function">install</span> github.com/golang/mock/mockgen<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<ol>
-<li>第一步：我们将安装 gomock 第三方库和 mock 代码的生成工具 mockgen。而后者可以大大的节省我们的工作量。只需要了解其使用方式就可以</li>
-<li>第二步：输入 mockgen 验证代码生成工具是否安装正确。若无法正常响应，请检查 bin 目录下是否包含该二进制文件</li>
-</ol>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>在 mockgen 命令中，支持两种生成模式：</p>
-<ul>
-<li>source：从源文件生成 mock 接口（通过 -source 启用）<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mockgen <span class="token parameter variable">-source</span><span class="token operator">=</span>foo.go <span class="token punctuation">[</span>other options<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-</ul>
-<h2 id="写测试用例"><a href="#写测试用例" class="headerlink" title="写测试用例"></a>写测试用例</h2><p>在本文将模拟一个简单 Demo 来编写测试用例，熟悉整体的测试流程</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li>想清楚整体逻辑</li>
-<li>定义想要（模拟）依赖项的 interface（接口）</li>
-<li>使用 mockgen 命令对所需 mock 的 interface 生成 mock 文件</li>
-<li>编写单元测试的逻辑，在测试中使用 mock</li>
-<li>进行单元测试的验证</li>
-</ol>
-<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">├── mock
-├── person
-│   └── male.go
-└── user
-    ├── user.go
-    └── user_test.go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="编写"><a href="#编写" class="headerlink" title="编写"></a>编写</h3><h4 id="interface-方法"><a href="#interface-方法" class="headerlink" title="interface 方法"></a>interface 方法</h4><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> person
-
-<span class="token keyword">type</span> Male <span class="token keyword">interface</span> <span class="token punctuation">{</span>
-    <span class="token function">Get</span><span class="token punctuation">(</span>id <span class="token builtin">int64</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h4><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> user
-
-<span class="token keyword">import</span> <span class="token string">"github.com/EDDYCJY/mockd/person"</span>
-
-<span class="token keyword">type</span> User <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    Person person<span class="token punctuation">.</span>Male
-<span class="token punctuation">}</span>
-
-<span class="token keyword">func</span> <span class="token function">NewUser</span><span class="token punctuation">(</span>p person<span class="token punctuation">.</span>Male<span class="token punctuation">)</span> <span class="token operator">*</span>User <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token operator">&amp;</span>User<span class="token punctuation">{</span>Person<span class="token punctuation">:</span> p<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">func</span> <span class="token punctuation">(</span>u <span class="token operator">*</span>User<span class="token punctuation">)</span> <span class="token function">GetUserInfo</span><span class="token punctuation">(</span>id <span class="token builtin">int64</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> u<span class="token punctuation">.</span>Person<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="生成-mock-文件"><a href="#生成-mock-文件" class="headerlink" title="生成 mock 文件"></a>生成 mock 文件</h4><p>回到 mockd/ 的根目录下，执行以下命令</p>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go">$ mockgen <span class="token operator">-</span>source<span class="token operator">=</span><span class="token punctuation">.</span><span class="token operator">/</span>person<span class="token operator">/</span>male<span class="token punctuation">.</span><span class="token keyword">go</span> <span class="token operator">-</span>destination<span class="token operator">=</span><span class="token punctuation">.</span><span class="token operator">/</span>mock<span class="token operator">/</span>male_mock<span class="token punctuation">.</span><span class="token keyword">go</span> <span class="token operator">-</span><span class="token keyword">package</span><span class="token operator">=</span>mock<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在执行完毕后，可以发现 mock/ 目录下多出了 male_mock.go 文件，这就是 mock 文件。那么命令中的指令又分别有什么用呢？如下：</p>
-<ul>
-<li>-source：设置需要模拟（mock）的接口文件</li>
-<li>-destination：设置 mock 文件输出的地方，若不设置则打印到标准输出中</li>
-<li>-package：设置 mock 文件的包名，若不设置则为 mock_ 前缀加上文件名（如本文的包名会为 mock_person）</li>
-</ul>
-<p>想了解更多的指令符，可参见 <a target="_blank" rel="noopener" href="https://github.com/golang/mock#running-mockgen">官方文档</a></p>
-<h4 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h4><p>打开 user/user_test.go 文件，写入以下内容：</p>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> user
-
-<span class="token keyword">import</span> <span class="token punctuation">(</span>
-    <span class="token string">"testing"</span>
-
-    <span class="token string">"github.com/EDDYCJY/mockd/mock"</span>
-
-    <span class="token string">"github.com/golang/mock/gomock"</span>
-<span class="token punctuation">)</span>
-
-<span class="token keyword">func</span> <span class="token function">TestUser_GetUserInfo</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    ctl <span class="token operator">:=</span> gomock<span class="token punctuation">.</span><span class="token function">NewController</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
-    <span class="token keyword">defer</span> ctl<span class="token punctuation">.</span><span class="token function">Finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">var</span> id <span class="token builtin">int64</span> <span class="token operator">=</span> <span class="token number">1</span>
-    mockMale <span class="token operator">:=</span> mock<span class="token punctuation">.</span><span class="token function">NewMockMale</span><span class="token punctuation">(</span>ctl<span class="token punctuation">)</span>
-    gomock<span class="token punctuation">.</span><span class="token function">InOrder</span><span class="token punctuation">(</span>
-        mockMale<span class="token punctuation">.</span><span class="token function">EXPECT</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Return</span><span class="token punctuation">(</span><span class="token boolean">nil</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">)</span>
-
-    user <span class="token operator">:=</span> <span class="token function">NewUser</span><span class="token punctuation">(</span>mockMale<span class="token punctuation">)</span>
-    err <span class="token operator">:=</span> user<span class="token punctuation">.</span><span class="token function">GetUserInfo</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        t<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"user.GetUserInfo err: %v"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol>
-<li>gomock.NewController：返回 gomock.Controller，它代表 mock 生态系统中的顶级控件。定义了 mock 对象的范围、生命周期和期待值。另外它在多个 goroutine 中是安全的</li>
-<li>mock.NewMockMale：创建一个新的 mock 实例</li>
-<li>gomock.InOrder：声明给定的调用应按顺序进行（是对 gomock.After 的二次封装）</li>
-<li>mockMale.EXPECT().Get(id).Return(nil)：这里有三个步骤，EXPECT()返回一个允许调用者设置<strong>期望</strong>和<strong>返回值</strong>的对象。Get(id) 是设置入参并调用 mock 实例中的方法。Return(nil) 是设置先前调用的方法出参。简单来说，就是设置入参并调用，最后设置返回值</li>
-<li>NewUser(mockMale)：创建 User 实例，值得注意的是，在这里<strong>注入了 mock 对象</strong>，因此实际在随后的 user.GetUserInfo(id) 调用（入参：id 为 1）中。它调用的是我们事先模拟好的 mock 方法</li>
-<li>ctl.Finish()：进行 mock 用例的期望值断言，一般会使用 defer 延迟执行，以防止我们忘记这一操作</li>
-</ol>
-<h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><h3 id="一、常用-mock-方法"><a href="#一、常用-mock-方法" class="headerlink" title="一、常用 mock 方法"></a>一、常用 mock 方法</h3><h4 id="调用方法-1"><a href="#调用方法-1" class="headerlink" title="调用方法"></a>调用方法</h4><ul>
-<li>Call.Do()：声明在匹配时要运行的操作</li>
-<li>Call.DoAndReturn()：声明在匹配调用时要运行的操作，并且模拟返回该函数的返回值</li>
-<li>Call.MaxTimes()：设置最大的调用次数为 n 次</li>
-<li>Call.MinTimes()：设置最小的调用次数为 n 次</li>
-<li>Call.AnyTimes()：允许调用次数为 0 次或更多次</li>
-<li>Call.Times()：设置调用次数为 n 次</li>
-</ul>
-<h4 id="参数匹配"><a href="#参数匹配" class="headerlink" title="参数匹配"></a>参数匹配</h4><ul>
-<li>gomock.Any()：匹配任意值</li>
-<li>gomock.Eq()：通过反射匹配到指定的类型值，而不需要手动设置</li>
-<li>gomock.Nil()：返回 nil</li>
-</ul>
-<p>建议更多的方法可参见 <a target="_blank" rel="noopener" href="https://godoc.org/github.com/golang/mock/gomock#pkg-index">官方文档</a></p>
-<h3 id="二、生成多个-mock-文件"><a href="#二、生成多个-mock-文件" class="headerlink" title="二、生成多个 mock 文件"></a>二、生成多个 mock 文件</h3><p>你可能会想一条条命令生成 mock 文件，岂不得崩溃？<br>当然，官方提供了更方便的方式，我们可以利用 go:generate 来完成批量处理的功能</p>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">go</span> generate <span class="token punctuation">[</span><span class="token operator">-</span>run regexp<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>n<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>v<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>x<span class="token punctuation">]</span> <span class="token punctuation">[</span>build flags<span class="token punctuation">]</span> <span class="token punctuation">[</span>file<span class="token punctuation">.</span><span class="token keyword">go</span><span class="token operator">...</span> <span class="token operator">|</span> packages<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> person
-
-<span class="token comment">//go:generate mockgen -destination=../mock/male_mock.go -package=mock github.com/EDDYCJY/mockd/person Male</span>
-
-<span class="token keyword">type</span> Male <span class="token keyword">interface</span> <span class="token punctuation">{</span>
-    <span class="token function">Get</span><span class="token punctuation">(</span>id <span class="token builtin">int64</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们关注到 go:generate 这条语句，可分为以下部分：</p>
-<blockquote>
-<p>1.声明 //go:generate （注意不要留空格）<br>2.使用 mockgen 命令<br>3.定义 -destination<br>4.定义 -package<br>5.定义 source，此处为 person 的包路径<br>6.定义 interfaces，此处为 Male</p>
+                <h1 id="Metallb结合Ingress的使用"><a href="#Metallb结合Ingress的使用" class="headerlink" title="Metallb结合Ingress的使用"></a>Metallb结合Ingress的使用</h1><h2 id="一、Metallb"><a href="#一、Metallb" class="headerlink" title="一、Metallb"></a>一、Metallb</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><blockquote>
+<p>Kubernetes不提供网络负载均衡器的实现（LoadBalancer类型的服务）用于裸机集群。Kubernetes附带的Network LB的实现都是调用各种IaaS平台（GCP，AWS，Azure等）的粘合代码。如果您未在受支持的IaaS平台（GCP，AWS，Azure等）上运行，则LoadBalancers在创建时将无限期保持“待处理”状态。<br>裸机集群运营商只剩下两个较小的工具，即“ NodePort”和“ externalIPs”服务，可将用户流量引入其集群。这两个选项在生产用途上都有很大的缺点，这使裸金属集群成为Kubernetes生态系统中的二等公民。<br>MetalLB旨在通过提供与标准网络设备集成的Network LB实现来解决这种不平衡问题，从而使裸机群集上的外部服务也尽可能“正常运行”。</p>
 </blockquote>
+<h3 id="2-部署安装"><a href="#2-部署安装" class="headerlink" title="2.部署安装"></a>2.部署安装</h3><h4 id="2-1环境准备"><a href="#2-1环境准备" class="headerlink" title="2.1环境准备"></a>2.1环境准备</h4><ul>
+<li>设置kube-proxy模式为为ipvs</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">kubectl edit configmap <span class="token punctuation">-</span>n kube<span class="token punctuation">-</span>system kube<span class="token punctuation">-</span>proxy
+<span class="token comment">## 设置kube-proxy模式为为ipvs</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> kubeproxy.config.k8s.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> KubeProxyConfiguration
+<span class="token key atrule">mode</span><span class="token punctuation">:</span> <span class="token string">"ipvs"</span>
+<span class="token key atrule">ipvs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">strictARP</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>设置kube-proxy开启ARP</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># see what changes would be made, returns nonzero returncode if different</span>
+kubectl get configmap kube-proxy <span class="token parameter variable">-n</span> kube-system <span class="token parameter variable">-o</span> yaml <span class="token operator">|</span> <span class="token punctuation">\</span>
+<span class="token function">sed</span> <span class="token parameter variable">-e</span> <span class="token string">"s/strictARP: false/strictARP: true/"</span> <span class="token operator">|</span> <span class="token punctuation">\</span>
+kubectl <span class="token function">diff</span> <span class="token parameter variable">-f</span> - <span class="token parameter variable">-n</span> kube-system
+
+<span class="token comment"># actually apply the changes, returns nonzero returncode on errors only</span>
+kubectl get configmap kube-proxy <span class="token parameter variable">-n</span> kube-system <span class="token parameter variable">-o</span> yaml <span class="token operator">|</span> <span class="token punctuation">\</span>
+<span class="token function">sed</span> <span class="token parameter variable">-e</span> <span class="token string">"s/strictARP: false/strictARP: true/"</span> <span class="token operator">|</span> <span class="token punctuation">\</span>
+kubectl apply <span class="token parameter variable">-f</span> - <span class="token parameter variable">-n</span> kube-system<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-2-安装Manifest"><a href="#2-2-安装Manifest" class="headerlink" title="2.2 安装Manifest"></a>2.2 安装Manifest</h4><pre class="line-numbers language-none"><code class="language-none">kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.9/config/manifests/metallb-native.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将把MetalLB部署到您的集群，在<code>MetalLB -system</code>命名空间下。清单中的组件是:</p>
+<ul>
+<li><code> metallb-system/controller</code>部署。这是处理IP地址分配的集群范围的控制器。</li>
+<li><code>metallb-system/speaker</code>守护进程。这是说出您所选择的协议以使服务可访问的组件。</li>
+</ul>
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531112330690.png" class="" title="image-20230531112330690">
+
+<h4 id="2-3-使用helm安装metallb"><a href="#2-3-使用helm安装metallb" class="headerlink" title="2.3 使用helm安装metallb"></a>2.3 使用helm安装metallb</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">helm repo <span class="token function">add</span> metallb https://metallb.github.io/metallb
+helm <span class="token function">install</span> metallb metallb/metallb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="3-Metallb使用"><a href="#3-Metallb使用" class="headerlink" title="3.Metallb使用"></a>3.Metallb使用</h3><h4 id="3-1配置IP池"><a href="#3-1配置IP池" class="headerlink" title="3.1配置IP池"></a>3.1配置IP池</h4><ul>
+<li>旧版本采用configMap配置metallb的ip池</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ConfigMap
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> metallb<span class="token punctuation">-</span>system
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> config
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">config</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 172.25.1.100-172.25.1.200</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>新版本采用crd管理</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> metallb.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> IPAddressPool
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> zstack<span class="token punctuation">-</span>edge
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> metallb<span class="token punctuation">-</span>system
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">addresses</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> 172.31.12.116/32
+  <span class="token key atrule">autoAssign</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">avoidBuggyIPs</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-2配置LoadBalance的Service"><a href="#3-2配置LoadBalance的Service" class="headerlink" title="3.2配置LoadBalance的Service"></a>3.2配置LoadBalance的Service</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+    <span class="token key atrule">kubectl.kubernetes.io/last-applied-configuration</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"istio-ingressgateway","install.operator.istio.io/owning-resource":"unknown","install.operator.istio.io/owning-resource-namespace":"istio-system","istio":"ingressgateway","istio.io/rev":"default","operator.istio.io/component":"IngressGateways","operator.istio.io/managed":"Reconcile","operator.istio.io/version":"1.17.2","release":"istio"},"name":"istio-ingressgateway","namespace":"istio-system"},"spec":{"ports":[{"name":"status-port","port":15021,"protocol":"TCP","targetPort":15021},{"name":"http2","port":80,"protocol":"TCP","targetPort":8080},{"name":"https","port":443,"protocol":"TCP","targetPort":8443},{"name":"tcp","port":31400,"protocol":"TCP","targetPort":31400},{"name":"tls","port":15443,"protocol":"TCP","targetPort":15443}],"selector":{"app":"istio-ingressgateway","istio":"ingressgateway"},"type":"LoadBalancer"}}</span>
+    <span class="token key atrule">metallb.universe.tf/ip-allocated-from-pool</span><span class="token punctuation">:</span> zstack<span class="token punctuation">-</span>edge
+  <span class="token key atrule">creationTimestamp</span><span class="token punctuation">:</span> <span class="token string">"2023-05-30T07:20:36Z"</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> istio<span class="token punctuation">-</span>ingressgateway
+    <span class="token key atrule">install.operator.istio.io/owning-resource</span><span class="token punctuation">:</span> unknown
+    <span class="token key atrule">install.operator.istio.io/owning-resource-namespace</span><span class="token punctuation">:</span> istio<span class="token punctuation">-</span>system
+    <span class="token key atrule">istio</span><span class="token punctuation">:</span> ingressgateway
+    <span class="token key atrule">istio.io/rev</span><span class="token punctuation">:</span> default
+    <span class="token key atrule">operator.istio.io/component</span><span class="token punctuation">:</span> IngressGateways
+    <span class="token key atrule">operator.istio.io/managed</span><span class="token punctuation">:</span> Reconcile
+    <span class="token key atrule">operator.istio.io/version</span><span class="token punctuation">:</span> 1.17.2
+    <span class="token key atrule">release</span><span class="token punctuation">:</span> istio
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> istio<span class="token punctuation">-</span>ingressgateway
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> istio<span class="token punctuation">-</span>system
+  <span class="token key atrule">resourceVersion</span><span class="token punctuation">:</span> <span class="token string">"2916811"</span>
+  <span class="token key atrule">uid</span><span class="token punctuation">:</span> ada82838<span class="token punctuation">-</span>73e2<span class="token punctuation">-</span>486c<span class="token punctuation">-</span>a83d<span class="token punctuation">-</span>31309f4561f5
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">allocateLoadBalancerNodePorts</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">clusterIP</span><span class="token punctuation">:</span> 10.233.58.54
+  <span class="token key atrule">clusterIPs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> 10.233.58.54
+  <span class="token key atrule">externalTrafficPolicy</span><span class="token punctuation">:</span> Cluster
+  <span class="token key atrule">internalTrafficPolicy</span><span class="token punctuation">:</span> Cluster
+  <span class="token key atrule">ipFamilies</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> IPv4
+  <span class="token key atrule">ipFamilyPolicy</span><span class="token punctuation">:</span> SingleStack
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> status<span class="token punctuation">-</span>port
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">31741</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">15021</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">15021</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> http2
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">30584</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> https
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">32734</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">443</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">8443</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> tcp
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">31104</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">31400</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">31400</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> tls
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">30329</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">15443</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">15443</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> istio<span class="token punctuation">-</span>ingressgateway
+    <span class="token key atrule">istio</span><span class="token punctuation">:</span> ingressgateway
+  <span class="token key atrule">sessionAffinity</span><span class="token punctuation">:</span> None
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> LoadBalancer
+<span class="token key atrule">status</span><span class="token punctuation">:</span>
+  <span class="token key atrule">loadBalancer</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ingress</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">ip</span><span class="token punctuation">:</span> 172.31.12.116<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531113816401.png" class="" title="image-20230531113816401">
+
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531114357478.png" class="" title="image-20230531114357478">
+
+<h2 id="二、Ingress"><a href="#二、Ingress" class="headerlink" title="二、Ingress"></a>二、Ingress</h2><h3 id="1-简介-1"><a href="#1-简介-1" class="headerlink" title="1.简介"></a>1.简介</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#ingress-v1-networking-k8s-io">Ingress</a> 公开从集群外部到集群内<a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/">服务</a>的 HTTP 和 HTTPS 路由。 流量路由由 Ingress 资源上定义的规则控制。</p>
+<p>Ingress 可为 Service 提供外部可访问的 URL、负载均衡流量、终止 SSL/TLS，以及基于名称的虚拟托管。 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress-controllers">Ingress 控制器</a> 通常负责通过负载均衡器来实现 Ingress，尽管它也可以配置边缘路由器或其他前端来帮助处理流量。</p>
+<p>Ingress 不会公开任意端口或协议。 将 HTTP 和 HTTPS 以外的服务公开到 Internet 时，通常使用 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/#type-nodeport">Service.Type=NodePort</a> 或 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/#loadbalancer">Service.Type=LoadBalancer</a> 类型的 Service</p>
+</blockquote>
+<p>下面是一个将所有流量都发送到同一 Service 的简单 Ingress 示例：</p>
+<p><img src="https://d33wubrfki0l68.cloudfront.net/4f01eaec32889ff16ee255e97822b6d165b633f0/a54b4/zh-cn/docs/images/ingress.svg" alt="ingress-diagram"></p>
+<h3 id="2-部署安装-1"><a href="#2-部署安装-1" class="headerlink" title="2.部署安装"></a>2.部署安装</h3><h4 id="2-1环境准备-1"><a href="#2-1环境准备-1" class="headerlink" title="2.1环境准备"></a>2.1环境准备</h4><ul>
+<li>安装ingress-nginx的controller控制器</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ helm repo <span class="token function">add</span> bitnami https://charts.bitnami.com/bitnami
+$ helm <span class="token function">install</span> my-release bitnami/nginx-ingress-controller<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531140021825.png" class="" title="image-20230531140021825">
+
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531140143889.png" class="" title="image-20230531140143889">
+
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531140040314.png" class="" title="image-20230531140040314">
+
+<h3 id="3-Ingress使用"><a href="#3-Ingress使用" class="headerlink" title="3.Ingress使用"></a>3.Ingress使用</h3><ul>
+<li>Ingress 中的spec字段是Ingress资源的核心组成部分，主要包含以下3个字段：</li>
+<li><ul>
+<li>rules：用于定义当前Ingress资源的转发规则列表；由rules定义规则，或没有匹配到规则时，所有的流量会转发到由backend定义的默认后端。</li>
+<li>backend：默认的后端，用于服务那些没有匹配到任何规则的请求；定义Ingress资源时，必须要定义backend或rules两者之一，该字段用于让负载均衡器指定一个全局默认的后端。</li>
+<li>tls：TLS配置，目前仅支持通过默认端口443提供服务，如果要配置指定的列表成员指向不同的主机，则需要通过SNI TLS扩展机制来支持该功能。</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Ingress
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> example
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> istio<span class="token punctuation">-</span>system
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ingressClassName</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">rules</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">http</span><span class="token punctuation">:</span>
+        <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">backend</span><span class="token punctuation">:</span>
+              <span class="token key atrule">service</span><span class="token punctuation">:</span>
+                <span class="token key atrule">name</span><span class="token punctuation">:</span> kiali
+                <span class="token key atrule">port</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">20001</span>
+            <span class="token key atrule">path</span><span class="token punctuation">:</span> /kiali
+            <span class="token key atrule">pathType</span><span class="token punctuation">:</span> Prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531140216170.png" class="" title="image-20230531140216170">
+
+<ul>
+<li>访问地址</li>
+</ul>
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531140243064.png" class="" title="image-20230531140243064">
+
+<img src="/kubernetes/metallb-jie-he-ingress-de-shi-yong/image-20230531140510159.png" class="" title="image-20230531140510159">
+
+<ul>
+<li>example:</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">An example Ingress that makes use of the controller</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> Ingress
+  <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> example
+    <span class="token key atrule">namespace</span><span class="token punctuation">:</span> ingress<span class="token punctuation">-</span>nginx
+  <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ingressClassName</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">rules</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">host</span><span class="token punctuation">:</span> www.example.com
+        <span class="token key atrule">http</span><span class="token punctuation">:</span>
+          <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">backend</span><span class="token punctuation">:</span>
+                <span class="token key atrule">service</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">name</span><span class="token punctuation">:</span> example<span class="token punctuation">-</span>service
+                  <span class="token key atrule">port</span><span class="token punctuation">:</span>
+                    <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span>
+              <span class="token key atrule">path</span><span class="token punctuation">:</span> /
+              <span class="token key atrule">pathType</span><span class="token punctuation">:</span> Prefix
+    <span class="token comment"># This section is only required if TLS is to be enabled for the Ingress</span>
+    <span class="token key atrule">tls</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> www.example.com
+          <span class="token key atrule">secretName</span><span class="token punctuation">:</span> example<span class="token punctuation">-</span>tls
+
+If TLS is enabled for the Ingress<span class="token punctuation">,</span> <span class="token key atrule">a Secret containing the certificate and key must also be provided</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> Secret
+  <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> example<span class="token punctuation">-</span>tls
+    <span class="token key atrule">namespace</span><span class="token punctuation">:</span> ingress<span class="token punctuation">-</span>nginx
+  <span class="token key atrule">data</span><span class="token punctuation">:</span>
+    <span class="token key atrule">tls.crt</span><span class="token punctuation">:</span> &lt;base64 encoded cert<span class="token punctuation">&gt;</span>
+    <span class="token key atrule">tls.key</span><span class="token punctuation">:</span> &lt;base64 encoded key<span class="token punctuation">&gt;</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> kubernetes.io/tls<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
             <hr />
@@ -670,9 +791,9 @@ $ go <span class="token function">install</span> github.com/golang/mock/mockgen<
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《使用 Gomock 进行单元测试》
+                    《Metallb结合Ingress的使用》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/go/shi-yong-gomock-jin-xing-dan-yuan-ce-shi.html" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/metallb-jie-he-ingress-de-shi-yong.html" property="cc:attributionName"
                rel="cc:attributionURL">
                 XieJiayi
             </a> is licensed under a
@@ -713,7 +834,7 @@ $ go <span class="token function">install</span> github.com/golang/mock/mockgen<
         repo: 'github.com/jiayi-1994',
         owner: 'Xiejiayi',
         admin: "jiayi",
-        id: 'go/shi-yong-gomock-jin-xing-dan-yuan-ce-shi.html',
+        id: 'kubernetes/metallb-jie-he-ingress-de-shi-yong.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -997,50 +1118,49 @@ $ go <span class="token function">install</span> github.com/golang/mock/mockgen<
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/grpc/1.gogrpc.html">
+                <a href="/kubernetes/metallb-jie-he-ingress-de-shi-yong.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="1. Go & grpc的使用">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Metallb结合Ingress的使用">
                         
-                        <span class="card-title">1. Go & grpc的使用</span>
+                        <span class="card-title">Metallb结合Ingress的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本章主要介绍了grpc在Go中的一些使用方法
+                            Metallb结合Ingress的使用一、Metallb1.简介
+Kubernetes不提供网络负载均衡器的实现（LoadBalancer类型的服务）用于裸机集群。Kubernetes附带的Network LB的实现都是调用各种IaaS平台
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-05-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Go/" class="post-category" target="_blank">
-                                    Go
+                            <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/grpc/" target="_blank">
-                        <span class="chip bg-color">grpc</span>
-                    </a>
-                    
-                    <a href="/tags/Go/" target="_blank">
-                        <span class="chip bg-color">Go</span>
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
                     </a>
                     
                 </div>
@@ -1054,35 +1174,31 @@ $ go <span class="token function">install</span> github.com/golang/mock/mockgen<
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/devops/pipeline-liu-shui-xian-gou-jian.html">
+                <a href="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li-2.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="pipeline流水线构建">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="基于karmada的多集群管理（二）">
                         
-                        <span class="card-title">pipeline流水线构建</span>
+                        <span class="card-title">基于karmada的多集群管理（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1.流水线创建
-2.创建秘钥2.1通过http账号密码方式
-2.2通过ssh方式
-3.根据脚本构建应用def label = "jenkins-slave"
-podTemplate(label: label, cloud: 'kuberne
+                            基于Karmada的多集群管理-调度(二)介绍上文主要介绍了karmada集群的快速搭建以及基本的用例的下发demo,本文主要详细介绍karmada集群中调度传播策略propagationpolicies、差异性配置overridepoli
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/devops/" class="post-category" target="_blank">
-                                    devops
+                            <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
                                 </a>
                             
                             
@@ -1094,10 +1210,6 @@ podTemplate(label: label, cloud: 'kuberne
                     
                     <a href="/tags/Kubernetes/" target="_blank">
                         <span class="chip bg-color">Kubernetes</span>
-                    </a>
-                    
-                    <a href="/tags/devops/" target="_blank">
-                        <span class="chip bg-color">devops</span>
                     </a>
                     
                 </div>

@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-04-10T08:11:05.670Z</updated>
+  <updated>2023-05-31T06:06:47.863Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Metallb结合Ingress的使用</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/metallb-jie-he-ingress-de-shi-yong.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/metallb-jie-he-ingress-de-shi-yong.html</id>
+    <published>2023-05-31T12:11:08.000Z</published>
+    <updated>2023-05-31T06:06:47.863Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Metallb结合Ingress的使用&quot;&gt;&lt;a href=&quot;#Metallb结合Ingress的使用&quot; class=&quot;headerlink&quot; title=&quot;Metallb结合Ingress的使用&quot;&gt;&lt;/a&gt;Metallb结合Ingress的使用&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+  </entry>
   
   <entry>
     <title>基于karmada的多集群管理（二）</title>
@@ -495,34 +520,6 @@
         
         
     <summary type="html">&lt;h4 id=&quot;参考地址：https-www-jianshu-com-p-693fe35a9156&quot;&gt;&lt;a href=&quot;#参考地址：https-www-jianshu-com-p-693fe35a9156&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>cronjob 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/cronjob.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/cronjob.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T06:57:40.373Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;.spec.schedule 指定任务运行周期，格式同 Cron&lt;/li&gt;
-&lt;li&gt;.spec.jobTemplate 指定需要运行的任务，格式同 Job&lt;/li&gt;
-&lt;li&gt;.spec.startingDeadlineSeconds</summary>
         
       
     
