@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-05-31T06:06:47.863Z</updated>
+  <updated>2023-06-02T10:03:40.295Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VPS的搭建</title>
+    <link href="https://jiayi-1994.github.io/wang-luo/vps-de-da-jian.html"/>
+    <id>https://jiayi-1994.github.io/wang-luo/vps-de-da-jian.html</id>
+    <published>2023-06-02T11:51:41.000Z</published>
+    <updated>2023-06-02T10:03:40.295Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;基于github学生包VPS的免费搭建&quot;&gt;&lt;a href=&quot;#基于github学生包VPS的免费搭建&quot; class=&quot;headerlink&quot; title=&quot;基于github学生包VPS的免费搭建&quot;&gt;&lt;/a&gt;基于github学生包VPS的免费搭建&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="network" scheme="https://jiayi-1994.github.io/categories/network/"/>
+    
+    
+    <category term="网络" scheme="https://jiayi-1994.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Metallb结合Ingress的使用</title>
@@ -495,31 +520,6 @@
         
         
     <summary type="html">&lt;h3 id=&quot;1-calico-x2F-node-is-not-ready-BIRD-is-not-ready-BGP-not-established-with-192-168-56-12-192-168-56-10&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>StatefulSet有状态应用 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/statefulset-you-zhuang-tai-fu-wu.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/statefulset-you-zhuang-tai-fu-wu.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T07:00:02.293Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;参考地址：https-www-jianshu-com-p-693fe35a9156&quot;&gt;&lt;a href=&quot;#参考地址：https-www-jianshu-com-p-693fe35a9156&quot; class=&quot;headerlink&quot;</summary>
         
       
     
