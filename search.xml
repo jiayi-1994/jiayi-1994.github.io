@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>内网穿透【搞一下】</title>
+      <link href="/wang-luo/nei-wang-chuan-tou-gao-yi-xia.html"/>
+      <url>/wang-luo/nei-wang-chuan-tou-gao-yi-xia.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="内网穿透【搞一下】"><a href="#内网穿透【搞一下】" class="headerlink" title="内网穿透【搞一下】"></a>内网穿透【搞一下】</h2><h3 id="场景入门介绍"><a href="#场景入门介绍" class="headerlink" title="场景入门介绍"></a>场景入门介绍</h3><p>老板找到产品经理，说：“客户想看一下项目，你搞一下，把demo网站搭起来”<br>产品经理找到技术组长，说：“客户想看一下项目，你搞一下，让客户能访问demo网站”<br>技术组长找到程序员小A，说：“客户想看一下项目，你搞一下,让他访问到你做的demo网站”<br>小A: “我的demo在开发中，还在我的电脑本地， 怎么搞？？？”<br>组长扔来一个文档链接：“按这个说明去【搞一下】”。</p><h3 id="内网穿透搞一下"><a href="#内网穿透搞一下" class="headerlink" title="内网穿透搞一下"></a>内网穿透搞一下</h3><p>【搞一下】（ <a href="http://www.gaoyixia.com/">www.gaoyixia.com</a> ) ，是一个可以把本机和局域网网站映射到公网访问的内网穿透服务。使用非常简单，几乎无门槛——<strong>无须注册，无须付费，不限流量，不需繁琐的配置，支持win/mac/linux三大平台</strong>。下面是三个典型的使用场景：</p><p>1，可以使用本服务，映射本机demo给客户展示，而不用大费周折去搭建一个临时公网测试环境。</p><p>2，小程序开发，公众号开发，微信支付开发，支付宝回调等等，这些回调类的接口可以通过本服务，直接回调接口到本机，方便本机调试。省去了每次调试都更新服务器的麻烦。</p><p>3，家里有电脑/nas的机器，可以映射web管理界面到公网去，方便出门在外时候用网络访问。</p><p>还有更多使用场景待挖掘。本服务提供的是一种能力，一种可以让本机和局域网能被公网访问的能力。</p><h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><ul><li><p>window用户</p><p>点击下载 <a href="https://www.showdoc.com.cn/server/api/attachment/visitFile?sign=5bad6d3115b8d2424e89ad04ab265a29">gaoyixia-win.zip</a> 。下载后，解压到任意目录。然后双击运行。根据提示，输入要映射的本机或者局域网地址端口即可。运行后会得到一个公网地址，复制到浏览器便可访问（不要直接Crtl + C 复制，会退出程序,推荐鼠标选中复制）。</p></li><li><p>mac用户</p><p>打开终端，执行以下命令</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 下载执行文件 </span><span class="token comment"># 如果你的机器尚未有wget命令，可先执行brew install wget安装之。</span><span class="token function">wget</span> <span class="token parameter variable">-c</span> <span class="token string">"https://www.showdoc.com.cn/server/api/attachment/visitFile?sign=f9bde9f10b6d1fdb26ca353f49bf89c6"</span> <span class="token parameter variable">-O</span> gaoyixia-macos<span class="token comment"># 赋予执行权限</span><span class="token function">chmod</span> +x gaoyixia-macos<span class="token comment"># 运行</span>./gaoyixia-macos <span class="token parameter variable">-h</span> <span class="token number">127.0</span>.0.1 <span class="token parameter variable">-p</span> <span class="token number">80</span><span class="token comment"># 运行后会得到一个公网地址，复制到浏览器访问即可（不要直接Crtl + C 复制，会退出程序,推荐鼠标选中复制）。</span><span class="token comment"># 上面命令中的-h 127.0.0.1 - p 80表示的是地址和端口。你也可以填写局域网地址。比如</span>./gaoyixia-macos <span class="token parameter variable">-h</span> local.oa.com <span class="token parameter variable">-p</span> <span class="token number">80</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>linux用户</p><p>打开终端，执行以下命令</p></li></ul><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 下载执行文件</span><span class="token function">wget</span> <span class="token parameter variable">-c</span> <span class="token string">"https://www.showdoc.com.cn/server/api/attachment/visitFile?sign=e491f057ff8e77dedcdf1b3d7560eb4d"</span> <span class="token parameter variable">-O</span> gaoyixia-linux<span class="token comment"># 赋予执行权限</span><span class="token function">chmod</span> +x gaoyixia-linux<span class="token comment"># 运行</span>./gaoyixia-linux <span class="token parameter variable">-h</span> <span class="token number">127.0</span>.0.1 <span class="token parameter variable">-p</span> <span class="token number">80</span><span class="token comment"># 运行后会得到一个公网地址，复制到浏览器访问即可（不要直接Crtl + C 复制，会退出程序,推荐鼠标选中复制）。</span><span class="token comment"># 上面命令中的-h 127.0.0.1 - p 80表示的是地址和端口。你也可以填写局域网地址。比如</span>./gaoyixia-linux <span class="token parameter variable">-h</span> local.oa.com <span class="token parameter variable">-p</span> <span class="token number">80</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h3><p>为了防止被滥用，本服务增加了一些限制措施:</p><p>1, 用户获取到的公网地址是完全随机的，暂不开放自定义子域名<br>2, 每个公网地址只允许前10个不同ip访问，超过会被限制<br>3, 每个公网地址有效期最长为一个星期，过期则无法访问。所以请勿用来搭建长期服务。以后可能视滥用情况而缩短有效期。但最低会保持一天以上。</p><p>本服务鼓励用于开发测试等小众范围内使用的场景，禁止搭建面向大众的公开服务和其他不被法律认可的服务。</p><h3 id="帮助与支持"><a href="#帮助与支持" class="headerlink" title="帮助与支持"></a>帮助与支持</h3><p>请联系xing7th#gmail.com(把#改为@就是邮箱地址),邮件标题请说明来自内网穿透【搞一下】这个产品。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> network </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>VPS的搭建</title>
       <link href="/wang-luo/vps-de-da-jian.html"/>
       <url>/wang-luo/vps-de-da-jian.html</url>

@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-06-13T07:15:24.192Z</updated>
+  <updated>2023-06-16T06:36:50.580Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>内网穿透【搞一下】</title>
+    <link href="https://jiayi-1994.github.io/wang-luo/nei-wang-chuan-tou-gao-yi-xia.html"/>
+    <id>https://jiayi-1994.github.io/wang-luo/nei-wang-chuan-tou-gao-yi-xia.html</id>
+    <published>2023-06-16T06:27:09.000Z</published>
+    <updated>2023-06-16T06:36:50.580Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;内网穿透【搞一下】&quot;&gt;&lt;a href=&quot;#内网穿透【搞一下】&quot; class=&quot;headerlink&quot; title=&quot;内网穿透【搞一下】&quot;&gt;&lt;/a&gt;内网穿透【搞一下】&lt;/h2&gt;&lt;h3 id=&quot;场景入门介绍&quot;&gt;&lt;a href=&quot;#场景入门介绍&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="network" scheme="https://jiayi-1994.github.io/categories/network/"/>
+    
+    
+    <category term="网络" scheme="https://jiayi-1994.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>VPS的搭建</title>
@@ -495,31 +520,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;一、创建-Service-Account&quot;&gt;&lt;a href=&quot;#一、创建-Service-Account&quot; class=&quot;headerlink&quot; title=&quot;一、创建 Service Account&quot;&gt;&lt;/a&gt;一、创建 Service</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>弹性伸缩 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/k8s-wen-ti-ji-lu.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/k8s-wen-ti-ji-lu.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T06:58:57.680Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;1-calico-x2F-node-is-not-ready-BIRD-is-not-ready-BGP-not-established-with-192-168-56-12-192-168-56-10&quot;&gt;&lt;a</summary>
         
       
     
