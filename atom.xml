@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-06-16T06:36:50.580Z</updated>
+  <updated>2023-07-26T07:47:23.231Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iptables详解使用</title>
+    <link href="https://jiayi-1994.github.io/wang-luo/iptables-xiang-jie-shi-yong.html"/>
+    <id>https://jiayi-1994.github.io/wang-luo/iptables-xiang-jie-shi-yong.html</id>
+    <published>2023-07-26T06:37:54.000Z</published>
+    <updated>2023-07-26T07:47:23.231Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;iptables详解使用&quot;&gt;&lt;a href=&quot;#iptables详解使用&quot; class=&quot;headerlink&quot; title=&quot;iptables详解使用&quot;&gt;&lt;/a&gt;iptables详解使用&lt;/h1&gt;&lt;h2 id=&quot;1、介绍&quot;&gt;&lt;a href=&quot;#1、介绍&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="network" scheme="https://jiayi-1994.github.io/categories/network/"/>
+    
+    
+    <category term="网络" scheme="https://jiayi-1994.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>内网穿透【搞一下】</title>
@@ -495,31 +520,6 @@
         
         
     <summary type="html">&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ServiceAccount 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/serviceaccount.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/serviceaccount.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T06:58:57.667Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、创建-Service-Account&quot;&gt;&lt;a href=&quot;#一、创建-Service-Account&quot; class=&quot;headerlink&quot; title=&quot;一、创建 Service Account&quot;&gt;&lt;/a&gt;一、创建 Service</summary>
         
       
     
