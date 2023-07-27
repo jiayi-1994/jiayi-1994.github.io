@@ -501,14 +501,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
                 
@@ -622,7 +622,7 @@
   <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> Ingress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="2-2-3-默认拒绝所有出站流量"><a href="#2-2-3-默认拒绝所有出站流量" class="headerlink" title="2.2.3 默认拒绝所有出站流量"></a>2.2.3 默认拒绝所有出站流量</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<h4 id="2-2-3-默认拒绝所有出站流量"><a href="#2-2-3-默认拒绝所有出站流量" class="headerlink" title="2.2.3 默认拒绝所有出站流量"></a>2.2.3 默认拒绝所有出站流量</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> NetworkPolicy
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">name</span><span class="token punctuation">:</span> default<span class="token punctuation">-</span>deny<span class="token punctuation">-</span>egress
@@ -642,6 +642,138 @@
   <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> Egress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h4 id="2-2-5-实验"><a href="#2-2-5-实验" class="headerlink" title="2.2.5 实验"></a>2.2.5 实验</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> xjy1
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> xjy1
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> xjy
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">progressDeadlineSeconds</span><span class="token punctuation">:</span> <span class="token number">600</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">revisionHistoryLimit</span><span class="token punctuation">:</span> <span class="token number">10</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> xjy1
+  <span class="token key atrule">strategy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rollingUpdate</span><span class="token punctuation">:</span>
+      <span class="token key atrule">maxSurge</span><span class="token punctuation">:</span> 25%
+      <span class="token key atrule">maxUnavailable</span><span class="token punctuation">:</span> 25%
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> RollingUpdate
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> xjy1
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> xjy1
+      <span class="token key atrule">namespace</span><span class="token punctuation">:</span> xjy
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span><span class="token number">1.20</span>
+        <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> IfNotPresent
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> xjy1
+        <span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token key atrule">terminationMessagePath</span><span class="token punctuation">:</span> /dev/termination<span class="token punctuation">-</span>log
+        <span class="token key atrule">terminationMessagePolicy</span><span class="token punctuation">:</span> File
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">creationTimestamp</span><span class="token punctuation">:</span> <span class="token string">"2023-07-27T07:23:23Z"</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> sv1
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> xjy
+  <span class="token key atrule">resourceVersion</span><span class="token punctuation">:</span> <span class="token string">"116021339"</span>
+  <span class="token key atrule">uid</span><span class="token punctuation">:</span> db6f12c3<span class="token punctuation">-</span>0380<span class="token punctuation">-</span>4dc0<span class="token punctuation">-</span>996d<span class="token punctuation">-</span>6695cb6f36ab
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">clusterIP</span><span class="token punctuation">:</span> 10.233.17.100
+  <span class="token key atrule">clusterIPs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> 10.233.17.100
+  <span class="token key atrule">internalTrafficPolicy</span><span class="token punctuation">:</span> Cluster
+  <span class="token key atrule">ipFamilies</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> IPv4
+  <span class="token key atrule">ipFamilyPolicy</span><span class="token punctuation">:</span> SingleStack
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> sv1<span class="token punctuation">-</span>8080<span class="token punctuation">-</span><span class="token number">8080</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> xjy1
+  <span class="token key atrule">sessionAffinity</span><span class="token punctuation">:</span> None
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> ClusterIP
+
+<span class="token punctuation">---</span> 
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+    <span class="token key atrule">deployment.kubernetes.io/revision</span><span class="token punctuation">:</span> <span class="token string">"1"</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> dev<span class="token punctuation">-</span>test<span class="token punctuation">-</span>xjy
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> dev<span class="token punctuation">-</span>test<span class="token punctuation">-</span>xjy
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> xjy2
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">progressDeadlineSeconds</span><span class="token punctuation">:</span> <span class="token number">600</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">revisionHistoryLimit</span><span class="token punctuation">:</span> <span class="token number">10</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> dev<span class="token punctuation">-</span>test<span class="token punctuation">-</span>xjy
+  <span class="token key atrule">strategy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rollingUpdate</span><span class="token punctuation">:</span>
+      <span class="token key atrule">maxSurge</span><span class="token punctuation">:</span> 25%
+      <span class="token key atrule">maxUnavailable</span><span class="token punctuation">:</span> 25%
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> RollingUpdate
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> dev<span class="token punctuation">-</span>test<span class="token punctuation">-</span>xjy
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> dev<span class="token punctuation">-</span>test<span class="token punctuation">-</span>xjy
+      <span class="token key atrule">namespace</span><span class="token punctuation">:</span> xjy2
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span><span class="token number">1.20</span>
+        <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> IfNotPresent
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> dev<span class="token punctuation">-</span>test<span class="token punctuation">-</span>xjy
+        <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+          <span class="token key atrule">limits</span><span class="token punctuation">:</span>
+            <span class="token key atrule">cpu</span><span class="token punctuation">:</span> <span class="token string">"1"</span>
+            <span class="token key atrule">memory</span><span class="token punctuation">:</span> 100Mi
+          <span class="token key atrule">requests</span><span class="token punctuation">:</span>
+            <span class="token key atrule">cpu</span><span class="token punctuation">:</span> <span class="token string">"1"</span>
+            <span class="token key atrule">memory</span><span class="token punctuation">:</span> 100Mi
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> NetworkPolicy
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> test<span class="token punctuation">-</span>network<span class="token punctuation">-</span>policy
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> xjy
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">podSelector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> xjy1
+  <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> Ingress
+    <span class="token punctuation">-</span> Egress
+  <span class="token key atrule">ingress</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">from</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">namespaceSelector</span><span class="token punctuation">:</span>
+            <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+              <span class="token key atrule">kubernetes.io/metadata.name</span><span class="token punctuation">:</span> xjy2
+      <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+          <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+  <span class="token key atrule">egress</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">to</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">ipBlock</span><span class="token punctuation">:</span>
+            <span class="token key atrule">cidr</span><span class="token punctuation">:</span> 10.233.0.0/16
+      <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+          <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8081</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>[k8s NetworkPolicy]: <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/network-policies/">https://kubernetes.io/zh-cn/docs/concepts/services-networking/network-policies/</a>	“k8s官网”</p>
 
             </div>
             <hr />
@@ -989,7 +1121,7 @@
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">40.7k
+            <span class="white-color">41k
              丨            
           
 
@@ -1083,7 +1215,7 @@
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">40.7k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">41k</span>
     </div>
 </footer>
 
