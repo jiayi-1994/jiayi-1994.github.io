@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="iptables详解使用, 学习">
+    <meta name="keywords" content="K8S NetworkPolicy(网络策略), 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="iptables详解使用1、介绍1.1简介iptables是一个linux下的防火墙工具，它能帮助我们基于规则进行网络流量控制。使用 iptables 可以添加、删除具体的过滤规则，iptables 默认维护着 4 个表和 5 个链，所有的">
+    <meta name="description" content="NetworkPolicy(网络策略)1. 介绍1.1 基本概念NetworkPolicy 是一种以应用为中心的结构，允许你设置如何允许 Pod 与网络上的各类网络“实体”，实现以下功能：
+
+限制 Pod 之间和外部网络的流量：通过指定 I">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>iptables详解使用 | 小萝卜 Blog</title>
+    <title>K8S NetworkPolicy(网络策略) | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -344,13 +346,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        iptables详解使用
+                        K8S NetworkPolicy(网络策略)
                     </div>
                 </div>
             </div>
@@ -461,8 +463,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/%E7%BD%91%E7%BB%9C/" target="_blank">
-                            <span class="chip bg-color">网络</span>
+                        <a href="/tags/Kubernetes/" target="_blank">
+                            <span class="chip bg-color">Kubernetes</span>
                         </a>
                         
                     </div>
@@ -473,8 +475,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/network/" class="post-category" target="_blank">
-                            network
+                        <a href="/categories/k8s/" class="post-category" target="_blank">
+                            k8s
                         </a>
                         
                     </div>
@@ -485,7 +487,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-07-26
+                    2023-07-27
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -499,14 +501,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.3k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    4 分
                 </div>
                 
                 
@@ -522,280 +524,124 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="iptables详解使用"><a href="#iptables详解使用" class="headerlink" title="iptables详解使用"></a>iptables详解使用</h1><h2 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h2><h3 id="1-1简介"><a href="#1-1简介" class="headerlink" title="1.1简介"></a>1.1简介</h3><p>iptables是一个linux下的防火墙工具，它能帮助我们基于规则进行网络流量控制。使用 iptables 可以添加、删除具体的过滤规则，iptables 默认维护着 4 个表和 5 个链，所有的防火墙策略规则都被分别写入这些表与链中。它可以做到，但不限于以下功能：</p>
+                <h1 id="NetworkPolicy-网络策略"><a href="#NetworkPolicy-网络策略" class="headerlink" title="NetworkPolicy(网络策略)"></a>NetworkPolicy(网络策略)</h1><h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><h3 id="1-1-基本概念"><a href="#1-1-基本概念" class="headerlink" title="1.1 基本概念"></a>1.1 基本概念</h3><p><strong>NetworkPolicy</strong> 是一种以应用为中心的结构，允许你设置如何允许 <strong>Pod</strong> 与网络上的各类网络“实体”，实现以下功能：</p>
 <ul>
-<li>允许/拒绝某种协议的链接建立，比如TCP，UDP</li>
-<li>允许/拒绝 来自某个ip的访问</li>
-<li>允许/拒绝某个端口被访问</li>
-<li>….</li>
+<li>限制 Pod 之间和外部网络的流量：通过指定 <strong>Ingress</strong> 规则，可以阻止来自其他<strong>网络段</strong>、<strong>命名空间</strong>、 <strong>Pod</strong>的流量进入目标 Pod。</li>
+<li>允许 Pod 之间和外部网络的流量：需要为目标 Pod 配置 Egress 规则，允许访问其他<strong>网络段</strong>、<strong>命名空间</strong>、pod。</li>
 </ul>
-<h2 id="2、linux内核处理流程"><a href="#2、linux内核处理流程" class="headerlink" title="2、linux内核处理流程"></a>2、linux内核处理流程</h2><img src="/wang-luo/iptables-xiang-jie-shi-yong/image-20230726144559099.png" class="" title="image-20230726144559099">
+<h3 id="1-2-使用原理"><a href="#1-2-使用原理" class="headerlink" title="1.2 使用原理"></a>1.2 使用原理</h3><p>使用 NetworkPolicy 时，需要考虑以下几个方面：</p>
+<ul>
+<li>NetworkPolicy 只在支持它的网络插件中起作用，例如 Calico、Cilium 和 Weave Net 等。</li>
+<li>没有定义任何 NetworkPolicy 规则，则所有的流量都会被允许。</li>
+<li>定义 NetworkPolicy 后，它只适用于当前命名空间中的 Pod。</li>
+<li>在 NetworkPolicy 中指定标签选择器时，应保证其唯一性，以免给其他 Pod 带来影响。</li>
+<li>网络策略是相加的，所以不会产生冲突。如果策略适用于 Pod 某一特定方向的流量， Pod 在对应方向所允许的连接是适用的网络策略所允许的集合。 因此，<strong>评估的顺序不影响策略</strong>的结果。要允许从源 Pod 到目的 Pod 的连接，源 Pod 的出口策略和目的 Pod 的入口策略都需要允许连接。 <strong>如果任何一方不允许连接，建立连接将会失败</strong>。</li>
+<li>默认pod都是未隔离的，如果指定某个命名空间pod进行网络策略隔离，其他未被指定的pod不会收到影响，将会继续接收流量</li>
+</ul>
+<h2 id="2-资源定义"><a href="#2-资源定义" class="headerlink" title="2. 资源定义"></a>2. 资源定义</h2><p>下面是一个 NetworkPolicy 的示例:</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> NetworkPolicy
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> test<span class="token punctuation">-</span>network<span class="token punctuation">-</span>policy
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">podSelector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">role</span><span class="token punctuation">:</span> db
+  <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> Ingress
+    <span class="token punctuation">-</span> Egress
+  <span class="token key atrule">ingress</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">from</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">ipBlock</span><span class="token punctuation">:</span>
+            <span class="token key atrule">cidr</span><span class="token punctuation">:</span> 172.17.0.0/16
+            <span class="token key atrule">except</span><span class="token punctuation">:</span>
+              <span class="token punctuation">-</span> 172.17.1.0/24
+        <span class="token punctuation">-</span> <span class="token key atrule">namespaceSelector</span><span class="token punctuation">:</span>
+            <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+              <span class="token key atrule">project</span><span class="token punctuation">:</span> myproject
+        <span class="token punctuation">-</span> <span class="token key atrule">podSelector</span><span class="token punctuation">:</span>
+            <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+              <span class="token key atrule">role</span><span class="token punctuation">:</span> frontend
+      <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+          <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span>
+  <span class="token key atrule">egress</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">to</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">ipBlock</span><span class="token punctuation">:</span>
+            <span class="token key atrule">cidr</span><span class="token punctuation">:</span> 10.0.0.0/24
+      <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+          <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">5978</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="2-1-简化的流程介绍"><a href="#2-1-简化的流程介绍" class="headerlink" title="2.1 简化的流程介绍"></a>2.1 简化的流程介绍</h3><h4 id="2-1-1-一般流程介绍"><a href="#2-1-1-一般流程介绍" class="headerlink" title="2.1.1 一般流程介绍"></a>2.1.1 一般流程介绍</h4><p>这个流程是简化过的流程,但是对于整个流程的梳理是重要的,简单介绍这个流程:</p>
+<h3 id="2-1-字段含义"><a href="#2-1-字段含义" class="headerlink" title="2.1 字段含义"></a>2.1 字段含义</h3><p><strong>必需字段</strong>：与所有其他的 Kubernetes 配置一样，NetworkPolicy 需要 <code>apiVersion</code>、 <code>kind</code> 和 <code>metadata</code> 字段。</p>
+<p><strong>spec</strong>：NetworkPolicy 中包含了在一个名字空间中定义特定网络策略所需的所有信息。</p>
+<p><strong>podSelector</strong>： 它对该策略所适用的一组 Pod 进行选择。示例中的策略选择带有 “role=db” 标签的 Pod。 <strong>空的 <code>podSelector</code> 选择名字空间下的所有 Pod</strong>。</p>
+<p><strong>policyTypes</strong>：包含 <code>Ingress</code> 或 <code>Egress</code> 或两者兼具。 如果 NetworkPolicy 未指定 <code>policyTypes</code> 则<strong>默认</strong>情况下始终设置 <code>Ingress</code>； 如果 NetworkPolicy 有任何出口规则的话则设置 <code>Egress</code>。</p>
+<p><strong>ingress</strong>：每个 NetworkPolicy 可包含一个 <code>ingress</code> 规则的白名单列表。 每个规则都允许同时匹配 <code>from</code> 和 <code>ports</code> 部分的流量。示例策略中包含一条简单的规则： 它匹配某个特定端口，来自三个来源中的一个，第一个通过 <code>ipBlock</code> 指定，第二个通过 <code>namespaceSelector</code> 指定，第三个通过 <code>podSelector</code> 指定。</p>
+<p><strong>egress</strong>：每个 NetworkPolicy 可包含一个 <code>egress</code> 规则的白名单列表。 每个规则都允许匹配 <code>to</code> 和 <code>port</code> 部分的流量。该示例策略包含一条规则， 该规则将指定端口上的流量匹配到 <code>10.0.0.0/24</code> 中的任何目的地。</p>
+<p>所以，该网络策略示例:</p>
 <ol>
-<li>首先是数据包从网卡进入, 已经<strong>路由预处理</strong>链路(PREROUTING), 这个预处理可以用来修改ip包的目的地址等信息</li>
-<li><strong>路由决策</strong>(Routing Decision)就是判断ip的目的地址是不是本机的ip</li>
-<li>按照一般情况, 再进入<strong>输入</strong>链路(INPUT)这个链路,这个主要是决定进入上层应用层的处理前的链路</li>
-<li><strong>上层应用处理</strong>,这个就是实际流入上层应用的数据包,例如用java或者Python构建的web服务就能接收到</li>
-<li>再就是上层应用会做出响应的数据包进入<strong>输出</strong>链路(OUTPUT)</li>
-<li><strong>路由决策</strong>这里根据目的ip选择将数据包发给哪个网卡</li>
-<li>进入<strong>路由后处理</strong>链路(POSTROUTING), 这个后处理可以用来修改ip地址的源ip信息等</li>
-<li>输出到网卡发送出去</li>
+<li>隔离 <code>default</code> 名字空间下 <code>role=db</code> 的 Pod （如果它们不是已经被隔离的话）。</li>
+<li>（Ingress 规则）允许以下 Pod 连接到 <code>default</code> 名字空间下的带有 <code>role=db</code> 标签的所有 Pod 的 6379 TCP 端口：<ul>
+<li><code>default</code> 名字空间下带有 <code>role=frontend</code> 标签的所有 Pod</li>
+<li>带有 <code>project=myproject</code> 标签的所有名字空间中的 Pod</li>
+<li>IP 地址范围为 172.17.0.0–172.17.0.255 和 172.17.2.0–172.17.255.255 （即，除了 172.17.1.0/24 之外的所有 172.17.0.0/16）</li>
+</ul>
+</li>
+<li>（Egress 规则）允许 <code>default</code> 名字空间中任何带有标签 <code>role=db</code> 的 Pod 到 CIDR 10.0.0.0/24 下 5978 TCP 端口的连接。</li>
 </ol>
-<h4 id="2-1-2-转发流程"><a href="#2-1-2-转发流程" class="headerlink" title="2.1.2 转发流程"></a>2.1.2 转发流程</h4><ol>
-<li><p>假如当前主机是<strong>网关</strong>(例如路由器),那么从网卡上就会接收到<strong>目的ip</strong>不是本机ip的数据包</p>
-</li>
-<li><p>这个时候<strong>路由预处理</strong>(PREROUTING)之后的<strong>路由决策</strong>就会进入路由<strong>路由转发</strong>(FORWARD)线路</p>
-</li>
-<li><p>然后到最终经过路由决策到路由后处理(POSTROUTING)</p>
+<p><strong>每个 ingress 或 egress 规则包括以下部分</strong>： </p>
 <ul>
-<li><p><strong>路由后处理</strong>(POSTROUTING)这里十分重要,一般路由器就会在这里将源ip地址换成路由器自己的外网ip,这样内网机器就可以通过路由器上网了</p>
-</li>
-<li><p>iptabels将这个操作称为SNAT,是可以通过命令简单配置下就能配好的</p>
-</li>
+<li>from(ingress) 或to(egress): 定义流量的源 (ingress) 或目的地 (egress)。这可以包括以下一个或多个字段：<ul>
+<li><code>podSelector</code>: 选择符合特定 label 的 Pod。</li>
+<li><code>namespaceSelector</code>: 选择符合特定 label 的命名空间。</li>
+<li><code>ipBlock</code>: 定义一个 IP 地址范围。</li>
 </ul>
 </li>
-</ol>
-<h3 id="2-2-表、链、规则介绍"><a href="#2-2-表、链、规则介绍" class="headerlink" title="2.2 表、链、规则介绍"></a>2.2 表、链、规则介绍</h3><h4 id="2-2-1-规则-rule"><a href="#2-2-1-规则-rule" class="headerlink" title="2.2.1 规则(rule)"></a>2.2.1 规则(rule)</h4><p><code>来自192.168.2.31的访问，就要将其拒绝`，这即是一条规则</code></p>
-<p>一个规则一般分为两大部分：</p>
-<ul>
-<li>匹配： 即哪些数据包会命中这个规则，比如一个指定的ip，即是一个匹配规则</li>
-<li>动作： 匹配到规则之后，需要做什么动作，是放行，还是拒绝。动作分为以下几种：<ul>
-<li>ACCEPT： 直接接受该数据包，不会再走其他链条和规则。比如filter中的input表中的某个规则命中后，动作是ACCEPT，那么该数据包将被直接送达目标进程端口。</li>
-<li>DROP： 直接抛弃该数据包，并且没有任何返回。且不会再走其他链和规则</li>
-<li>REJECT: 跟DROP类似，但好歹还是会跟请求方返回一些拒绝信息，比如我们拒绝掉ICMP协议后，ping该主机，会返回“destination host unreachable”</li>
-<li>RETURN: 当前规则不做任何处理，返回。让给下一个规则处理</li>
-<li>LOG ： 同RETURN类似，但只是会将请求信息记录到系统日志中，记录路径</li>
+<li><code>ports</code>: 定义流量可以使用的端口/范围和协议。</li>
 </ul>
-</li>
-</ul>
-<h4 id="2-2-2-链-chain"><a href="#2-2-2-链-chain" class="headerlink" title="2.2.2 链(chain)"></a>2.2.2 <strong>链(chain)</strong></h4><p>往往我们的安全策略不只一条规则，除了 <code>来自192.168.2.31的访问，就要将其拒绝</code> 这条规则之外，我们还有其它规则，比如： <code>来自192.168.43.22的访问，也要将其拒绝</code></p>
-<p>甚至，我们可能还有多个互斥的规则，这多个规则，哪个规则先执行？ 这就涉及到链这个概念。简单来讲，链就是将多个规则从上大小串起来的一个集合单位。规则按从上倒下依次进行匹配</p>
-<img src="iptables详解使用/v2-cf4a62d34c69eec3f9d6e762733b5535_720w-16903543266823.webp" alt="img" style="zoom:50%;">
+<h3 id="2-2-使用案例"><a href="#2-2-使用案例" class="headerlink" title="2.2 使用案例"></a>2.2 使用案例</h3><h4 id="2-2-1-默认拒绝所有入站流量"><a href="#2-2-1-默认拒绝所有入站流量" class="headerlink" title="2.2.1 默认拒绝所有入站流量"></a>2.2.1 默认拒绝所有入站流量</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> NetworkPolicy
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> default<span class="token punctuation">-</span>deny<span class="token punctuation">-</span>ingress
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">podSelector</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> Ingress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="2-2-3-表-table"><a href="#2-2-3-表-table" class="headerlink" title="2.2.3 表(table)"></a>2.2.3 <strong>表(table)</strong></h4><p>链条可以有多个。将多个链条再规整在一起的集合，叫做表。</p>
-<img src="/wang-luo/iptables-xiang-jie-shi-yong/v2-6281f8a21178c8fe6185493c631a1504_720w-16903543716187.webp" class="" title="img">
+<h4 id="2-2-2-允许所有入站流量"><a href="#2-2-2-允许所有入站流量" class="headerlink" title="2.2.2 允许所有入站流量"></a>2.2.2 允许所有入站流量</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> NetworkPolicy
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> allow<span class="token punctuation">-</span>all<span class="token punctuation">-</span>ingress
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">podSelector</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token key atrule">ingress</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> Ingress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="2-2-4-四表五链"><a href="#2-2-4-四表五链" class="headerlink" title="2.2.4 四表五链"></a>2.2.4 四表五链</h4><ul>
-<li><p>以上流程中还涉及到表(表是对功能的封装,例如filter专门用于防火墙),按照官方文档也有5张表</p>
-<ul>
-<li>filter 配置<strong>防火墙</strong>的规则, 可以决定一个数据包是否可以到达目标进程端口</li>
-<li>nat 配置<strong>转发包</strong>的规则,可以修改源和目标的ip地址，从而进行包路由。</li>
-<li>raw(不常用) 用来标记包让免于系统跟踪，能基于数据包的状态进行规则设定</li>
-<li>mangle(不常用) 用于对特定数据包的修改, 可以修改数据包的内容，比如ttl</li>
-<li>security(不常用) 用于访问控制。</li>
-</ul>
-</li>
-<li><p>链就是数据包传输过程中经过的各个链路,有<strong>5</strong>个,包括路由<strong>PREROUTING（预处理）</strong>,<strong>INPUT（输入）</strong>,<strong>OUTPUT(输出)</strong>,<strong>POSTROUTING(路由后处理)</strong>,**FORWARD(转发)**这五条链路</p>
-<ul>
-<li><p><strong>PREROUTING 链</strong></p>
-<p>PREROUTING 一般用作对包进行目标地址修改。比如将该包的目标地址，修改为非本机的另外的网络ip，一般通过<code>DNAT</code>规则进行修改。（例如虚机访问外网时，回包需要原链路返回需要<code>DNAT</code>)</p>
-</li>
-<li><p><strong>路由决策（Routing Decision）</strong></p>
-<p>决定一个包该走哪个链。如果上述PREROUTING 链对包进行了目标网络ip更改。那么决策会觉得这个是一个需要转发的数据包，于是会将该包转发给 FORWARD 链。<strong>否则， 该包会走INPUT链</strong></p>
-</li>
-<li><p><strong>FORWARD 链</strong></p>
-<p>FORWARD在各表中生效的优先顺序是：mangle(FORWARD) —-&gt; filter(FORWARD) 处理路由决策派发发过来的包，到这里的包一般目标网络地址在PREROUTING链被修改过</p>
-</li>
-<li><p><strong>INPUT 链</strong></p>
-<p>其生效顺序是： mangle(INPUT) —-&gt; filter(INPUT) 处理路由决策派发发过来的包，到这里的包一般目标网络地址在PREROUTING链<strong>没有</strong>被修改过。</p>
-</li>
-<li><p><strong>OUTPUT 链</strong></p>
-<p>在目标进程端口接收到输入数据包后，输出的数据包，将在这里进行规则应用。OUTPUT链在各表中生效的先后顺序是： raw(OUTPUT) —-&gt; mangle(OUTPUT) —-&gt; nat(OUTPUT) —-&gt; filter(OUTPUT)</p>
-</li>
-<li><p><strong>POSTROUTING</strong></p>
-<p>POSTROUTING一般用作对包进行源地址修改，一般通过<code>SNAT</code>规则进行修改</p>
-</li>
-</ul>
-</li>
-<li><p>表能控制的链路关系如下</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>表名/链名</th>
-<th>raw</th>
-<th>filter</th>
-<th>nat</th>
-<th>mangle</th>
-<th>security</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>PREROUTING</td>
-<td>√</td>
-<td></td>
-<td>√</td>
-<td>√</td>
-<td></td>
-</tr>
-<tr>
-<td>INPUT</td>
-<td></td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>OUTPUT</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>POSTROUTING</td>
-<td></td>
-<td></td>
-<td>√</td>
-<td>√</td>
-<td></td>
-</tr>
-<tr>
-<td>FORWARD</td>
-<td></td>
-<td>√</td>
-<td></td>
-<td>√</td>
-<td>√</td>
-</tr>
-</tbody></table>
-<h2 id="3、iptables命令说明"><a href="#3、iptables命令说明" class="headerlink" title="3、iptables命令说明"></a>3、iptables命令说明</h2><p>iptables的命令格式较为复杂，一般的格式如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token punctuation">[</span>-t 表<span class="token punctuation">]</span> -命令 匹配   操作<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="2-2-3-默认拒绝所有出站流量"><a href="#2-2-3-默认拒绝所有出站流量" class="headerlink" title="2.2.3 默认拒绝所有出站流量"></a>2.2.3 默认拒绝所有出站流量</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> NetworkPolicy
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> default<span class="token punctuation">-</span>deny<span class="token punctuation">-</span>egress
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">podSelector</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> Egress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="3-1-t-表"><a href="#3-1-t-表" class="headerlink" title="3.1 -t 表"></a>3.1 <strong>-t 表</strong></h3><p>表选项用于指定命令应用于哪个iptables内置表。</p>
-<h3 id="3-2-命令"><a href="#3-2-命令" class="headerlink" title="3.2 命令"></a>3.2 命令</h3><p>命令选项用于指定iptables的执行方式，包括插入规则，删除规则和添加规则，如下表所示</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token parameter variable">-P</span>  <span class="token parameter variable">--policy</span>        <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  定义默认策略
-<span class="token parameter variable">-L</span>  <span class="token parameter variable">--list</span>          <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  查看iptables规则列表
-<span class="token parameter variable">-A</span>  <span class="token parameter variable">--append</span>        <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  在规则列表的最后增加1条规则
-<span class="token parameter variable">-I</span>  <span class="token parameter variable">--insert</span>        <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  在指定的位置插入1条规则
-<span class="token parameter variable">-D</span>  <span class="token parameter variable">--delete</span>        <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  从规则列表中删除1条规则
-<span class="token parameter variable">-R</span>  <span class="token parameter variable">--replace</span>       <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  替换规则列表中的某条规则
-<span class="token parameter variable">-F</span>  <span class="token parameter variable">--flush</span>         <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  删除表中所有规则
-<span class="token parameter variable">-Z</span>  <span class="token parameter variable">--zero</span>          <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  将表中数据包计数器和流量计数器归零
-<span class="token parameter variable">-X</span>  --delete-chain  <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  删除自定义链
-<span class="token parameter variable">-v</span>  <span class="token parameter variable">--verbose</span>       <span class="token operator">&lt;</span>链名<span class="token operator">&gt;</span>  与-L他命令一起使用显示更多更详细的信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-2-4-允许所有出站流量"><a href="#2-2-4-允许所有出站流量" class="headerlink" title="2.2.4 允许所有出站流量"></a>2.2.4 允许所有出站流量</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> NetworkPolicy
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> allow<span class="token punctuation">-</span>all<span class="token punctuation">-</span>egress
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">podSelector</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token key atrule">egress</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> Egress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="3-3-匹配规则"><a href="#3-3-匹配规则" class="headerlink" title="3.3 匹配规则"></a>3.3 匹配规则</h3><p>匹配选项指定数据包与规则匹配所具有的特征，包括源地址，目的地址，传输协议和端口号，如下表所示</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token parameter variable">-i</span> --in-interface    网络接口名<span class="token operator">&gt;</span>     指定数据包从哪个网络接口进入，
-<span class="token parameter variable">-o</span> --out-interface   网络接口名<span class="token operator">&gt;</span>     指定数据包从哪个网络接口输出
-<span class="token parameter variable">-p</span> ---proto          协议类型        指定数据包匹配的协议，如TCP、UDP和ICMP等
-<span class="token parameter variable">-s</span> <span class="token parameter variable">--source</span>          源地址或子网<span class="token operator">&gt;</span>   指定数据包匹配的源地址
-   <span class="token parameter variable">--sport</span>           源端口号<span class="token operator">&gt;</span>       指定数据包匹配的源端口号
-   <span class="token parameter variable">--dport</span>           目的端口号<span class="token operator">&gt;</span>     指定数据包匹配的目的端口号
-<span class="token parameter variable">-m</span> <span class="token parameter variable">--match</span>           匹配的模块      指定数据包规则所使用的过滤模块<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="3-4-动作"><a href="#3-4-动作" class="headerlink" title="3.4 动作"></a>3.4 动作</h3><ul>
-<li><strong>REJECT</strong> 拦阻该数据包，并返回数据包通知对方，可以返回的数据包有几个选择：ICMP port-unreachable、ICMP echo-reply 或是tcp-reset（这个数据包包会要求对方关闭联机），进行完此处理动作后，将不再比对其它规则，直接中断过滤程序。范例如下：</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span>  INPUT <span class="token parameter variable">-p</span> TCP <span class="token parameter variable">--dport</span> <span class="token number">22</span> <span class="token parameter variable">-j</span> REJECT --reject-with ICMP echo-reply<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ul>
-<li><p><strong>DROP</strong> 丢弃数据包不予处理，进行完此处理动作后，将不再比对其它规则，直接中断过滤程序。</p>
-</li>
-<li><p><strong>REDIRECT</strong> 将封包重新导向到另一个端口（PNAT），进行完此处理动作后，将会继续比对其它规则。这个功能可以用来实作透明代理 或用来保护web 服务器。例如：</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-A</span> PREROUTING <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">80</span> <span class="token parameter variable">-j</span> REDIRECT--to-ports <span class="token number">8081</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ul>
-<li><strong>MASQUERADE</strong> 改写封包来源IP为防火墙的IP，可以指定port 对应的范围，进行完此处理动作后，直接跳往下一个规则链（mangle:postrouting）。这个功能与 SNAT 略有不同，当进行IP 伪装时，不需指定要伪装成哪个 IP，IP 会从网卡直接读取，当使用拨接连线时，IP 通常是由 ISP 公司的 DHCP服务器指派的，这个时候 MASQUERADE 特别有用。范例如下：</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-t</span> nat <span class="token parameter variable">-A</span> POSTROUTING <span class="token parameter variable">-p</span> TCP <span class="token parameter variable">-j</span> MASQUERADE --to-ports <span class="token number">21000</span>-31000<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="3-5-常用示例"><a href="#3-5-常用示例" class="headerlink" title="3.5 常用示例"></a>3.5 常用示例</h3><p><strong>查看防火墙的状态</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-L</span> <span class="token parameter variable">-n</span> <span class="token parameter variable">-v</span> --line-numbers<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>启动/停止/重启防火墙</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">service</span> iptables stop
-
-<span class="token function">service</span> iptables start
-
-<span class="token function">service</span> iptables restart<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>删除一条规则</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-L</span> INPUT <span class="token parameter variable">-n</span> --line-numbers
-iptables <span class="token parameter variable">-L</span> OUTPUT <span class="token parameter variable">-n</span> --line-numbers
-iptables <span class="token parameter variable">-L</span> OUTPUT <span class="token parameter variable">-n</span> --line-numbers <span class="token operator">|</span> <span class="token function">less</span>
-iptables <span class="token parameter variable">-L</span> OUTPUT <span class="token parameter variable">-n</span> --line-numbers <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">202.54</span>.1.1
-<span class="token comment"># 删除 如果想要删除一条规则，那么可以直接使用序号，例如 INPUT 的第 1 条可以直接这么删除</span>
-iptables <span class="token parameter variable">-D</span> INPUT <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>插入一条规则</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 插入前面</span>
-iptables <span class="token parameter variable">-I</span> INPUT <span class="token number">2</span> <span class="token parameter variable">-s</span> <span class="token number">202.54</span>.1.2 <span class="token parameter variable">-j</span> DROP  <span class="token comment"># 在第二条位置插入一条规则</span>
-<span class="token comment"># 添加后面</span>
-iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-s</span> <span class="token number">202.54</span>.1.2 <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>保存防火墙规则</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">service</span> iptables save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>加载防火墙规则</strong></p>
-<pre class="line-numbers language-bash'" data-language="bash'"><code class="language-bash'">iptables-restore &lt; /root/my.active.firewall.rules<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>删除公共接口上的私有地址</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-i</span> eth1 <span class="token parameter variable">-s</span> <span class="token number">192.168</span>.0.0/24 <span class="token parameter variable">-j</span> DROP
-
-iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-i</span> eth1 <span class="token parameter variable">-s</span> <span class="token number">10.0</span>.0.0/8 <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>屏蔽 ip 地址</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-s</span> <span class="token number">1.2</span>.3.4 <span class="token parameter variable">-j</span> DROP
-
-iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-s</span> <span class="token number">192.168</span>.0.0/24 <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>屏蔽入站端口</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">-s</span> <span class="token number">1.2</span>.3.4 <span class="token parameter variable">--dport</span> <span class="token number">80</span> <span class="token parameter variable">-j</span> DROP
-
-iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-i</span> eth1 <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">-s</span> <span class="token number">192.168</span>.1.0/24 <span class="token parameter variable">--dport</span> <span class="token number">80</span> <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>屏蔽出站ip</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> OUTPUT <span class="token parameter variable">-d</span> <span class="token number">192.168</span>.1.0/24 <span class="token parameter variable">-j</span> DROP
-iptables <span class="token parameter variable">-A</span> OUTPUT <span class="token parameter variable">-o</span> eth1 <span class="token parameter variable">-d</span> <span class="token number">192.168</span>.1.0/24 <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><strong>记录并删除包</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-i</span> eth1 <span class="token parameter variable">-s</span> <span class="token number">10.0</span>.0.0/8 <span class="token parameter variable">-j</span> LOG --log-prefix <span class="token string">"IP_SPOOF A: "</span>
-iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-i</span> eth1 <span class="token parameter variable">-s</span> <span class="token number">10.0</span>.0.0/8 <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><strong>通过 mac 地址过滤数据</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-m</span> mac --mac-source 00:0F:EA:91:04:08 <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>只接收MAC地址为00:0F:EA:91:04:07的TCP流量</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp --destination-port <span class="token number">22</span> <span class="token parameter variable">-m</span> mac --mac-source 00:0F:EA:91:04:07 <span class="token parameter variable">-j</span> ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>过滤 ICMP ping 请求</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> icmp --icmp-type echo-request <span class="token parameter variable">-j</span> DROP
-
-iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-i</span> eth1 <span class="token parameter variable">-p</span> icmp --icmp-type echo-request <span class="token parameter variable">-j</span> DROP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>开启范围端口</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-m</span> state <span class="token parameter variable">--state</span> NEW <span class="token parameter variable">-m</span> tcp <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">7000</span>:7010 <span class="token parameter variable">-j</span> ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>开启范围 ip</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp --destination-port <span class="token number">80</span> <span class="token parameter variable">-m</span> iprange --src-range <span class="token number">192.168</span>.1.100-192.168.1.200 <span class="token parameter variable">-j</span> ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>改变某个链的默认规则</strong></p>
-<p>以filter表的三个链为例，默认是ACCEPT。 但是我们可以改变这个模型规则，比如默认规则就是DROP</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iptables <span class="token parameter variable">-t</span> filter <span class="token parameter variable">-P</span> INPUT DROP<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>在使用某个网络时，不响应请求</strong></p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">iptables -A OUTPUT -o wlan0 -d 121.18.238.0/29 -j DROP <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>规则的取反配置</strong></p>
-<p>上述规则配置，一般都是满足某某条件，做什么动作。除此之外，我们还可以配置，如果不满足某某条件，则做某个动作。</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">iptables -A INPUT -p tcp -m multiport ! --dports 22,80,443 -j DROP<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>这个<code>不满足则</code>的取动作，是通过感叹号来实现的。 上述命令的含义是：非22,80,443的端口，我们直接丢弃。</p>
-<p>当然这条命令之前，应该要配置一条规则：</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>因为通过22或80建立的连接，可能会衍生出一些RELATED的连接，他们的端口可能不是22或80，那样也就被拒掉了。会导致通信出问题。</p>
-<h3 id="3-6-规则持久化"><a href="#3-6-规则持久化" class="headerlink" title="3.6 规则持久化"></a>3.6 <strong>规则持久化</strong></h3><ol>
-<li>第一步，在修改iptables配置后，将其导出到某个文件，比如: /etc/iptables.conf 。命令为：<code>iptables-save &gt; /etc/iptables.conf</code> 这一步，每次修改后都要做</li>
-<li>第二步，在<code>/etc/rc.local</code>中添加命令<code>iptables-restore &lt; /etc/iptables.conf</code>。从此之后，每次重启，系统会自动从<code>/etc/iptables.conf</code>恢复对应的iptables配置。这一步只需要做一次</li>
-</ol>
 
             </div>
             <hr />
@@ -830,9 +676,9 @@ iptables <span class="token parameter variable">-A</span> INPUT <span class="tok
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《iptables详解使用》
+                    《K8S NetworkPolicy(网络策略)》
                 </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/wang-luo/iptables-xiang-jie-shi-yong.html" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/networkpolicy-wang-luo-ce-lue.html" property="cc:attributionName"
                rel="cc:attributionURL">
                 XieJiayi
             </a> is licensed under a
@@ -873,7 +719,7 @@ iptables <span class="token parameter variable">-A</span> INPUT <span class="tok
         repo: 'jiayi-1994.github.io',
         owner: 'jiayi-1994',
         admin: "jiayi-1994",
-        id: 'wang-luo/iptables-xiang-jie-shi-yong.html',
+        id: 'kubernetes/networkpolicy-wang-luo-ce-lue.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -894,9 +740,10 @@ iptables <span class="token parameter variable">-A</span> INPUT <span class="tok
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/kubernetes/networkpolicy-wang-luo-ce-lue.html">
                     <div class="card-image">
@@ -916,9 +763,9 @@ iptables <span class="token parameter variable">-A</span> INPUT <span class="tok
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-07-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-07-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -931,6 +778,7 @@ iptables <span class="token parameter variable">-A</span> INPUT <span class="tok
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -949,24 +797,24 @@ iptables <span class="token parameter variable">-A</span> INPUT <span class="tok
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/wang-luo/nei-wang-chuan-tou-gao-yi-xia.html">
+                <a href="/wang-luo/iptables-xiang-jie-shi-yong.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="内网穿透【搞一下】">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="iptables详解使用">
                         
-                        <span class="card-title">内网穿透【搞一下】</span>
+                        <span class="card-title">iptables详解使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            内网穿透【搞一下】场景入门介绍老板找到产品经理，说：“客户想看一下项目，你搞一下，把demo网站搭起来”产品经理找到技术组长，说：“客户想看一下项目，你搞一下，让客户能访问demo网站”技术组长找到程序员小A，说：“客户想看一下项目，你搞一
+                            iptables详解使用1、介绍1.1简介iptables是一个linux下的防火墙工具，它能帮助我们基于规则进行网络流量控制。使用 iptables 可以添加、删除具体的过滤规则，iptables 默认维护着 4 个表和 5 个链，所有的
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-06-16
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-07-26
                             </span>
                         <span class="publish-author">
                             

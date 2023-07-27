@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-07-26T07:47:23.231Z</updated>
+  <updated>2023-07-27T06:14:24.742Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>K8S NetworkPolicy(网络策略)</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/networkpolicy-wang-luo-ce-lue.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/networkpolicy-wang-luo-ce-lue.html</id>
+    <published>2023-07-27T12:01:22.000Z</published>
+    <updated>2023-07-27T06:14:24.742Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;NetworkPolicy-网络策略&quot;&gt;&lt;a href=&quot;#NetworkPolicy-网络策略&quot; class=&quot;headerlink&quot; title=&quot;NetworkPolicy(网络策略)&quot;&gt;&lt;/a&gt;NetworkPolicy(网络策略)&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+  </entry>
   
   <entry>
     <title>iptables详解使用</title>
@@ -495,31 +520,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Helm是什么&quot;&gt;&lt;a href=&quot;#Helm是什么&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ingress 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/ingress-wang-guan.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/ingress-wang-guan.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T06:57:51.241Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img</summary>
         
       
     
