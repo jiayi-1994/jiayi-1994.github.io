@@ -540,7 +540,7 @@
 <img src="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv/image-20230804095400819.png" class="" title="image-20230804095400819">
 
 <h3 id="4-创建物理卷"><a href="#4-创建物理卷" class="headerlink" title="4.创建物理卷"></a>4.创建物理卷</h3><p><em><strong>pvcreate /dev/vda</strong></em></p>
-<h3 id="5-将分区-x2F-dev-x2F-sda加入到根目录分区zstack"><a href="#5-将分区-x2F-dev-x2F-sda加入到根目录分区zstack" class="headerlink" title="5.将分区/dev/sda加入到根目录分区zstack"></a>5.将分区/dev/sda加入到根目录分区zstack</h3><p><em><strong>vgextend zstack/dev/sda</strong></em></p>
+<h3 id="5-将分区-x2F-dev-x2F-sda加入到根目录分区zstack"><a href="#5-将分区-x2F-dev-x2F-sda加入到根目录分区zstack" class="headerlink" title="5.将分区/dev/sda加入到根目录分区zstack"></a>5.将分区/dev/sda加入到根目录分区zstack</h3><p><em><strong>vgextend zstack /dev/sda</strong></em></p>
 <img src="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv/image-20230804095553507.png" class="" title="image-20230804095553507">
 
 <h3 id="6-对根目录进行扩容"><a href="#6-对根目录进行扩容" class="headerlink" title="6.对根目录进行扩容"></a>6.对根目录进行扩容</h3><p><em><strong>lvextend -l +100%FREE /dev/mapper/zstack-root</strong></em></p>
