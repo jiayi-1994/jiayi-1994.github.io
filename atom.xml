@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-07-27T07:49:13.915Z</updated>
+  <updated>2023-08-04T01:57:42.841Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -17,11 +17,61 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Linux下未使用磁盘扩容到根目录（PV）</title>
+    <link href="https://jiayi-1994.github.io/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv.html"/>
+    <id>https://jiayi-1994.github.io/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv.html</id>
+    <published>2023-08-04T01:47:09.000Z</published>
+    <updated>2023-08-04T01:57:42.841Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Linux下未使用磁盘扩容到根目录（PV）&quot;&gt;&lt;a href=&quot;#Linux下未使用磁盘扩容到根目录（PV）&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="disk" scheme="https://jiayi-1994.github.io/categories/disk/"/>
+    
+    
+    <category term="其他" scheme="https://jiayi-1994.github.io/tags/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cloudflare机场使用</title>
+    <link href="https://jiayi-1994.github.io/vps/cloudflare-ji-chang-shi-yong.html"/>
+    <id>https://jiayi-1994.github.io/vps/cloudflare-ji-chang-shi-yong.html</id>
+    <published>2023-07-31T12:13:11.000Z</published>
+    <updated>2023-07-31T09:20:49.025Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;方法一&quot;&gt;&lt;a href=&quot;#方法一&quot; class=&quot;headerlink&quot; title=&quot;方法一&quot;&gt;&lt;/a&gt;方法一&lt;/h1&gt;&lt;p&gt;地址： &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="vps" scheme="https://jiayi-1994.github.io/categories/vps/"/>
+    
+    
+    <category term="VPS" scheme="https://jiayi-1994.github.io/tags/VPS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>K8S NetworkPolicy(网络策略)</title>
     <link href="https://jiayi-1994.github.io/kubernetes/networkpolicy-wang-luo-ce-lue.html"/>
     <id>https://jiayi-1994.github.io/kubernetes/networkpolicy-wang-luo-ce-lue.html</id>
     <published>2023-07-27T12:01:22.000Z</published>
-    <updated>2023-07-27T07:49:13.915Z</updated>
+    <updated>2023-07-27T08:14:57.129Z</updated>
     
     
       
@@ -38,6 +88,8 @@
     
     
     <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+    <category term="网络" scheme="https://jiayi-1994.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -381,7 +433,7 @@
     <link href="https://jiayi-1994.github.io/devops/da-jian-harbor-si-you-jing-xiang-cang-ku.html"/>
     <id>https://jiayi-1994.github.io/devops/da-jian-harbor-si-you-jing-xiang-cang-ku.html</id>
     <published>2023-01-06T12:29:15.000Z</published>
-    <updated>2023-01-06T07:34:02.078Z</updated>
+    <updated>2023-07-27T08:15:37.594Z</updated>
     
     
       
@@ -474,61 +526,6 @@
     
     
     <category term="压测" scheme="https://jiayi-1994.github.io/tags/%E5%8E%8B%E6%B5%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【gRPC SSL】自签CA、服务端和客户端双向认证</title>
-    <link href="https://jiayi-1994.github.io/grpc/grpc-ssl-zi-qian-ca-fu-wu-duan-he-ke-hu-duan-shuang-xiang-ren-zheng.html"/>
-    <id>https://jiayi-1994.github.io/grpc/grpc-ssl-zi-qian-ca-fu-wu-duan-he-ke-hu-duan-shuang-xiang-ren-zheng.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T08:21:35.597Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本文主要介绍了自签CA、服务端和客户端双向认证,主要包括自签CA、GolangGrpc服务端和客户端双向认证的相关内容,需要的朋友可以参考下&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3</summary>
-        
-      
-    
-    
-    
-    <category term="Go" scheme="https://jiayi-1994.github.io/categories/Go/"/>
-    
-    
-    <category term="grpc" scheme="https://jiayi-1994.github.io/tags/grpc/"/>
-    
-    <category term="Go" scheme="https://jiayi-1994.github.io/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>helm 使用</title>
-    <link href="https://jiayi-1994.github.io/kubernetes/helm.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/helm.html</id>
-    <published>2023-01-06T03:29:15.000Z</published>
-    <updated>2023-01-06T06:57:40.343Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Helm是什么&quot;&gt;&lt;a href=&quot;#Helm是什么&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
     
   </entry>
   

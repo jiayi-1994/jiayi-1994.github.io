@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>Linux下未使用磁盘扩容到根目录（PV）</title>
+      <link href="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv.html"/>
+      <url>/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Linux下未使用磁盘扩容到根目录（PV）"><a href="#Linux下未使用磁盘扩容到根目录（PV）" class="headerlink" title="Linux下未使用磁盘扩容到根目录（PV）"></a>Linux下未使用磁盘扩容到根目录（PV）</h2><h3 id="1-从虚机从创建一个空磁盘"><a href="#1-从虚机从创建一个空磁盘" class="headerlink" title="1.从虚机从创建一个空磁盘"></a>1.从虚机从创建一个空磁盘</h3><img src="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv/image-20230804095050864.png" class="" title="image-20230804095050864"><h3 id="2-查看根目录容量大小、查看磁盘分区情况"><a href="#2-查看根目录容量大小、查看磁盘分区情况" class="headerlink" title="2.查看根目录容量大小、查看磁盘分区情况"></a>2.查看根目录容量大小、查看磁盘分区情况</h3><p><strong>lsblk</strong></p><img src="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv/image-20230804095214476.png" class="" title="image-20230804095214476"><h3 id="3-格式化磁盘"><a href="#3-格式化磁盘" class="headerlink" title="3.格式化磁盘"></a>3.格式化磁盘</h3><p><em><strong>mkfs -t ext3 /dev/sda</strong></em></p><img src="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv/image-20230804095400819.png" class="" title="image-20230804095400819"><h3 id="4-创建物理卷"><a href="#4-创建物理卷" class="headerlink" title="4.创建物理卷"></a>4.创建物理卷</h3><p><em><strong>pvcreate /dev/vda</strong></em></p><h3 id="5-将分区-x2F-dev-x2F-sda加入到根目录分区zstack"><a href="#5-将分区-x2F-dev-x2F-sda加入到根目录分区zstack" class="headerlink" title="5.将分区/dev/sda加入到根目录分区zstack"></a>5.将分区/dev/sda加入到根目录分区zstack</h3><p><em><strong>vgextend zstack/dev/sda</strong></em></p><img src="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv/image-20230804095553507.png" class="" title="image-20230804095553507"><h3 id="6-对根目录进行扩容"><a href="#6-对根目录进行扩容" class="headerlink" title="6.对根目录进行扩容"></a>6.对根目录进行扩容</h3><p><em><strong>lvextend -l +100%FREE /dev/mapper/zstack-root</strong></em></p><img src="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv/image-20230804095658700.png" class="" title="image-20230804095658700"><h3 id="7-调整分区大小"><a href="#7-调整分区大小" class="headerlink" title="7.调整分区大小"></a>7.调整分区大小</h3><p><strong>xfs_growfs /dev/mapper/zstack-root</strong></p><img src="/other/linux-xia-wei-shi-yong-ci-pan-kuo-rong-dao-gen-mu-lu-pv/image-20230804095733381.png" class="" title="image-20230804095733381">]]></content>
+      
+      
+      <categories>
+          
+          <category> disk </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 其他 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>cloudflare机场使用</title>
+      <link href="/vps/cloudflare-ji-chang-shi-yong.html"/>
+      <url>/vps/cloudflare-ji-chang-shi-yong.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h1><p>地址： <a href="https://raw.githubusercontent.com/leilei223/works/main/index.js">https://raw.githubusercontent.com/leilei223/works/main/index.js</a><br>干净ip阿拉伯文字网站:  <a href="https://vfarid.github.io/cf-ip-scanner/?max=30">https://vfarid.github.io/cf-ip-scanner/?max=30</a></p><p>v2rayN修改订阅</p><img src="/vps/cloudflare-ji-chang-shi-yong/image-20230731171720543.png" class="" title="image-20230731171720543"><h1 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h1><p><strong>WIN:</strong></p><p>v2rayN 最新版<a href="https://github.com/2dust/v2rayN/releases">下载地址&gt;&gt;</a></p><p>cloudflare<a href="https://dash.cloudflare.com/">网站链接&gt;&gt;</a></p><p>临时邮箱：<a href="https://www.linshiyouxiang.net/">https://www.linshiyouxiang.net/</a></p><p>部署代码：<a href="https://github.com/zizifn/edgetunnel/blob/main/src/worker-vless.js">https://github.com/zizifn/edgetunnel/blob/main/src/worker-vless.js</a></p><p>uuid生成：<a href="https://1024tools.com/uuid">https://1024tools.com/uuid</a></p><p>免费域名注册：<a href="https://www.dynadot.com/register-your-free-link-domain">https://www.dynadot.com/register-your-free-link-domain</a></p><p>付费域名注册：<a href="http://www.namesilo.com/">www.namesilo.com</a>（付费域名注册和解析<a href="https://www.youtube.com/watch?v=5pb4yQwu1T4">点击查看这个视频&gt;&gt;跳转到4分17秒处</a>）</p><p>workers win专用ip优选：<a href="https://jdssl.top/wp-content/uploads/2023/07/works%E4%B8%93%E7%94%A8ip%E4%BC%98%E9%80%89.zip">下载地址&gt;&gt;</a></p><p>ip查看：<a href="https://whatismyipaddress.com/">https://whatismyipaddress.com/</a></p><p>cf ip优选；<a href="https://stock.hostmonit.com/CloudFlareYes">https://stock.hostmonit.com/CloudFlareYes</a></p><p>网络测速：<a href="https://www.speedtest.net/result/14952074175">https://www.speedtest.net/result/14952074175</a></p><p>openclash转换订阅网址：<a href="https://sub-web.netlify.app/">https://sub-web.netlify.app/</a></p><p><strong>cdn加速</strong></p><pre class="line-numbers language-none"><code class="language-none">cdn-all.xn--b6gac.eu.orgcdn.xn--b6gac.eu.org cdn-b100.xn--b6gac.eu.org edgetunnel.anycast.eu.org cdn.anycast.eu.org （亚洲地区）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><img src="/vps/cloudflare-ji-chang-shi-yong/image-20230731171849629.png" class="" title="image-20230731171849629"><p><a href="https://v2ray.looknicemm.workers.dev/098c12fd-0c46-4f61-95dd-574e4b0ec07d">https://v2ray.looknicemm.workers.dev/098c12fd-0c46-4f61-95dd-574e4b0ec07d</a></p><img src="/vps/cloudflare-ji-chang-shi-yong/image-20230731172030461.png" class="" title="image-20230731172030461"><img src="/vps/cloudflare-ji-chang-shi-yong/image-20230731171908540.png" class="" title="image-20230731171908540">]]></content>
+      
+      
+      <categories>
+          
+          <category> vps </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> VPS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>K8S NetworkPolicy(网络策略)</title>
       <link href="/kubernetes/networkpolicy-wang-luo-ce-lue.html"/>
       <url>/kubernetes/networkpolicy-wang-luo-ce-lue.html</url>
@@ -21,6 +71,8 @@
         <tags>
             
             <tag> Kubernetes </tag>
+            
+            <tag> 网络 </tag>
             
         </tags>
       
