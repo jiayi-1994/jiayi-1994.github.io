@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-08-04T02:14:24.608Z</updated>
+  <updated>2023-08-07T07:25:48.669Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Istio详细使用（一）</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/istio-xiang-xi-shi-yong-yi.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/istio-xiang-xi-shi-yong-yi.html</id>
+    <published>2023-08-07T11:06:38.000Z</published>
+    <updated>2023-08-07T07:25:48.669Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Istio详细使用（一）&quot;&gt;&lt;a href=&quot;#Istio详细使用（一）&quot; class=&quot;headerlink&quot; title=&quot;Istio详细使用（一）&quot;&gt;&lt;/a&gt;Istio详细使用（一）&lt;/h1&gt;&lt;h2 id=&quot;1-介绍&quot;&gt;&lt;a href=&quot;#1-介绍&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    <category term="istio" scheme="https://jiayi-1994.github.io/categories/k8s/istio/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux下未使用磁盘扩容到根目录（PV）</title>
@@ -198,7 +225,7 @@
     <link href="https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li-2.html"/>
     <id>https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li-2.html</id>
     <published>2023-04-10T06:24:20.000Z</published>
-    <updated>2023-04-10T08:11:05.670Z</updated>
+    <updated>2023-08-07T06:09:40.009Z</updated>
     
     
       
@@ -213,6 +240,8 @@
     
     <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
     
+    <category term="karmada" scheme="https://jiayi-1994.github.io/categories/k8s/karmada/"/>
+    
     
     <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
     
@@ -223,7 +252,7 @@
     <link href="https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html"/>
     <id>https://jiayi-1994.github.io/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li.html</id>
     <published>2023-04-07T03:12:15.000Z</published>
-    <updated>2023-04-10T08:29:21.958Z</updated>
+    <updated>2023-08-07T06:09:40.004Z</updated>
     
     
       
@@ -238,6 +267,8 @@
     
     <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
     
+    <category term="karmada" scheme="https://jiayi-1994.github.io/categories/k8s/karmada/"/>
+    
     
     <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
     
@@ -248,7 +279,7 @@
     <link href="https://jiayi-1994.github.io/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html"/>
     <id>https://jiayi-1994.github.io/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html</id>
     <published>2023-04-07T02:21:14.000Z</published>
-    <updated>2023-04-07T02:43:08.794Z</updated>
+    <updated>2023-08-07T06:09:39.997Z</updated>
     
     
       
@@ -262,6 +293,8 @@
     
     
     <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    <category term="prometheus" scheme="https://jiayi-1994.github.io/categories/k8s/prometheus/"/>
     
     
     <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
@@ -500,32 +533,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>压测工具Sysbench、Stress、iperf或iperf3</title>
-    <link href="https://jiayi-1994.github.io/ya-ce/ya-ce-gong-ju-sysbench-stress-iperf-huo-iperf3.html"/>
-    <id>https://jiayi-1994.github.io/ya-ce/ya-ce-gong-ju-sysbench-stress-iperf-huo-iperf3.html</id>
-    <published>2023-01-06T03:52:15.000Z</published>
-    <updated>2023-01-06T03:52:48.562Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;sysbench是一款开源的、模块化的、跨平台的多线程性能测试工具，可用于CPU、内存、磁盘I/O、线程、数据库的性能测试。sysbench目前支持的数据库压测有PG和MySQL。（若想学习数据库压测，可以私聊麦老师哟，MySQL和PG均有相关课程</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://jiayi-1994.github.io/categories/linux/"/>
-    
-    
-    <category term="压测" scheme="https://jiayi-1994.github.io/tags/%E5%8E%8B%E6%B5%8B/"/>
     
   </entry>
   
