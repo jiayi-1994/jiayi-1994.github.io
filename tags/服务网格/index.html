@@ -4,15 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="cronjob 使用, 学习">
+    <meta name="keywords" content="标签: 服务网格, 学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="
-.spec.schedule 指定任务运行周期，格式同 Cron
-.spec.jobTemplate 指定需要运行的任务，格式同 Job
-.spec.startingDeadlineSeconds 指定任务开始的截止期限
-.spec.co">
+    <meta name="description" content="标签: 服务网格 | 小萝卜 Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>cronjob 使用 | 小萝卜 Blog</title>
+    <title>标签: 服务网格 | 小萝卜 Blog</title>
     <link rel="icon" type="image/png" href="/medias/touxiang.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -326,569 +322,222 @@
 
 </header>
 
-    
-<script src="/libs/cryptojs/crypto-js.min.js"></script>
-<script>
-    (function() {
-        let pwd = '';
-        if (pwd && pwd.length > 0) {
-            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
-                alert('密码错误，将返回主页！');
-                location.href = '/';
-            }
-        }
-    })();
-</script>
-
-
-
-
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="bg-cover pd-header about-cover">
     <div class="container">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <div class="description center-align post-title">
-                        cronjob 使用
-                    </div>
-                </div>
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                <!-- 
+                    jiayi
+                 -->
+                
+                    标签
+                
+            </div>
+
+             <div class="description center-align">
+                
+                    <!-- Go | java -->
+                    <span id="jinrishici-sentence">正在加载今日诗词...</span>
+                
             </div>
         </div>
     </div>
 </div>
+<script>
+// 每天切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script>
+    </div>
+</div>
 
-
-
-<main class="post-container content">
+<main class="content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
 
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        margin: 35px 0 15px 0;
-        padding-left: 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #toc-content .is-active-link::before {
-        background-color: #42b983;
-    }
-
-    #floating-toc-btn {
-        position: fixed;
-        right: 20px;
-        bottom: 76px;
-        padding-top: 15px;
-        margin-bottom: 0;
-        z-index: 998;
-    }
-
-    #floating-toc-btn .btn-floating {
-        width: 48px;
-        height: 48px;
-    }
-
-    #floating-toc-btn .btn-floating i {
-        line-height: 48px;
-        font-size: 1.4rem;
-    }
-</style>
-<div class="row">
-    <div id="main-content" class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
-<div id="artDetail">
+<div id="tags" class="container chip-container">
     <div class="card">
-        <div class="card-content article-info">
-            <div class="row tag-cate">
-                <div class="col s7">
-                    
-                    <div class="article-tag">
-                        
-                        <a href="/tags/Kubernetes/" target="_blank">
-                            <span class="chip bg-color">Kubernetes</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-                <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                        <a href="/categories/k8s/" class="post-category" target="_blank">
-                            k8s
-                        </a>
-                        
-                    </div>
-                    
-                </div>
+        <div class="card-content">
+            <div class="tag-title center-align">
+                <i class="fa fa-tags"></i>&nbsp;&nbsp;文章标签
             </div>
-
-            <div class="post-info">
-                <div class="post-date info-break-policy">
-                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-06
-                </div>
-
-                <div class="post-author info-break-policy">
-                    <i class="fa fa-user-o fa-fw"></i>文章作者:&nbsp;&nbsp;
-                    
-                    XieJiayi
-                    
-                </div>
-
+            <div class="tag-chips">
                 
                 
-                <div class="info-break-policy">
-                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    129
-                </div>
-                
-
-                
-                <div class="info-break-policy">
-                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
-                </div>
+                <a href="/tags/hexo/" title="hexo: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="hexo" style="background-color: #F9EBEA;">hexo
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
                 
                 
-
+                <a href="/tags/grpc/" title="grpc: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="grpc" style="background-color: #F5EEF8;">grpc
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
                 
-                <div id="busuanzi_container_page_pv" class="info-break-policy">
-                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
-                    <span id="busuanzi_value_page_pv"></span>
-                </div>
+                
+                <a href="/tags/%E5%8E%8B%E6%B5%8B/" title="压测: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="压测" style="background-color: #D5F5E3;">压测
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Kubernetes/" title="Kubernetes: 23">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Kubernetes" style="background-color: #E8F8F5;">Kubernetes
+                        <span class="tag-length">23</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Go/" title="Go: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Go" style="background-color: #FEF9E7;">Go
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/devops/" title="devops: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="devops" style="background-color: #F8F9F9;">devops
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%BD%91%E7%BB%9C/" title="网络: 5">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="网络" style="background-color: #82E0AA;">网络
+                        <span class="tag-length">5</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/VPS/" title="VPS: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="VPS" style="background-color: #D7BDE2;">VPS
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%85%B6%E4%BB%96/" title="其他: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="其他" style="background-color: #A3E4D7;">其他
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/" title="服务网格: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            data-tagname="服务网格" style="background-color: #85C1E9;">服务网格
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
                 
             </div>
         </div>
-        <hr class="clearfix">
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <ul>
-<li>.spec.schedule 指定任务运行周期，格式同 Cron</li>
-<li>.spec.jobTemplate 指定需要运行的任务，格式同 Job</li>
-<li>.spec.startingDeadlineSeconds 指定任务开始的截止期限</li>
-<li>.spec.concurrencyPolicy 指定任务的并发策略，支持 Allow、Forbid 和<br>Replace </li>
-<li>三个选项</li>
-</ul>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> batch/v1beta1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> CronJob
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> hello
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">schedule</span><span class="token punctuation">:</span> <span class="token string">"*/1 * * * *"</span>
-  <span class="token key atrule">jobTemplate</span><span class="token punctuation">:</span>
-          <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-                <span class="token key atrule">template</span><span class="token punctuation">:</span>
-                    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-                      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-                      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> hello
-                        <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
-                        <span class="token key atrule">args</span><span class="token punctuation">:</span>
-                        <span class="token punctuation">-</span> /bin/sh
-                        <span class="token punctuation">-</span> <span class="token punctuation">-</span>c
-                        <span class="token punctuation">-</span> date;echo Hello from the Kubernetes cluster
-                      <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> OnFailure<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>查看日志</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">//查看job和查看cronjob
-kubect get job
-kubect get cronjob
-
-<span class="token assign-left variable">pods</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>kubectl get pods <span class="token parameter variable">--selector</span><span class="token operator">=</span>job-name<span class="token operator">=</span>hello-27280025 <span class="token parameter variable">--output</span><span class="token operator">=</span>jsonpath<span class="token operator">=</span><span class="token punctuation">{</span>.items<span class="token punctuation">..</span>metadata.name<span class="token punctuation">}</span> <span class="token variable">)</span></span>
-
-kubectl logs <span class="token variable">$pods</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-            </div>
-            <hr />
-
-            
-
-            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
-
-<div id="article-share">
-    
-    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
-    
+    </div>
 </div>
 
-<script src="/libs/share/js/social-share.min.js"></script>
+    
 
+    <article id="articles" class="container articles">
+        <div class="row tags-posts">
             
-
-    <div class="reprint" id="reprint-statement">
-        <p class="reprint-tip">
-            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
-            <span>转载规则</span>
-        </p>
-        
-            <div class="center-align">
-                <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
-                    <img alt=""
-                         style="border-width:0"
-                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
-                </a>
-            </div>
-            <br/>
-            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
-                  property="dct:title" rel="dct:type">
-                    《cronjob 使用》
-                </span> by
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/kubernetes/cronjob.html" property="cc:attributionName"
-               rel="cc:attributionURL">
-                XieJiayi
-            </a> is licensed under a
-            <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
-                知识共享署名 4.0 国际许可协议
-            </a>许可协议。转载请注明来源
-        
-    </div>
-
-    <script async defer>
-      document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
-        M.toast({html: toastHTML})
-      });
-
-      function navToReprintStatement() {
-        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
-      }
-    </script>
-
-
-        </div>
-    </div>
-
-    
-    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
-<link rel="stylesheet" href="/css/my-gitalk.css">
-
-<div class="card gitalk-card" data-aos="fade-up">
-    <div id="gitalk-container" class="card-content"></div>
-</div>
-
-<script src="/libs/gitalk/gitalk.min.js"></script>
-<script>
-    let gitalk = new Gitalk({
-        clientID: 'e1f6a047fba17d64accb',
-        clientSecret: 'a8587fe6db5942b7239b3b0c1d0132b937780ba7',
-        repo: 'jiayi-1994.github.io',
-        owner: 'jiayi-1994',
-        admin: "jiayi-1994",
-        id: 'kubernetes/cronjob.html',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-
-    gitalk.render('gitalk-container');
-</script>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-<article id="prenext-posts" class="prev-next articles">
-    <div class="row article-row">
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
-            <div class="card">
-                <a href="/kubernetes/statefulset-you-zhuang-tai-fu-wu.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="StatefulSet有状态应用 使用">
-                        
-                        <span class="card-title">StatefulSet有状态应用 使用</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            参考地址：https://www.jianshu.com/p/693fe35a9156一、StatefulSet组成部分
-Headless Service：用来定义Pod网络标识( DNS domain)。
-volumeClaimTempl
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/k8s/" class="post-category" target="_blank">
-                                    k8s
-                                </a>
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="Kubernetes, 服务网格" data-aos="fade-up">
+                <div class="card">
+                    <a href="/kubernetes/istio-xiang-xi-shi-yong-er.html">
+                        <div class="card-image tag-image">
                             
                             
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Kubernetes/" target="_blank">
-                        <span class="chip bg-color">Kubernetes</span>
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Istio详细使用-流量管理（二）">
+                            
+                            <span class="card-title">Istio详细使用-流量管理（二）</span>
+                        </div>
                     </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/kubernetes/harbor-an-zhuang.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="harbor 使用">
-                        
-                        <span class="card-title">harbor 使用</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Download harbor helm charthelm repo add harbor https://helm.goharbor.io
-helm fetch harbor/harbor --untar
-kubectl create 
-                        
-                    </div>
-                    <div class="publish-info">
+                    <div class="card-content article-content">
+                        <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-08-08
                             </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/k8s/" class="post-category" target="_blank">
-                                    k8s
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/k8s/" class="post-category" target="_blank">
+                                k8s
                                 </a>
-                            
-                            
-                        </span>
+                                
+                                <a href="/categories/k8s/istio/" class="post-category" target="_blank">
+                                istio
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Kubernetes/" target="_blank">
-                        <span class="chip bg-color">Kubernetes</span>
-                    </a>
-                    
-                </div>
-                
             </div>
+            
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="Kubernetes, 服务网格" data-aos="fade-up">
+                <div class="card">
+                    <a href="/kubernetes/istio-xiang-xi-shi-yong-yi.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Istio详细使用-环境安装与介绍（一）">
+                            
+                            <span class="card-title">Istio详细使用-环境安装与介绍（一）</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-08-07
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/k8s/" class="post-category" target="_blank">
+                                k8s
+                                </a>
+                                
+                                <a href="/categories/k8s/istio/" class="post-category" target="_blank">
+                                istio
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-        
-    </div>
-</article>
-</div>
-
-
-<script>
-    $('#articleContent').on('copy', function (e) {
-        // IE8 or earlier browser is 'undefined'
-        if (typeof window.getSelection === 'undefined') return;
-
-        var selection = window.getSelection();
-        // if the selection is short let's not annoy our users.
-        if (('' + selection).length < Number.parseInt('120')) {
-            return;
-        }
-
-        // create a div outside of the visible area and fill it with the selected text.
-        var bodyElement = document.getElementsByTagName('body')[0];
-        var newdiv = document.createElement('div');
-        newdiv.style.position = 'absolute';
-        newdiv.style.left = '-99999px';
-        bodyElement.appendChild(newdiv);
-        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
-
-        // we need a <pre> tag workaround.
-        // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
-            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
-        }
-
-        var url = document.location.href;
-        newdiv.innerHTML += '<br />'
-            + '来源: 小萝卜 Blog<br />'
-            + '文章作者: XieJiayi<br />'
-            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
-
-        selection.selectAllChildren(newdiv);
-        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
-    });
-</script>
-
-    </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
-        <div class="toc-widget">
-            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<!-- TOC 悬浮按钮. -->
-
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fa fa-list"></i>
-    </a>
-</div>
-
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            // headingsOffset: -205,
-            headingSelector: 'h1, h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h1, h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-
-        
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
-
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
-
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).slideUp(500);
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).slideDown(500);
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
-        
-    });
-</script>
-    
-
+    </article>
 </main>
 
 

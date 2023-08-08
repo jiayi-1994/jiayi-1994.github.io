@@ -8,8 +8,7 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" />
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" />
-    <meta name="description" content="Istio详细使用-流量管理（二）[TOC]
-上篇介绍了istio的基础和网关的安装，以及bookInfo的应用用例安装，接下来介绍流量管理，比如熔断器、超时和重试，并且能轻松的设置重要的任务， 如 A/B 测试、金丝雀发布、基于流量百分比">
+    <meta name="description" content="Istio详细使用-流量管理（二）上篇介绍了istio的基础和网关的安装，以及bookInfo的应用用例安装，接下来介绍流量管理，比如熔断器、超时和重试，并且能轻松的设置重要的任务， 如 A/B 测试、金丝雀发布、基于流量百分比切分的分阶段">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -28,12 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
     <style type="text/css">
-        code[class*="language-"],
-            pre[class*="language-"] {
-                white-space: pre !important;
-            }
-
-            
+        
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
@@ -466,6 +460,10 @@
                             <span class="chip bg-color">Kubernetes</span>
                         </a>
                         
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/" target="_blank">
+                            <span class="chip bg-color">服务网格</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
@@ -527,8 +525,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Istio详细使用-流量管理（二）"><a href="#Istio详细使用-流量管理（二）" class="headerlink" title="Istio详细使用-流量管理（二）"></a>Istio详细使用-流量管理（二）</h1><p>[TOC]</p>
-<p>上篇介绍了istio的基础和网关的安装，以及bookInfo的应用用例安装，接下来介绍流量管理，比如熔断器、超时和重试，并且能轻松的设置重要的任务， 如 A/B 测试、金丝雀发布、基于流量百分比切分的分阶段发布等。</p>
+                <h1 id="Istio详细使用-流量管理（二）"><a href="#Istio详细使用-流量管理（二）" class="headerlink" title="Istio详细使用-流量管理（二）"></a>Istio详细使用-流量管理（二）</h1><p>上篇介绍了istio的基础和网关的安装，以及bookInfo的应用用例安装，接下来介绍流量管理，比如熔断器、超时和重试，并且能轻松的设置重要的任务， 如 A/B 测试、金丝雀发布、基于流量百分比切分的分阶段发布等。</p>
 <h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><p>为了在网格中导流，Istio 需要知道所有的 endpoint 在哪和属于哪个服务。 为了定位到 <strong>service registry</strong>（服务注册中心）， Istio 会连接到一个服务发现系统。例如，如果您在 Kubernetes 集群上安装了 Istio， 那么它将自动检测该集群中的服务和 endpoint。使用此服务注册中心，Envoy 代理可以将流量定向到相关服务。</p>
 <blockquote>
 <p>Istio 维护了一个内部服务注册表 (service registry)，它包含在服务网格中运行的一组<a target="_blank" rel="noopener" href="https://istio.io/zh/docs/reference/glossary/#service">服务</a>及其相应的<a target="_blank" rel="noopener" href="https://istio.io/zh/docs/reference/glossary/#service-endpoint">服务 endpoints</a>。Istio 使用服务注册表生成 <a target="_blank" rel="noopener" href="https://istio.io/zh/docs/reference/glossary/#envoy">Envoy</a> 配置。</p>
@@ -1178,8 +1175,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Istio详细使用-流量管理（二）[TOC]
-上篇介绍了istio的基础和网关的安装，以及bookInfo的应用用例安装，接下来介绍流量管理，比如熔断器、超时和重试，并且能轻松的设置重要的任务， 如 A/B 测试、金丝雀发布、基于流量百分比
+                            Istio详细使用-流量管理（二）上篇介绍了istio的基础和网关的安装，以及bookInfo的应用用例安装，接下来介绍流量管理，比如熔断器、超时和重试，并且能轻松的设置重要的任务， 如 A/B 测试、金丝雀发布、基于流量百分比切分的分阶段
                         
                     </div>
                     <div class="publish-info">
@@ -1208,6 +1204,10 @@
                     
                     <a href="/tags/Kubernetes/" target="_blank">
                         <span class="chip bg-color">Kubernetes</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/" target="_blank">
+                        <span class="chip bg-color">服务网格</span>
                     </a>
                     
                 </div>
@@ -1262,6 +1262,10 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
                     
                     <a href="/tags/Kubernetes/" target="_blank">
                         <span class="chip bg-color">Kubernetes</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/" target="_blank">
+                        <span class="chip bg-color">服务网格</span>
                     </a>
                     
                 </div>
