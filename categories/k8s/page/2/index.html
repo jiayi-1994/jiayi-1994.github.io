@@ -389,11 +389,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/categories/k8s/" title="k8s: 18">
+                <a href="/categories/k8s/" title="k8s: 19">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
                             style="background-color: #D5F5E3;">k8s
-                        <span class="tag-length">18</span>
+                        <span class="tag-length">19</span>
                     </span>
                 </a>
                 
@@ -434,11 +434,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/categories/k8s/istio/" title="istio: 1">
+                <a href="/categories/k8s/istio/" title="istio: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             style="background-color: #D7BDE2;">istio
-                        <span class="tag-length">1</span>
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
@@ -473,28 +473,30 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/kubernetes/cronjob.html">
+                    <a href="/kubernetes/ji-yu-prometheus-de-gao-jing-jian-kong.html">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="cronjob 使用">
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="基于prometheus的告警监控">
                             
-                            <span class="card-title">cronjob 使用</span>
+                            <span class="card-title">基于prometheus的告警监控</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                
-.spec.schedule 指定任务运行周期，格式同 Cron
-.spec.jobTemplate 指定需要运行的任务，格式同 Job
-.spec.startingDeadlineSeconds 指定任务开始的截止期限
-.spec.co
+                                prometheus系统架构图手动试验：1.部署一个简单的webhook服务
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  alert-webhook
+  namespac
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-01-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-07
                             </span>
                             <span class="publish-author">
                                 
@@ -502,6 +504,10 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                                 
                                 <a href="/categories/k8s/" class="post-category" target="_blank">
                                     k8s
+                                </a>
+                                
+                                <a href="/categories/k8s/prometheus/" class="post-category" target="_blank">
+                                    prometheus
                                 </a>
                                 
                                 
@@ -527,7 +533,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="StatefulSet有状态应用 使用">
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="StatefulSet有状态应用 使用">
                             
                             <span class="card-title">StatefulSet有状态应用 使用</span>
                         </div>
@@ -575,7 +581,7 @@ volumeClaimTempl
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="弹性伸缩 使用">
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="弹性伸缩 使用">
                             
                             <span class="card-title">弹性伸缩 使用</span>
                         </div>
@@ -622,7 +628,7 @@ interface=INTERFACE-
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="ServiceAccount 使用">
+                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="ServiceAccount 使用">
                             
                             <span class="card-title">ServiceAccount 使用</span>
                         </div>
@@ -672,7 +678,7 @@ serviceaccount/xjy created
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Ingress 使用">
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Ingress 使用">
                             
                             <span class="card-title">Ingress 使用</span>
                         </div>
@@ -720,7 +726,7 @@ https://mp.weixin.qq.com/s?__biz=
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="helm 使用">
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="helm 使用">
                             
                             <span class="card-title">helm 使用</span>
                         </div>
@@ -776,7 +782,7 @@ https://mp.weixin.qq.com/s?__biz=
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">2 / 3</div>
+            <div class="center-align b-text-gray">2 / 4</div>
         </div>
         <div class="col s6 m4 l4">
             
@@ -799,7 +805,7 @@ https://mp.weixin.qq.com/s?__biz=
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">42.5k
+            <span class="white-color">46.6k
              丨            
           
 
@@ -893,7 +899,7 @@ https://mp.weixin.qq.com/s?__biz=
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">42.5k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">46.6k</span>
     </div>
 </footer>
 

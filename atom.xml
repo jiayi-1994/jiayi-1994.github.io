@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-08-07T07:25:48.669Z</updated>
+  <updated>2023-08-08T09:41:33.638Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Istio详细使用-流量管理（二）</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/istio-xiang-xi-shi-yong-er.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/istio-xiang-xi-shi-yong-er.html</id>
+    <published>2023-08-08T11:06:38.000Z</published>
+    <updated>2023-08-08T09:41:33.638Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Istio详细使用-流量管理（二）&quot;&gt;&lt;a href=&quot;#Istio详细使用-流量管理（二）&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    <category term="istio" scheme="https://jiayi-1994.github.io/categories/k8s/istio/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Istio详细使用（一）</title>
     <link href="https://jiayi-1994.github.io/kubernetes/istio-xiang-xi-shi-yong-yi.html"/>
     <id>https://jiayi-1994.github.io/kubernetes/istio-xiang-xi-shi-yong-yi.html</id>
     <published>2023-08-07T11:06:38.000Z</published>
-    <updated>2023-08-07T07:25:48.669Z</updated>
+    <updated>2023-08-08T09:41:07.227Z</updated>
     
     
       
@@ -512,27 +539,6 @@
     <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
     
     <category term="devops" scheme="https://jiayi-1994.github.io/tags/devops/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://jiayi-1994.github.io/kubernetes/k8s-hpa-dan-xing-shen-suo.html"/>
-    <id>https://jiayi-1994.github.io/kubernetes/k8s-hpa-dan-xing-shen-suo.html</id>
-    <published>2023-01-06T06:56:14.701Z</published>
-    <updated>2023-01-06T07:14:52.152Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   

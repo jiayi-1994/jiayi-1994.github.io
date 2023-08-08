@@ -345,7 +345,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -504,14 +504,14 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
                 
@@ -689,8 +689,29 @@ bookinfo-gateway   32s<span aria-hidden="true" class="line-numbers-rows"><span><
 <li><p>访问</p>
 <img src="/kubernetes/istio-xiang-xi-shi-yong-yi/image-20230807152208678.png" class="" title="image-20230807152208678">
 
-<img src="/kubernetes/istio-xiang-xi-shi-yong-yi/image-20230807152146738.png" class="" title="image-20230807152146738"></li>
+<img src="/kubernetes/istio-xiang-xi-shi-yong-yi/image-20230807152146738.png" class="" title="image-20230807152146738">
+</li>
+<li><p>在可以使用 Istio 控制 Bookinfo 版本路由之前，您需要定义可用的版本。</p>
+<blockquote>
+<p>kubectl apply -f <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/istio/istio/release-1.18/samples/bookinfo/networking/destination-rule-all.yaml">https://raw.githubusercontent.com/istio/istio/release-1.18/samples/bookinfo/networking/destination-rule-all.yaml</a></p>
+<p> kubectl get destinationrules -o yaml</p>
+</blockquote>
+</li>
 </ol>
+<h3 id="2-3-Kiali——Istio-Service-Mesh-的可观察性工具"><a href="#2-3-Kiali——Istio-Service-Mesh-的可观察性工具" class="headerlink" title="2.3 Kiali——Istio Service Mesh 的可观察性工具"></a>2.3 Kiali——Istio Service Mesh 的可观察性工具</h3><h4 id="2-3-1Kiali-中的基本概念"><a href="#2-3-1Kiali-中的基本概念" class="headerlink" title="2.3.1Kiali 中的基本概念"></a>2.3.1Kiali 中的基本概念</h4><p>在了解 Kiali 如何提供 Service Mesh 中微服务可观察性之前，我们需要先了解下 Kiali 如何划分监控类别的。</p>
+<ul>
+<li>Application：使用运行的工作负载，必须使用 Istio 的将 Label 标记为 app 才算。注意，如果一个应用有多个版本，只要 app 标签的值相同就是属于同一个应用。</li>
+<li>Deployment：即 Kubernetes 中的 Deployment。</li>
+<li>Label：这个值对于 Istio 很重要，因为 Istio 要用它来标记 metrics。每个 Application 要求包括 app 和 version 两个 label。</li>
+<li>Namespace：通常用于区分项目和用户。</li>
+<li>Service：即 Kubernetes 中的 Service，不过要求必须有 app label。</li>
+<li>Workload：Kubernetes 中的所有常用资源类型如 Deployment、StatefulSet、Job 等都可以检测到，不论这些负载是否加入到 Istio Service Mesh 中。</li>
+</ul>
+<img src="/kubernetes/istio-xiang-xi-shi-yong-yi/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YW5wZW5nODI1NDg1Njk3,size_16,color_FFFFFF,t_70.png" class="" title="在这里插入图片描述">
+
+
+
+<h2 id="外部引用"><a href="#外部引用" class="headerlink" title="外部引用"></a>外部引用</h2><p>[Istio云原生资料库]: <a target="_blank" rel="noopener" href="https://jimmysong.io/kubernetes-handbook/usecases/istio.html">https://jimmysong.io/kubernetes-handbook/usecases/istio.html</a>	“Istio云原生资料库”<br>[Istio官网]: <a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/">https://istio.io/latest/zh/docs/concepts/</a>	“Istio官网”</p>
 
             </div>
             <hr />
@@ -789,31 +810,29 @@ bookinfo-gateway   32s<span aria-hidden="true" class="line-numbers-rows"><span><
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/kubernetes/istio-xiang-xi-shi-yong-yi.html">
+                <a href="/kubernetes/istio-xiang-xi-shi-yong-er.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Istio详细使用（一）">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Istio详细使用-流量管理（二）">
                         
-                        <span class="card-title">Istio详细使用（一）</span>
+                        <span class="card-title">Istio详细使用-流量管理（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Istio详细使用（一）1.介绍1.1 简介Istio 是由 Google、IBM 和 Lyft 开源的微服务管理、保护和监控框架。Istio 为希腊语，意思是”起航“。
-Istio 解决了开发人员和运维人员所面临的从单体应用向分布式微服务
+                            Istio详细使用-流量管理（二）上篇介绍了istio的基础和网关的安装，以及bookInfo的应用用例安装，接下来介绍流量管理，比如熔断器、超时和重试，并且能轻松的设置重要的任务， 如 A/B 测试、金丝雀发布、基于流量百分比切分的分阶段
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-08-07
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-08-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -830,7 +849,6 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -853,7 +871,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Linux下未使用磁盘扩容到根目录（PV）">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Linux下未使用磁盘扩容到根目录（PV）">
                         
                         <span class="card-title">Linux下未使用磁盘扩容到根目录（PV）</span>
                     </div>
@@ -1050,7 +1068,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">42.5k
+            <span class="white-color">46.6k
              丨            
           
 
@@ -1144,7 +1162,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">42.5k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">46.6k</span>
     </div>
 </footer>
 
