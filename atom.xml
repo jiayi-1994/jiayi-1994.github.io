@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-08-08T10:13:26.552Z</updated>
+  <updated>2023-08-14T10:15:42.741Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Istio详细使用-安全（三）</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/istio-xiang-xi-shi-yong-san.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/istio-xiang-xi-shi-yong-san.html</id>
+    <published>2023-08-12T08:10:09.000Z</published>
+    <updated>2023-08-14T10:15:42.741Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Istio详细使用-安全（二）&quot;&gt;&lt;a href=&quot;#Istio详细使用-安全（二）&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    <category term="istio" scheme="https://jiayi-1994.github.io/categories/k8s/istio/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+    <category term="服务网格" scheme="https://jiayi-1994.github.io/tags/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/"/>
+    
+  </entry>
   
   <entry>
     <title>Istio详细使用-流量管理（二）</title>
@@ -505,33 +534,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;通过docker-compost来构建&quot;&gt;&lt;a href=&quot;#通过docker-compost来构建&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="devops" scheme="https://jiayi-1994.github.io/categories/devops/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-    <category term="devops" scheme="https://jiayi-1994.github.io/tags/devops/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搭建k8s的jenkins集群</title>
-    <link href="https://jiayi-1994.github.io/devops/da-jian-k8s-de-jenkins-ji-qun.html"/>
-    <id>https://jiayi-1994.github.io/devops/da-jian-k8s-de-jenkins-ji-qun.html</id>
-    <published>2023-01-06T12:29:15.000Z</published>
-    <updated>2023-01-07T12:58:20.754Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;1-机器参考&quot;&gt;&lt;a href=&quot;#1-机器参考&quot; class=&quot;headerlink&quot;</summary>
         
       
     
