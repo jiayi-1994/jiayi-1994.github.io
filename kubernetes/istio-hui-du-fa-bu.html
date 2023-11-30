@@ -1008,14 +1008,16 @@
 <span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>此时系统中部署了V1和V2两个版本的reviews服务，但所有的业务流量都被规则reviews-default导向了V1，如下图所示：</p>
-<img src="Istio灰度发布/resug2f9sd-170131536258817-170131536358019.png" alt="img" style="zoom:150%;">
+<img src="/kubernetes/istio-hui-du-fa-bu/resug2f9sd-170131536258817-170131536358019.png" class="" title="img">
 
 <p>多次刷新访问页面如下：</p>
-<img src="/kubernetes/istio-hui-du-fa-bu/image-20231130113532597-170131533400411-170131533511313.png" class="" title="image-20231130113532597">
+<img src="/kubernetes/istio-hui-du-fa-bu/image-20231130113532597-170131533400411-170131533511313.png" class="" title="img">
 
 <h4 id="5-将测试流量导入到V2版本的reviews服务"><a href="#5-将测试流量导入到V2版本的reviews服务" class="headerlink" title="5.将测试流量导入到V2版本的reviews服务"></a>5.将测试流量导入到V2版本的reviews服务</h4><p>在进行模拟测试时，由于测试环境和生产环境的网络，服务器，操作系统等环境存在差异，很难完全模拟生产环境进行测试。为了减少环境因素的对测试结果的影响，我们希望能在生产环境中进行上线前的测试，但如果没有很好的隔离措施，可能会导致测试影响已上线的业务，对企业造成损失。</p>
 <p>通过采用Istio的路由规则，可以在类生产环境中进行测试，又完全隔离了线上用户的生产流量和测试流量，最小化模拟测试对已上线业务的影响。如下图所示：</p>
-<img src="Istio灰度发布/ago5fbszeu.png" alt="img" style="zoom:150%;">
+<img src="/kubernetes/istio-hui-du-fa-bu/ago5fbszeu.png" class="" title="img">
+
+
 
 <p>创建一条规则，将用户名为 test-user 的流量导入到V2</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
@@ -1040,9 +1042,10 @@
         <span class="token key atrule">subset</span><span class="token punctuation">:</span> v1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>结果如下：</p>
-<img src="/kubernetes/istio-hui-du-fa-bu/image-20231130114156147.png" class="" title="image-20231130114156147">
+<img src="/kubernetes/istio-hui-du-fa-bu/image-20231130114156147.png" class="" title="img">
 
-<img src="/kubernetes/istio-hui-du-fa-bu/image-20231130114305878.png" class="" title="image-20231130114305878">
+<img src="/kubernetes/istio-hui-du-fa-bu/image-20231130114305878.png" class="" title="img">
+
 
 <h4 id="6-将部分生产流量导入到V2版本的reviews服务"><a href="#6-将部分生产流量导入到V2版本的reviews服务" class="headerlink" title="6.将部分生产流量导入到V2版本的reviews服务"></a>6.将部分生产流量导入到V2版本的reviews服务</h4><p>在线上模拟测试完成后，如果系统测试情况良好，可以通过规则将一部分用户流量导入到V2版本的服务中，进行小规模的“金丝雀”测试。</p>
 <p>修改规则将50%的流量导入V2版本</p>
@@ -1072,7 +1075,7 @@
         <span class="token key atrule">subset</span><span class="token punctuation">:</span> v2
       <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">50</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<img src="Istio灰度发布/00k3qldzcy.png" alt="img" style="zoom:150%;">
+<img src="/kubernetes/istio-hui-du-fa-bu/00k3qldzcy.png" class="" title="img">
 
 <h4 id="7-将所有生产流量导入到到V2版本的reviews服务"><a href="#7-将所有生产流量导入到到V2版本的reviews服务" class="headerlink" title="7.将所有生产流量导入到到V2版本的reviews服务"></a>7.将所有生产流量导入到到V2版本的reviews服务</h4><p>如果新版本的服务运行正常，则可以将所有流量导入到V2版本。</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
@@ -1089,7 +1092,8 @@
         <span class="token key atrule">subset</span><span class="token punctuation">:</span> v2
       <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">100</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<img src="Istio灰度发布/a8yzmyem8w.png" alt="img" style="zoom:150%;">
+<img src="/kubernetes/istio-hui-du-fa-bu/a8yzmyem8w.png" class="" title="img">
+
 
 <h4 id="8-删除V1版本的reviews服务"><a href="#8-删除V1版本的reviews服务" class="headerlink" title="8.删除V1版本的reviews服务"></a>8.删除V1版本的reviews服务</h4><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[使用 Istio 实现灰度发布（金丝雀发布）]: <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1613799">https://cloud.tencent.com/developer/article/1613799</a>	“使用 Istio 实现灰度发布（金丝雀发布）”</p>
 
