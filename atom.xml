@@ -6,7 +6,7 @@
   <link href="https://jiayi-1994.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiayi-1994.github.io/"/>
-  <updated>2023-08-14T10:15:42.741Z</updated>
+  <updated>2023-11-30T06:40:40.126Z</updated>
   <id>https://jiayi-1994.github.io/</id>
   
   <author>
@@ -15,6 +15,97 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Istio灰度发布</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/istio-hui-du-fa-bu.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/istio-hui-du-fa-bu.html</id>
+    <published>2023-11-30T03:15:30.000Z</published>
+    <updated>2023-11-30T06:40:40.126Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Istio详细使用-灰度发布&quot;&gt;&lt;a href=&quot;#Istio详细使用-灰度发布&quot; class=&quot;headerlink&quot; title=&quot;Istio详细使用-灰度发布&quot;&gt;&lt;/a&gt;Istio详细使用-灰度发布&lt;/h1&gt;&lt;h2 id=&quot;蓝绿部署&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    <category term="istio" scheme="https://jiayi-1994.github.io/categories/k8s/istio/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+    <category term="服务网格" scheme="https://jiayi-1994.github.io/tags/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kubespray部署k8s-v1.27</title>
+    <link href="https://jiayi-1994.github.io/kubernetes/kubespray-bu-shu-k8s-v1-27.html"/>
+    <id>https://jiayi-1994.github.io/kubernetes/kubespray-bu-shu-k8s-v1-27.html</id>
+    <published>2023-08-24T09:18:48.000Z</published>
+    <updated>2023-11-30T06:41:26.183Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、kubespray安装&quot;&gt;&lt;a href=&quot;#一、kubespray安装&quot; class=&quot;headerlink&quot; title=&quot;一、kubespray安装&quot;&gt;&lt;/a&gt;一、kubespray安装&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/k8s/"/>
+    
+    <category term="kubespray" scheme="https://jiayi-1994.github.io/categories/k8s/kubespray/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+    <category term="kubespray" scheme="https://jiayi-1994.github.io/tags/kubespray/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>K8s的Operator开发（一）</title>
+    <link href="https://jiayi-1994.github.io/go/k8s-de-operator-kai-fa-yi.html"/>
+    <id>https://jiayi-1994.github.io/go/k8s-de-operator-kai-fa-yi.html</id>
+    <published>2023-08-15T12:57:21.000Z</published>
+    <updated>2023-08-25T02:01:58.950Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Kubernetes-Operator-开发教程（一）&quot;&gt;&lt;a href=&quot;#Kubernetes-Operator-开发教程（一）&quot; class=&quot;headerlink&quot; title=&quot;Kubernetes Operator</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/categories/Go/"/>
+    
+    <category term="k8s" scheme="https://jiayi-1994.github.io/categories/Go/k8s/"/>
+    
+    <category term="Operator" scheme="https://jiayi-1994.github.io/categories/Go/k8s/Operator/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
+    
+    <category term="Go" scheme="https://jiayi-1994.github.io/tags/Go/"/>
+    
+    <category term="Kubebuilder" scheme="https://jiayi-1994.github.io/tags/Kubebuilder/"/>
+    
+  </entry>
   
   <entry>
     <title>Istio详细使用-安全（三）</title>
@@ -466,85 +557,6 @@
     <category term="grpc" scheme="https://jiayi-1994.github.io/tags/grpc/"/>
     
     <category term="Go" scheme="https://jiayi-1994.github.io/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 Gomock 进行单元测试</title>
-    <link href="https://jiayi-1994.github.io/go/shi-yong-gomock-jin-xing-dan-yuan-ce-shi.html"/>
-    <id>https://jiayi-1994.github.io/go/shi-yong-gomock-jin-xing-dan-yuan-ce-shi.html</id>
-    <published>2023-01-06T12:29:16.000Z</published>
-    <updated>2023-01-06T08:24:30.800Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在实际项目中，需要进行单元测试的时候。却往往发现有一大堆依赖项。这时候就是 &lt;a href=&quot;https://github.com/golang/mock&quot;&gt;Gomock&lt;/a&gt; 大显身手的时候了&lt;br&gt;Gomock 是 Go 语言的一个 mock 框架，官方的那种</summary>
-        
-      
-    
-    
-    
-    <category term="Go" scheme="https://jiayi-1994.github.io/categories/Go/"/>
-    
-    
-    <category term="Go" scheme="https://jiayi-1994.github.io/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>pipeline流水线构建</title>
-    <link href="https://jiayi-1994.github.io/devops/pipeline-liu-shui-xian-gou-jian.html"/>
-    <id>https://jiayi-1994.github.io/devops/pipeline-liu-shui-xian-gou-jian.html</id>
-    <published>2023-01-06T12:29:15.000Z</published>
-    <updated>2023-01-06T07:33:10.918Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;1-流水线创建&quot;&gt;&lt;a href=&quot;#1-流水线创建&quot; class=&quot;headerlink&quot; title=&quot;1.流水线创建&quot;&gt;&lt;/a&gt;1.流水线创建&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="devops" scheme="https://jiayi-1994.github.io/categories/devops/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-    <category term="devops" scheme="https://jiayi-1994.github.io/tags/devops/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搭建harbor私有镜像仓库</title>
-    <link href="https://jiayi-1994.github.io/devops/da-jian-harbor-si-you-jing-xiang-cang-ku.html"/>
-    <id>https://jiayi-1994.github.io/devops/da-jian-harbor-si-you-jing-xiang-cang-ku.html</id>
-    <published>2023-01-06T12:29:15.000Z</published>
-    <updated>2023-07-27T08:15:37.594Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;通过docker-compost来构建&quot;&gt;&lt;a href=&quot;#通过docker-compost来构建&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="devops" scheme="https://jiayi-1994.github.io/categories/devops/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://jiayi-1994.github.io/tags/Kubernetes/"/>
-    
-    <category term="devops" scheme="https://jiayi-1994.github.io/tags/devops/"/>
     
   </entry>
   

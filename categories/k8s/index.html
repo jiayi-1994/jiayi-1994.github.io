@@ -366,11 +366,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 
                 
                 
-                <a href="/categories/Go/" title="Go: 4">
+                <a href="/categories/Go/" title="Go: 5">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             style="background-color: #F9EBEA;">Go
-                        <span class="tag-length">4</span>
+                        <span class="tag-length">5</span>
                     </span>
                 </a>
                 
@@ -384,11 +384,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/categories/k8s/" title="k8s: 20">
+                <a href="/categories/k8s/" title="k8s: 22">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
                             style="background-color: #D5F5E3;">k8s
-                        <span class="tag-length">20</span>
+                        <span class="tag-length">22</span>
                     </span>
                 </a>
                 
@@ -429,11 +429,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/categories/k8s/istio/" title="istio: 3">
+                <a href="/categories/k8s/istio/" title="istio: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             style="background-color: #D7BDE2;">istio
-                        <span class="tag-length">3</span>
+                        <span class="tag-length">4</span>
                     </span>
                 </a>
                 
@@ -456,6 +456,33 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
+                <a href="/categories/Go/k8s/" title="k8s: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            style="background-color: #F8C471;">k8s
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/Go/k8s/Operator/" title="Operator: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #F9E79F;">Operator
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/k8s/kubespray/" title="kubespray: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #FFF;">kubespray
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
             </div>
         </div>
     </div>
@@ -468,11 +495,126 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/kubernetes/istio-hui-du-fa-bu.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Istio灰度发布">
+                            
+                            <span class="card-title">Istio灰度发布</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Istio详细使用-灰度发布蓝绿部署
+
+所谓蓝绿部署是指在你的生产环境中同时有两套完全一致的应用，基于一套正在服务于线上环境，所有的请求都打到该环境中，当你的应用版本需要更新的时候，你直接在另外一套系统中部署新的版本，然后把流量切换到新的版
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-11-30
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
+                                </a>
+                                
+                                <a href="/categories/k8s/istio/" class="post-category" target="_blank">
+                                    istio
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Kubernetes/" target="_blank">
+                            <span class="chip bg-color">Kubernetes</span>
+                        </a>
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/" target="_blank">
+                            <span class="chip bg-color">服务网格</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/kubernetes/kubespray-bu-shu-k8s-v1-27.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="kubespray部署k8s-v1.27">
+                            
+                            <span class="card-title">kubespray部署k8s-v1.27</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、kubespray安装1.0 免密，修改主机名，升级内核cat &gt; mianmi.sh &lt;&lt; 'eof'
+#!/bin/sh
+ 
+#定义K8S主机字典
+declare -A MASTERS
+MASTERS=( [k8s
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-08-24
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/k8s/" class="post-category" target="_blank">
+                                    k8s
+                                </a>
+                                
+                                <a href="/categories/k8s/kubespray/" class="post-category" target="_blank">
+                                    kubespray
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Kubernetes/" target="_blank">
+                            <span class="chip bg-color">Kubernetes</span>
+                        </a>
+                        
+                        <a href="/tags/kubespray/" target="_blank">
+                            <span class="chip bg-color">kubespray</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/kubernetes/istio-xiang-xi-shi-yong-san.html">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Istio详细使用-安全（三）">
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Istio详细使用-安全（三）">
                             
                             <span class="card-title">Istio详细使用-安全（三）</span>
                         </div>
@@ -530,7 +672,7 @@ Istio安全的三大目标：
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Istio详细使用-流量管理（二）">
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Istio详细使用-流量管理（二）">
                             
                             <span class="card-title">Istio详细使用-流量管理（二）</span>
                         </div>
@@ -584,7 +726,7 @@ Istio安全的三大目标：
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Istio详细使用-环境安装与介绍（一）">
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Istio详细使用-环境安装与介绍（一）">
                             
                             <span class="card-title">Istio详细使用-环境安装与介绍（一）</span>
                         </div>
@@ -639,7 +781,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="K8S NetworkPolicy(网络策略)">
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="K8S NetworkPolicy(网络策略)">
                             
                             <span class="card-title">K8S NetworkPolicy(网络策略)</span>
                         </div>
@@ -685,103 +827,6 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/kubernetes/metallb-jie-he-ingress-de-shi-yong.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Metallb结合Ingress的使用">
-                            
-                            <span class="card-title">Metallb结合Ingress的使用</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                Metallb结合Ingress的使用一、Metallb1.简介
-Kubernetes不提供网络负载均衡器的实现（LoadBalancer类型的服务）用于裸机集群。Kubernetes附带的Network LB的实现都是调用各种IaaS平台
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-05-31
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/k8s/" class="post-category" target="_blank">
-                                    k8s
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Kubernetes/" target="_blank">
-                            <span class="chip bg-color">Kubernetes</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/kubernetes/ji-yu-karmada-de-duo-ji-qun-guan-li-2.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="基于karmada的多集群管理（二）">
-                            
-                            <span class="card-title">基于karmada的多集群管理（二）</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                基于Karmada的多集群管理-调度(二)介绍上文主要介绍了karmada集群的快速搭建以及基本的用例的下发demo,本文主要详细介绍karmada集群中调度传播策略propagationpolicies、差异性配置overridepoli
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/k8s/" class="post-category" target="_blank">
-                                    k8s
-                                </a>
-                                
-                                <a href="/categories/k8s/karmada/" class="post-category" target="_blank">
-                                    karmada
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Kubernetes/" target="_blank">
-                            <span class="chip bg-color">Kubernetes</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 </main>
@@ -820,7 +865,7 @@ Kubernetes不提供网络负载均衡器的实现（LoadBalancer类型的服务�
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">49.3k
+            <span class="white-color">55k
              丨            
           
 
@@ -906,7 +951,7 @@ Kubernetes不提供网络负载均衡器的实现（LoadBalancer类型的服务�
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">49.3k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55k</span>
     </div>
 </footer>
 
