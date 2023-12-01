@@ -339,7 +339,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -502,14 +502,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.8k
+                    3.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    17 分
                 </div>
                 
                 
@@ -537,7 +537,7 @@
 <li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#gateways">网关</a>(Gateway) 为HTTP/TCP流量配置负载均衡器，最常见的是在网格的边缘的操作，以启用应用程序的入口流量</li>
 <li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#service-entries">服务入口</a>(ServiceEntry) 是通常用于在Istio服务网格之外启用对服务的请求</li>
 <li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/reference/config/networking/workload-entry/">外部工作负载</a>(WorkloadEntry)</li>
-<li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#sidecars">Sidecar</a>(Sidecar)</li>
+<li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#sidecars">Sidecar</a>(Sidecar)用于配置进出网格的流量信息，可针对流量进行更精细的配置</li>
 </ul>
 <h2 id="2-虚拟服务-Virtual-Service"><a href="#2-虚拟服务-Virtual-Service" class="headerlink" title="2. 虚拟服务(Virtual Service)"></a>2. 虚拟服务(Virtual Service)</h2><p>虚拟服务让您配置如何在服务网格内将请求路由到服务， 这基于 Istio 和平台提供的基本的连通性和服务发现能力。每个虚拟服务包含一组路由规则， Istio 按顺序评估它们，Istio 将每个给定的<strong>请求匹配到虚拟服务指定的实际目标地址</strong>。</p>
 <h3 id="2-1-示例"><a href="#2-1-示例" class="headerlink" title="2.1 示例"></a>2.1 示例</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
@@ -978,7 +978,35 @@
 <h2 id="5-服务入口-ServiceEntry"><a href="#5-服务入口-ServiceEntry" class="headerlink" title="5. 服务入口(ServiceEntry)"></a>5. 服务入口(ServiceEntry)</h2><p><code>Istio</code>内部会维护一个服务注册表，可以用<code>ServiceEntry</code>向其中<strong>加入额外的条目</strong>。通常这个对象用来启用对Isto服务网格之外的服务发出请求ServiceEntry中使用hosts字段来指定目标，字段值可以是一个完全限定名，也可以是个通配符域名。<br>其中包含的白名单，包含一或多个允许网格中服务访问的服务。<br>只要ServiceEntry涉及到了匹配host的服务，就可以和VirtualService以及DestinationRule配合工作。</p>
 <img src="/kubernetes/istio-xiang-xi-shi-yong-er/image-20230808171137396.png" class="" title="image-20230808171137396">
 
-<h3 id="5-1-示例"><a href="#5-1-示例" class="headerlink" title="5.1 示例"></a>5.1 示例</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># https://istio.io/latest/zh/docs/reference/config/networking/service-entry/#ServicePort</span>
+<h3 id="5-1-示例"><a href="#5-1-示例" class="headerlink" title="5.1 示例"></a>5.1 示例</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment">#  访问foo.bar.com可以访问到其他endpoints</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceEntry
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> external<span class="token punctuation">-</span>svc<span class="token punctuation">-</span>dns
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> foo.bar.com
+  <span class="token key atrule">location</span><span class="token punctuation">:</span> MESH_EXTERNAL  <span class="token comment"># 外部服务</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> HTTP
+  <span class="token key atrule">resolution</span><span class="token punctuation">:</span> DNS
+  <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">address</span><span class="token punctuation">:</span> us.foo.bar.com
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token key atrule">http</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">address</span><span class="token punctuation">:</span> uk.foo.bar.com
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token key atrule">http</span><span class="token punctuation">:</span> <span class="token number">9080</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">address</span><span class="token punctuation">:</span> in.foo.bar.com
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token key atrule">http</span><span class="token punctuation">:</span> <span class="token number">7080</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># https://istio.io/latest/zh/docs/reference/config/networking/service-entry/#ServicePort</span>
 <span class="token comment"># https://istio.io/latest/zh/docs/tasks/traffic-management/egress/egress-control/</span>
 <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceEntry
@@ -1015,6 +1043,7 @@
 <li>使用默认的Allow-all的访问外部服务控制使用简单，但缺点，即丢失了对外部服务流量的 Istio 监控和控制；比如，允许调用所有未知的外部服务，外部服务的调用没有记录到 Mixer 的日志中。</li>
 <li>在服务调用过程中会使用到外部的服务，外部服务和本身集群内的服务无任何关系，通过ServiceEntry将该服务注册到 Istio 网格，在集群内部就好像访问自身的服务一样，我们还可以结合VirtualService、DestinationRule进而对网格内调用外部服务使用一些高级的治理能力，例如限流、重试等等对服务治理能力支持。– 总体可以认为是k8s的svc+endpoint类似功能</li>
 <li>现实的世界中，并不能做到所有的业务都容器化，Istio也意识到了这个问题，所以正在支持非容器部署的业务。除了ServiceEntry，又增加了WorkloadEntry，从而支持将vm部署的业务纳入mesh中。</li>
+<li>管理外部流量<a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/tasks/traffic-management/egress/egress-control/#manage-traffic-to-external-services">https://istio.io/latest/zh/docs/tasks/traffic-management/egress/egress-control/#manage-traffic-to-external-services</a></li>
 </ol>
 </blockquote>
 <h2 id="6-外部工作负载-WorkloadEntry"><a href="#6-外部工作负载-WorkloadEntry" class="headerlink" title="6. 外部工作负载(WorkloadEntry)"></a>6. 外部工作负载(WorkloadEntry)</h2><p><code>WorkloadEntry</code>使操作员能够描述单个非kubernetes工作负载的属性，例如<strong>虚拟机</strong>或<strong>裸机服务器</strong>，把它<strong>加载到网格</strong>中。WorkloadEntry必须伴随着Istio ServiceEntry，它通过适当的标签选择工作负载，并为MESH_INTERNAL服务(主机名、端口属性等)提供服务定义。ServiceEntry对象可以根据服务条目中指定的标签选择器选择多个工作负载条目以及Kubernetes pod。</p>
@@ -1166,7 +1195,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Istio详细使用-安全（三）">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Istio详细使用-安全（三）">
                         
                         <span class="card-title">Istio详细使用-安全（三）</span>
                     </div>
@@ -1227,7 +1256,7 @@ Istio安全的三大目标：
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Istio详细使用-环境安装与介绍（一）">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Istio详细使用-环境安装与介绍（一）">
                         
                         <span class="card-title">Istio详细使用-环境安装与介绍（一）</span>
                     </div>
@@ -1424,7 +1453,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">55k
+            <span class="white-color">55.2k
              丨            
           
 
@@ -1510,7 +1539,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55.2k</span>
     </div>
 </footer>
 

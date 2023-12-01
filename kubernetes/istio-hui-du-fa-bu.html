@@ -341,7 +341,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -504,7 +504,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2.3k
                 </div>
                 
 
@@ -555,7 +555,9 @@
 <li>待新版本服务稳定运行后，删除老版本服务。</li>
 </ul>
 <h3 id="Istio实现灰度发布-金丝雀发布-的操作步骤"><a href="#Istio实现灰度发布-金丝雀发布-的操作步骤" class="headerlink" title="Istio实现灰度发布(金丝雀发布)的操作步骤"></a><strong>Istio实现灰度发布(金丝雀发布)的操作步骤</strong></h3><h4 id="1-环境安装"><a href="#1-环境安装" class="headerlink" title="1.环境安装"></a>1.环境安装</h4><p>参考Istio官网<a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/setup/install/helm/">使用 Helm 安装</a>搭建Istio环境</p>
-<h4 id="2-部署V1、V2版本服务"><a href="#2-部署V1、V2版本服务" class="headerlink" title="2.部署V1、V2版本服务"></a>2.部署V1、V2版本服务</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Copyright Istio Authors</span>
+<h4 id="2-部署V1、V2版本服务"><a href="#2-部署V1、V2版本服务" class="headerlink" title="2.部署V1、V2版本服务"></a>2.部署V1、V2版本服务</h4><img src="/kubernetes/istio-hui-du-fa-bu/BookInfo_hu8ce595f57fff2b561d7a88a38ce91471_44081_448c0ab189ba41dceb48b0c8ca0131a0.webp" class="" title="BookInfo">
+
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Copyright Istio Authors</span>
 <span class="token comment">#</span>
 <span class="token comment">#   Licensed under the Apache License, Version 2.0 (the "License");</span>
 <span class="token comment">#   you may not use this file except in compliance with the License.</span>
@@ -891,7 +893,51 @@
         <span class="token key atrule">emptyDir</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="3-配置virtual-service服务"><a href="#3-配置virtual-service服务" class="headerlink" title="3.配置virtual-service服务"></a>3.配置virtual-service服务</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<h4 id="3-配置virtual-service和网关服务"><a href="#3-配置virtual-service和网关服务" class="headerlink" title="3.配置virtual-service和网关服务"></a>3.配置virtual-service和网关服务</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Gateway
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> bookinfo<span class="token punctuation">-</span>gateway
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token comment"># The selector matches the ingress gateway pod labels.</span>
+  <span class="token comment"># If you installed Istio using Helm following the standard documentation, this would be "istio=ingress"</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">istio</span><span class="token punctuation">:</span> ingress <span class="token comment"># use istio default controller</span>
+  <span class="token key atrule">servers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span>
+      <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+      <span class="token key atrule">protocol</span><span class="token punctuation">:</span> HTTP
+    <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token string">"*"</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> bookinfo
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">"*"</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> bookinfo<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /productpage
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /static
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /login
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /logout
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /api/v1/products
+    <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> productpage
+        <span class="token key atrule">port</span><span class="token punctuation">:</span>
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">9080</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">name</span><span class="token punctuation">:</span> productpage
@@ -942,7 +988,7 @@
     <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
         <span class="token key atrule">host</span><span class="token punctuation">:</span> details
         <span class="token key atrule">subset</span><span class="token punctuation">:</span> v1
-<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="4-配置destination-rule服务"><a href="#4-配置destination-rule服务" class="headerlink" title="4.配置destination-rule服务"></a>4.配置destination-rule服务</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule
@@ -1203,7 +1249,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Istio灰度发布">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Istio灰度发布">
                         
                         <span class="card-title">Istio灰度发布</span>
                     </div>
@@ -1263,7 +1309,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="kubespray部署k8s-v1.27">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="kubespray部署k8s-v1.27">
                         
                         <span class="card-title">kubespray部署k8s-v1.27</span>
                     </div>
@@ -1464,7 +1510,7 @@ MASTERS=( [k8s
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">55k
+            <span class="white-color">55.2k
              丨            
           
 
@@ -1550,7 +1596,7 @@ MASTERS=( [k8s
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55.2k</span>
     </div>
 </footer>
 
