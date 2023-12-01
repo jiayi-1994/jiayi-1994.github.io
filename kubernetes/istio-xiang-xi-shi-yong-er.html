@@ -502,14 +502,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    4.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    18 分
                 </div>
                 
                 
@@ -540,7 +540,55 @@
 <li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#sidecars">Sidecar</a>(Sidecar)用于配置进出网格的流量信息，可针对流量进行更精细的配置</li>
 </ul>
 <h2 id="2-虚拟服务-Virtual-Service"><a href="#2-虚拟服务-Virtual-Service" class="headerlink" title="2. 虚拟服务(Virtual Service)"></a>2. 虚拟服务(Virtual Service)</h2><p>虚拟服务让您配置如何在服务网格内将请求路由到服务， 这基于 Istio 和平台提供的基本的连通性和服务发现能力。每个虚拟服务包含一组路由规则， Istio 按顺序评估它们，Istio 将每个给定的<strong>请求匹配到虚拟服务指定的实际目标地址</strong>。</p>
-<h3 id="2-1-示例"><a href="#2-1-示例" class="headerlink" title="2.1 示例"></a>2.1 示例</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<h3 id="2-1-示例"><a href="#2-1-示例" class="headerlink" title="2.1 示例"></a>2.1 示例</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Gateway
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> bookinfo<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> istio<span class="token punctuation">-</span>system
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token comment"># The selector matches the ingress gateway pod labels.</span>
+  <span class="token comment"># If you installed Istio using Helm following the standard documentation, this would be "istio=ingress"</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">istio</span><span class="token punctuation">:</span> ingress <span class="token comment"># use istio default controller</span>
+  <span class="token key atrule">servers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span>
+      <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+      <span class="token key atrule">protocol</span><span class="token punctuation">:</span> HTTP
+    <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token string">"*"</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> bookinfo
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> istio<span class="token punctuation">-</span>xjy
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">"*"</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> istio<span class="token punctuation">-</span>system/bookinfo<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /productpage
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /static
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /login
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /logout
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /api/v1/products
+    <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> productpage
+        <span class="token key atrule">port</span><span class="token punctuation">:</span>
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">9080</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">name</span><span class="token punctuation">:</span> helloworld
@@ -587,6 +635,12 @@
           <span class="token key atrule">regex</span><span class="token punctuation">:</span> <span class="token string">"^(.*?;)?(email=[^;]*@some-company-name.com)(;.*)?$"</span>
           <span class="token punctuation">...</span><span class="token punctuation">...</span>.=<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<blockquote>
+<p>参考其他路由规则：</p>
+<p>HTTP:<a target="_blank" rel="noopener" href="https://istio.io/latest/docs/reference/config/networking/virtual-service/#HTTPMatchRequest">https://istio.io/latest/docs/reference/config/networking/virtual-service/#HTTPMatchRequest</a></p>
+<p>TCP:<a target="_blank" rel="noopener" href="https://istio.io/latest/docs/reference/config/networking/virtual-service/#TCPRoute">https://istio.io/latest/docs/reference/config/networking/virtual-service/#TCPRoute</a></p>
+<p>TLS:<a target="_blank" rel="noopener" href="https://istio.io/latest/docs/reference/config/networking/virtual-service/#TLSRoute">https://istio.io/latest/docs/reference/config/networking/virtual-service/#TLSRoute</a></p>
+</blockquote>
 <h4 id="2-3-2-根据uri匹配"><a href="#2-3-2-根据uri匹配" class="headerlink" title="2.3.2 根据uri匹配"></a>2.3.2 根据<strong>uri</strong>匹配</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
@@ -745,7 +799,7 @@
   <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
         <span class="token key atrule">prefix</span><span class="token punctuation">:</span> <span class="token string">"/productpage"</span>
-    <span class="token key atrule">delegate</span><span class="token punctuation">:</span>
+    <span class="token key atrule">delegate</span><span class="token punctuation">:</span> <span class="token comment"># 只有“路由”和“重定向”为空时才能设置，并且VirtualService委托的路由规则将与当前委托的路由规则合并。</span>
        <span class="token key atrule">name</span><span class="token punctuation">:</span> productpage
        <span class="token key atrule">namespace</span><span class="token punctuation">:</span> nsA
   <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
@@ -1453,7 +1507,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">55.2k
+            <span class="white-color">55.4k
              丨            
           
 
@@ -1539,7 +1593,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55.2k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55.4k</span>
     </div>
 </footer>
 
