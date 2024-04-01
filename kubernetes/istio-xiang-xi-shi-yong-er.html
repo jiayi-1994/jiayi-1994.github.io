@@ -339,7 +339,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -502,7 +502,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.2k
+                    4.4k
                 </div>
                 
 
@@ -535,8 +535,9 @@
 <li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#virtual-services">虚拟服务</a>(Virtual Service) 在istio服务网格中定义路由规则，控制路由如何路由到服务上</li>
 <li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#destination-rules">目标规则</a>(Destination Rule）是VirtualService路由生效后，配置应用与请求的策略集</li>
 <li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#gateways">网关</a>(Gateway) 为HTTP/TCP流量配置负载均衡器，最常见的是在网格的边缘的操作，以启用应用程序的入口流量</li>
-<li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#service-entries">服务入口</a>(ServiceEntry) 是通常用于在Istio服务网格之外启用对服务的请求</li>
-<li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/reference/config/networking/workload-entry/">外部工作负载</a>(WorkloadEntry)</li>
+<li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#service-entries">服务入口</a>(ServiceEntry) 是通常用于在Istio服务网格之外启用对服务的请求 参考类似k8s的service</li>
+<li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/reference/config/networking/workload-entry/">外部工作负载</a>(WorkloadEntry) 参考类似k8s中svc+ep</li>
+<li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/reference/config/networking/workload-group/#WorkloadGroup">外部工作负载组</a>(WorkloadGroup) 官方参考主要用于虚机加入网格情况（不进行介绍）</li>
 <li><a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/concepts/traffic-management/#sidecars">Sidecar</a>(Sidecar)用于配置进出网格的流量信息，可针对流量进行更精细的配置</li>
 </ul>
 <h2 id="2-虚拟服务-Virtual-Service"><a href="#2-虚拟服务-Virtual-Service" class="headerlink" title="2. 虚拟服务(Virtual Service)"></a>2. 虚拟服务(Virtual Service)</h2><p>虚拟服务让您配置如何在服务网格内将请求路由到服务， 这基于 Istio 和平台提供的基本的连通性和服务发现能力。每个虚拟服务包含一组路由规则， Istio 按顺序评估它们，Istio 将每个给定的<strong>请求匹配到虚拟服务指定的实际目标地址</strong>。</p>
@@ -1113,9 +1114,11 @@
   <span class="token comment"># sidecars will automatically communicate with the workload using</span>
   <span class="token comment"># istio mutual TLS.</span>
   <span class="token key atrule">serviceAccount</span><span class="token punctuation">:</span> details<span class="token punctuation">-</span>legacy
-  <span class="token key atrule">address</span><span class="token punctuation">:</span> 2.2.2.2
+  <span class="token key atrule">address</span><span class="token punctuation">:</span> 172.31.12.217
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token key atrule">http</span><span class="token punctuation">:</span> <span class="token number">4000</span>
   <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> details<span class="token punctuation">-</span>legacy
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> zstone<span class="token punctuation">-</span>nginx
     <span class="token key atrule">instance-id</span><span class="token punctuation">:</span> vm1
 <span class="token punctuation">---</span>
 <span class="token comment"># 关联到serviceEntry</span>
@@ -1131,15 +1134,18 @@
   <span class="token punctuation">-</span> <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span>
     <span class="token key atrule">name</span><span class="token punctuation">:</span> http
     <span class="token key atrule">protocol</span><span class="token punctuation">:</span> HTTP
-    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">4000</span>
   <span class="token key atrule">resolution</span><span class="token punctuation">:</span> STATIC
   <span class="token key atrule">workloadSelector</span><span class="token punctuation">:</span>
     <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-      <span class="token key atrule">app</span><span class="token punctuation">:</span> details<span class="token punctuation">-</span>legacy
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> zstone<span class="token punctuation">-</span>nginx
+      
+echo "172.31.12.216 details.bookinfo.com" <span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span> /etc/hosts
+kubectl <span class="token punctuation">-</span>n istio<span class="token punctuation">-</span>xjy run client <span class="token punctuation">-</span><span class="token punctuation">-</span>image=ikubernetes/admin<span class="token punctuation">-</span>box <span class="token punctuation">-</span>it <span class="token punctuation">-</span><span class="token punctuation">-</span>rm <span class="token punctuation">-</span><span class="token punctuation">-</span>restart=Never <span class="token punctuation">-</span><span class="token punctuation">-</span>command <span class="token punctuation">-</span><span class="token punctuation">-</span> /bin/sh
+curl details.bookinfo.com   <span class="token comment"># 会变成请求到 172.31.12.217:4000服务上</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
+<h2 id="7-外部工作负载组-WorkloadGroup"><a href="#7-外部工作负载组-WorkloadGroup" class="headerlink" title="7. 外部工作负载组(WorkloadGroup)"></a>7. 外部工作负载组(WorkloadGroup)</h2><p>参考：<a target="_blank" rel="noopener" href="https://istio.io/latest/zh/docs/setup/install/virtual-machine/#create-files-to-transfer-to-the-virtual-machine">https://istio.io/latest/zh/docs/setup/install/virtual-machine/#create-files-to-transfer-to-the-virtual-machine</a></p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="IstioCtl使用查看代理情况"><a href="#IstioCtl使用查看代理情况" class="headerlink" title="IstioCtl使用查看代理情况"></a>IstioCtl使用查看代理情况</h3><ul>
 <li>网格概览</li>
 </ul>
@@ -1287,7 +1293,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Istio详细使用-安全（三）">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Istio详细使用-安全（三）">
                         
                         <span class="card-title">Istio详细使用-安全（三）</span>
                     </div>
@@ -1348,7 +1354,7 @@ Istio安全的三大目标：
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Istio详细使用-环境安装与介绍（一）">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Istio详细使用-环境安装与介绍（一）">
                         
                         <span class="card-title">Istio详细使用-环境安装与介绍（一）</span>
                     </div>
@@ -1545,7 +1551,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
            <!--<a href="/sitemap.xml" target="_blank">站点地图</a>丨-->
            
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">55.5k
+            <span class="white-color">55.7k
              丨            
           
 
@@ -1631,7 +1637,7 @@ Istio 解决了开发人员和运维人员所面临的从单体应用向分布�
       <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
     </div>
     <div class="github-badge">
-      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55.5k</span>
+      <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet">55.7k</span>
     </div>
 </footer>
 
